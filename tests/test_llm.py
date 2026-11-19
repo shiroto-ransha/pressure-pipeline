@@ -101,6 +101,20 @@ def test_gemini_native_and_order_env(monkeypatch):
     assert fake.calls[0][1].endswith("/models/gemini-next-flash:generateContent")
 
 
+def test_gemini_generation_config_merged(monkeypatch):
+    seen = {}
+
+    def fake(method, url, headers, body=None, timeout=0):
+        seen["body"], seen["timeout"] = body, timeout
+        return gem(GOOD)
+
+    monkeypatch.setattr(llm, "http", fake)
+    llm.generate("s", "p", news_frames.SCHEMA, env={"GEMINI_API_KEY": "g"}, cfg=CFG, verify_models=False)
+    gc = seen["body"]["generationConfig"]
+    assert gc["thinkingConfig"] == {"thinkingLevel": "low"} and gc["responseMimeType"] == "application/json"
+    assert seen["timeout"] == CFG["timeout_sec"]
+
+
 def test_missing_model_warns_and_skips(monkeypatch):
     fake = Fake({"api.groq.com/openai/v1/models": {"data": [{"id": "other-model"}]},
                  "api.cerebras.ai/v1/models": {"data": [{"id": "gpt-oss-120b"}]},

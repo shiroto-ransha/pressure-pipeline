@@ -181,7 +181,7 @@ class Provider:
                                  for m in messages],
                     "systemInstruction": {"parts": [{"text": system}]},
                     "generationConfig": {"responseMimeType": "application/json", "responseSchema": schema,
-                                         "temperature": self.temperature}}
+                                         "temperature": self.temperature, **self.spec.get("generation_config", {})}}
             res = http("POST", f"{self.base}/models/{self.model}:generateContent", self._headers(), body, self.timeout)
             try:
                 return res["candidates"][0]["content"]["parts"][0]["text"]
