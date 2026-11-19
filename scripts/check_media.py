@@ -17,8 +17,9 @@ import gkg  # noqa: E402
 
 
 def main():
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=(dt.datetime.now(gkg.JST).date() - dt.timedelta(days=1)).isoformat())
     ap.add_argument("--sample", type=int, default=8)

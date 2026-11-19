@@ -42,8 +42,9 @@ def missing(cfg: dict, lookup: dict) -> list[tuple[str, str]]:
 
 
 def main():
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--lookup")
     a = ap.parse_args()

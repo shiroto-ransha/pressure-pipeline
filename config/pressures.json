@@ -71,6 +71,6 @@
  "news_exclude": {
   "_comment": "LLM に渡す前に外す候補（規則：自殺・自傷、未成年が当事者、性犯罪の被害の詳細）。最終判断は LLM の規則と人の確認でも行う。",
   "gkg_themes": ["SOC_SUICIDE", "RAPE", "WB_2443_RAPE_AND_SEXUAL_VIOLENCE", "TAX_DISEASE_PEDOPHILIA"],
-  "keywords": ["自殺", "自死", "自傷", "飛び降り", "少年", "少女", "女児", "男児", "小学生", "中学生", "高校生", "未成年", "児童", "性的暴行", "強制性交", "わいせつ", "suicide", "minor"]
+  "keywords": ["自殺", "自死", "自傷", "飛び降り", "少年", "少女", "女児", "男児", "小学生", "中学生", "高校生", "未成年", "児童", "性的暴行", "強制性交", "わいせつ", "買春", "suicide", " minor", "teen", "child", "schoolgirl", "schoolboy", "student", "sexual assault", "rape", "molest"]
  }
 }
