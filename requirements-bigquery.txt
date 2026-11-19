@@ -1,0 +1,2 @@
+# GDELT_BACKEND=bigquery のときだけ必要
+google-cloud-bigquery>=3.20

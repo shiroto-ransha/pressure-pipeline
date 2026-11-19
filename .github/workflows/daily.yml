@@ -1,48 +1,149 @@
-# 毎朝 6:47（日本時間）に GDELT の集計とニュースの枠組みの下書きを作り、
-# site/ を GitHub Pages に公開する。
-# 必要な Secrets: GEMINI_API_KEY（または ANTHROPIC_API_KEY と LLM_PROVIDER=anthropic）
+# 毎朝 6:47（日本時間）に、GDELT の集計とニュースの枠組みの下書きを作り、site/ を GitHub Pages に公開する。
+#
+# 工程: collect.py → news_frames.py → build.py → コミット → Pages
+#   どこかが失敗しても、前日までのデータで公開を続ける（continue-on-error と、build.py が壊れたデータを置かないこと）。
+#
+# 公開前の確認（Variables の REVIEW_MODE）:
+#   pr（既定）  ニュースの下書きは main に入れず、ブランチ news-review に積んで PR を開く。人が確認してマージすると公開される。
+#               報道環境の集計（gdelt.json）は機械的な数値なので、毎朝そのまま main に入れて公開する。
+#   auto        確認なしでニュースも main に入れて公開する。
+#
+# Secrets（どれも任意。1つ以上あればニュースの下書きが動く）:
+#   GEMINI_API_KEY, GROQ_API_KEY, CEREBRAS_API_KEY, CF_ACCOUNT_ID, CF_API_TOKEN, OPENROUTER_API_KEY
+#   BigQuery を使う場合: GCP_SA_KEY（サービスアカウント JSON）
+# Variables（任意）:
+#   LLM_ORDER, GEMINI_MODEL, GROQ_MODEL, CEREBRAS_MODEL, CF_MODEL, OPENROUTER_MODEL,
+#   GDELT_BACKEND（gkg-files | bigquery | doc）, GKG_SAMPLE, REVIEW_MODE（pr | auto）, BQ_PROJECT
 name: daily-update
 on:
   schedule:
     - cron: "47 21 * * *"   # UTC 21:47 = JST 6:47
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "集計する日（JST, YYYY-MM-DD）。空なら昨日"
+        required: false
+  push:                      # 確認用 PR のマージや手動の修正で main が変わったら、公開し直す
+    branches: [main]
+    paths: ["site/**"]
 
 permissions:
   contents: write
+  pull-requests: write
   pages: write
   id-token: write
 
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+env:
+  REVIEW_MODE: ${{ vars.REVIEW_MODE || 'pr' }}
+  REVIEW_BRANCH: news-review
+
 jobs:
   update:
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - name: GDELT を集計
-        run: python collect_gdelt.py
-      - name: ニュースの枠組みを下書き
-        env:
-          LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'gemini' }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python news_frames.py
-      - name: サイトにデータを配置
-        run: mkdir -p site/data && cp data/*.json site/data/
-      - name: データをコミット
+
+      - name: BigQuery の準備（GDELT_BACKEND=bigquery のときだけ）
+        if: vars.GDELT_BACKEND == 'bigquery'
+        env: {GCP_SA_KEY: "${{ secrets.GCP_SA_KEY }}"}
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-          git add data site/data
-          git diff --cached --quiet || git commit -m "daily update $(date -u +%F)"
-          git push
-      - uses: actions/upload-pages-artifact@v3
-        with: {path: site}
+          pip install -q -r requirements-bigquery.txt
+          if [ -n "$GCP_SA_KEY" ]; then
+            printf '%s' "$GCP_SA_KEY" > "$RUNNER_TEMP/gcp.json"
+            echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/gcp.json" >> "$GITHUB_ENV"
+          fi
+
+      - name: 報道環境を集計（GDELT）
+        id: collect
+        continue-on-error: true
+        env:
+          GDELT_BACKEND: ${{ vars.GDELT_BACKEND || 'gkg-files' }}
+          GKG_SAMPLE: ${{ vars.GKG_SAMPLE || '1' }}
+          BQ_PROJECT: ${{ vars.BQ_PROJECT }}
+        run: python collect.py ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
+      - name: 確認待ちのニュースを引き継ぐ（REVIEW_MODE=pr）
+        if: env.REVIEW_MODE == 'pr'
+        run: |
+          if git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null; then
+            git fetch -q origin "$REVIEW_BRANCH"
+            git show "origin/$REVIEW_BRANCH:data/news.json" > data/news.json
+            echo "確認待ちの $REVIEW_BRANCH から news.json を引き継ぎました"
+          fi
+
+      - name: ニュースの枠組みを下書き（LLM の無料枠を順に試す）
+        id: news
+        if: steps.collect.outcome == 'success'
+        continue-on-error: true
+        env:
+          LLM_ORDER: ${{ vars.LLM_ORDER }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          CEREBRAS_MODEL: ${{ vars.CEREBRAS_MODEL }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_MODEL: ${{ vars.CF_MODEL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+        run: python news_frames.py
+
+      - name: 集計を main に入れる
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898099+github-actions[bot]@users.noreply.github.com"
+          python build.py --only gdelt
+          git add data/gdelt.json data/history data/articles.json site/data/gdelt.json 2>/dev/null || true
+          if [ "$REVIEW_MODE" = "auto" ]; then
+            python build.py --only news
+            git add data/news.json site/data/news.json
+          fi
+          git diff --cached --quiet || git commit -q -m "daily update $(TZ=Asia/Tokyo date +%F)"
+          git push -q origin HEAD:main
+
+      - name: ニュースの下書きを確認用 PR に積む（REVIEW_MODE=pr）
+        if: env.REVIEW_MODE == 'pr' && steps.news.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp data/news.json "$RUNNER_TEMP/news.json"
+          git switch -q -C "$REVIEW_BRANCH" HEAD
+          cp "$RUNNER_TEMP/news.json" data/news.json
+          python build.py --only news
+          git add data/news.json site/data/news.json
+          if git diff --cached --quiet; then echo "ニュースの変更はありません"; exit 0; fi
+          git commit -q -m "ニュースの下書き $(TZ=Asia/Tokyo date +%F)（要確認）"
+          git push -q -f origin "$REVIEW_BRANCH"
+          if [ -z "$(gh pr list --head "$REVIEW_BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create --base main --head "$REVIEW_BRANCH" --title "ニュースの枠組みの下書き（要確認）" --body-file .github/review_checklist.md
+          else
+            gh pr comment "$REVIEW_BRANCH" --body "$(TZ=Asia/Tokyo date +%F) の下書きを追加しました。"
+          fi
+          git switch -q main
+
   deploy:
     needs: update
+    if: always() && needs.update.result != 'cancelled'   # 失敗しても、main にある前回までのデータで公開を続ける
     runs-on: ubuntu-latest
-    environment: {name: github-pages}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - id: deployment
+        uses: actions/deploy-pages@v4

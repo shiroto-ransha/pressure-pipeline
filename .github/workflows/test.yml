@@ -1,0 +1,20 @@
+# テスト（PR と main への push）。確認用 PR の news.json の形もここで確かめる。
+name: test
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore: ["data/history/**"]
+permissions:
+  contents: read
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q -r requirements-dev.txt
+      - run: python -m pytest -q
+      - run: python build.py --check
