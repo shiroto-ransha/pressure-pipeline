@@ -1,1 +1,2 @@
 pytest>=8
+# e2e/ を動かすとき: playwright（python -m playwright install chromium）
