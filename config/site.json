@@ -1,6 +1,6 @@
 {
  "_comment": "公開ページの情報（SEO 用）。build.py --seo が index.html の head・静的な本文・sitemap.xml・robots.txt に使う。独自ドメインにしたら url を変える。",
- "url": "https://punai826-arch.github.io/pressure-pipeline/",
+ "url": "https://shiroto-ransha.github.io/pressure-pipeline/",
  "title": "圧力と、その応じ方。｜ニュースで見る社会のプレッシャー",
  "short_title": "圧力と、その応じ方。",
  "description": "毎朝、前の日の日本のニュースを集めて、お金の格差・見た目・働き方などの社会からのプレッシャーがどれくらい取り上げられたかをグラフで示します。ニュースが広める「ふつう」の考え方の解説と、自分の立場でプレッシャーへのかわし方を考える無料ツールもあります。",

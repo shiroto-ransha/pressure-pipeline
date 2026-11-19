@@ -113,7 +113,8 @@
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR",
-     "TAX_FNCACT_SINGER"
+     "TAX_FNCACT_SINGER",
+     "WB_1620_ELDERLY"
     ]
    },
    {
@@ -790,6 +791,7 @@
     "lang": "jpn",
     "themes": [
      "ARREST",
+     "DISABILITY",
      "SOC_GENERALCRIME"
     ]
    },

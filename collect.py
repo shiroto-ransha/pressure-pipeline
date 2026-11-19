@@ -208,23 +208,78 @@ def pick_candidates(jp_articles: list[dict], cfg: dict, per_kind: int = CANDIDAT
     return out
 
 
-def build_site_json(day: dt.date, cfg: dict, backend: str, history_dir: pathlib.Path) -> dict:
-    """data/history/ の直近 trend_days 日から、サイト用の gdelt.json を組み立てる。"""
+def select_display(prev: list[str], scores: dict[str, int], n: int) -> tuple[list[str], dict | None]:
+    """表示する項目を n 個選ぶ。1日に入れかえるのは1つだけ（1 in 1 out）。
+
+    - 前回の表示（prev）を引き継ぐ。足りなければ件数の多い順に補う。
+    - 表示の外でいちばん件数の多い項目が、表示の中でいちばん少ない項目を「上回った」ときだけ、その2つを入れかえる。
+    - 件数は scores（この7日の日本のニュースサイトの記事数の合計）。同じ件数なら config の順で前のものを優先する。
+    """
+    keys = list(scores)
+    rank = lambda k: (-scores[k], keys.index(k))
+    cur = [k for k in prev if k in scores][:n]
+    for k in sorted(keys, key=rank):
+        if len(cur) >= n:
+            break
+        if k not in cur:
+            cur.append(k)
+    outside = [k for k in keys if k not in cur]
+    if outside and cur:
+        best, worst = min(outside, key=rank), max(cur, key=rank)
+        if scores[best] > scores[worst]:
+            return [best if k == worst else k for k in cur], {"in": best, "out": worst}
+    return cur, None
+
+
+def update_display_state(path: pathlib.Path | None, day: dt.date, scores: dict[str, int], cfg: dict) -> tuple[list[str], dict | None]:
+    """data/display.json に表示中の項目と入れかえの記録を残す。同じ日に何度実行しても、入れかえは1回分。"""
+    n = int(cfg.get("display_count", 10))
+    d = day.isoformat()
+    state = (load_json(path) if path else None) or {}
+    if state.get("date") and state["date"] > d:          # 過去の日を集計し直すときは、表示を変えない
+        keys = [k for k in state.get("keys", []) if k in scores]
+        return keys, None
+    prev = state.get("prev_keys") if state.get("date") == d else state.get("keys")
+    prev = prev or list(cfg["pressures"])
+    keys, swap = select_display(prev, scores, n)
+    if path:
+        history = [h for h in state.get("history", []) if h.get("date") != d]
+        if swap:
+            history.insert(0, {"date": d, **swap})
+        write_json(path, {"date": d, "prev_keys": prev, "keys": keys, "swap": swap, "history": history[:30]})
+    return keys, swap
+
+
+def build_site_json(day: dt.date, cfg: dict, backend: str, history_dir: pathlib.Path,
+                    state_path: pathlib.Path | None = None) -> dict:
+    """data/history/ の直近 trend_days 日から、サイト用の gdelt.json を組み立てる。
+
+    圧力（pressures）と候補（candidates）をひとつの項目の集まりとして扱い、
+    この7日の記事数で表示する項目を選ぶ（select_display）。items が表示する項目、candidates が表示の外の項目。
+    """
     ndays = int(cfg.get("trend_days", 7))
     days = [(day - dt.timedelta(days=i)).isoformat() for i in range(ndays - 1, -1, -1)]
     hist = {d: load_json(history_dir / f"{d}.json") for d in days}
     today = hist[day.isoformat()] or {}
-    out = {"asof": day.isoformat(), "window": "1d", "backend": backend, "source": SOURCE,
-           "trend_dates": days, "items": {}, "candidates": {}}
-    for g, rules in (("items", cfg["pressures"]), ("candidates", cfg.get("candidates", {}))):
+    pool = {}
+    for g, rules, kind in (("items", cfg["pressures"], "pressure"), ("candidates", cfg.get("candidates", {}), "candidate")):
         for k, rule in rules.items():
-            entry = {"name": rule["name"]}
+            entry = {"name": rule["name"], "kind": kind}
             for grp in ("jp", "ref"):
                 cur = ((today.get(g) or {}).get(k) or {}).get(grp)
                 trend = [((((hist[d] or {}).get(g) or {}).get(k) or {}).get(grp) or {}).get("n") if hist[d] else None
                          for d in days]
                 entry[grp] = {"n": cur["n"], "tone": cur["tone"], "trend": trend} if cur else None
-            out[g][k] = entry
+            entry["score7"] = sum(v or 0 for v in ((entry["jp"] or {}).get("trend") or []))
+            pool[k] = entry
+    scores = {k: v["score7"] for k, v in pool.items()}
+    shown, swap = update_display_state(state_path, day, scores, cfg)
+    order = sorted(shown, key=lambda k: -scores[k])
+    out = {"asof": day.isoformat(), "window": "1d", "backend": backend, "source": SOURCE, "trend_dates": days,
+           "display_rule": f"この{ndays}日の記事の数で、表示の外にある項目が表示中のいちばん少ない項目を上回ったら、1日に1つだけ入れかえる",
+           "items": {k: dict(pool[k], is_new=bool(swap and swap["in"] == k)) for k in order},
+           "candidates": {k: pool[k] for k in sorted(pool, key=lambda k: -scores[k]) if k not in shown},
+           "swap": dict(swap, date=day.isoformat(), in_name=pool[swap["in"]]["name"], out_name=pool[swap["out"]]["name"]) if swap else None}
     if today.get("totals"):
         out["totals"] = today["totals"]
     # 媒体群ごとの記事総数の推移（「記事全体に占める割合」の比較に使う）
@@ -288,7 +343,7 @@ def main(argv=None) -> int:
     hist = {"date": day.isoformat(), "backend": a.backend, "sample": a.sample,
             "generated": dt.datetime.now(gkg.JST).strftime("%Y-%m-%d %H:%M"), **stats, **res}
     write_json(data / "history" / f"{day.isoformat()}.json", hist)
-    site = build_site_json(day, cfg, a.backend, data / "history")
+    site = build_site_json(day, cfg, a.backend, data / "history", data / "display.json")
     write_json(data / "gdelt.json", site)
     if a.backend != "doc":
         write_json(data / "articles.json", {"date": day.isoformat(), "source": SOURCE,

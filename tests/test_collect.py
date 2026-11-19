@@ -92,3 +92,54 @@ def test_articles_from_zip():
     got = list(collect.articles_from_zip(buf.getvalue(), MEDIA))
     assert [(a["group"], a["url"]) for a in got] == [("jp", "https://www.asahi.com/a"), ("ref", "https://www.bbc.com/news/1")]
     assert got[0]["themes"] == {"WB_695_POVERTY"} and got[0]["tone"] == -2.5 and got[0]["lang"] == "jpn"
+
+
+# ---------- 表示する項目の入れかえ（1 in 1 out） ----------
+
+def test_select_display_one_in_one_out():
+    scores = {"a": 10, "b": 8, "c": 2, "x": 9, "y": 7}
+    keys, swap = collect.select_display(["a", "b", "c"], scores, 3)
+    assert swap == {"in": "x", "out": "c"}                 # 外でいちばん多い x が、中でいちばん少ない c と入れかわる
+    assert sorted(keys) == ["a", "b", "x"]                  # y も c より多いが、1日に1つだけ
+
+
+def test_select_display_no_swap_when_not_greater():
+    keys, swap = collect.select_display(["a", "b"], {"a": 5, "b": 3, "x": 3}, 2)
+    assert swap is None and keys == ["a", "b"]              # 同数では入れかえない
+
+
+def test_select_display_fills_and_trims():
+    keys, swap = collect.select_display([], {"a": 1, "b": 5, "c": 3}, 2)
+    assert keys == ["b", "c"] and swap is None
+    keys, _ = collect.select_display(["a", "b", "c", "gone"], {"a": 1, "b": 5, "c": 3}, 2)
+    assert len(keys) == 2 and "gone" not in keys
+
+
+def test_display_state_once_per_day(tmp_path):
+    cfg = {"pressures": {"a": {}, "b": {}}, "display_count": 2}
+    path = tmp_path / "display.json"
+    d = dt.date(2026, 11, 18)
+    scores = {"a": 5, "b": 1, "x": 4, "y": 3}
+    keys, swap = collect.update_display_state(path, d, scores, cfg)
+    assert swap == {"in": "x", "out": "b"}
+    again, swap2 = collect.update_display_state(path, d, scores, cfg)   # 同じ日にもう一度実行しても
+    assert again == keys and swap2 == swap                              # 入れかえは1回分のまま
+    nxt, swap3 = collect.update_display_state(path, d + dt.timedelta(days=1), scores, cfg)
+    assert swap3 == {"in": "y", "out": "x"} or swap3 is None or swap3["out"] in keys
+    old, swap4 = collect.update_display_state(path, d - dt.timedelta(days=3), scores, cfg)
+    assert swap4 is None                                                # 過去の日の集計し直しでは変えない
+    state = json.loads(path.read_text(encoding="utf-8"))
+    assert state["history"][0]["date"] >= "2026-11-18"
+
+
+def test_site_json_marks_new_item(tmp_path):
+    cfg = {"pressures": {"a": {"name": "A"}, "b": {"name": "B"}}, "candidates": {"x": {"name": "X"}},
+           "display_count": 2, "trend_days": 2}
+    for day, n in (("2026-11-17", {"a": 5, "b": 1, "x": 3}), ("2026-11-18", {"a": 5, "b": 1, "x": 3})):
+        h = {"items": {k: {"jp": {"n": n[k], "tone": 0.0}, "ref": {"n": 0, "tone": None}} for k in ("a", "b")},
+             "candidates": {"x": {"jp": {"n": n["x"], "tone": 0.0}, "ref": {"n": 0, "tone": None}}}}
+        (tmp_path / f"{day}.json").write_text(json.dumps(h))
+    site = collect.build_site_json(dt.date(2026, 11, 18), cfg, "gkg-files", tmp_path, tmp_path / "display.json")
+    assert list(site["items"]) == ["a", "x"] and site["items"]["x"]["is_new"] is True
+    assert list(site["candidates"]) == ["b"]
+    assert site["swap"]["in_name"] == "X" and site["swap"]["out_name"] == "B"

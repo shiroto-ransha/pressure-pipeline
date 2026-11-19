@@ -14,6 +14,7 @@ import threading
 import pytest
 
 pw = pytest.importorskip("playwright.sync_api")
+expect = pw.expect
 
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 SHOTS = pathlib.Path(__file__).resolve().parent / "screenshots"
@@ -43,44 +44,47 @@ def run_flow(page, url, shot_prefix=None):
     page.goto(url)
     page.wait_for_load_state("networkidle")
     shot = (lambda name: page.screenshot(path=str(SHOTS / f"{shot_prefix}-{name}.png"), full_page=True)) if shot_prefix else (lambda n: None)
-    # 01 ニュース（最初の画面）
-    assert page.get_by_role("heading", name="ニュースが広める「ふつう」を読む。").is_visible()
-    assert page.get_by_role("link", name="The GDELT Project").is_visible()
+    # ニュース（最初の画面）
+    expect(page.get_by_role("heading", name="ニュースが広める「ふつう」を読む。")).to_be_visible()
+    expect(page.get_by_role("link", name="The GDELT Project")).to_be_visible()
     page.get_by_text("日本と海外のニュースをくらべる").click()          # 開く
-    assert page.get_by_text("目安として見てください", exact=False).is_visible()
-    assert page.locator("svg[aria-label*='この7日の記事の数']").count() == 10
+    expect(page.get_by_text("目安として見てください", exact=False)).to_be_visible()
+    expect(page.locator("svg[aria-label*='この7日の記事の数']")).to_have_count(10)
+    expect(page.get_by_text("今日の入れかえ：", exact=False)).to_be_visible()
     shot("01-news")
-    page.get_by_role("button", name="自分の立場で試してみる →").click()
+    page.get_by_role("button", name="立場を選んで考えてみる →").click()
 
-    # 02 立場
+    # 立場
+    expect(page.get_by_role("img", name="ニュース・立場・質問・結果の順にめぐり", exact=False)).to_be_visible()
     shot("02-attr")
     page.get_by_role("button", name="女性", exact=True).click()
     page.get_by_role("button", name="30〜40代").click()
     page.get_by_role("button", name="働き方").click()
     page.get_by_role("button", name="お金", exact=True).click()
     page.get_by_role("button", name="ひとりぼっち").click()      # 3つ目は選べない
-    assert page.get_by_text("選べるのは2つまでです").is_visible()
-    rows = page.locator("text=物の値段が上がって、暮らしが苦しくなった").locator("xpath=..")
-    rows.get_by_role("button", name="はい").click()
+    expect(page.get_by_text("選べるのは2つまでです")).to_be_visible()
+    expect(page.get_by_text("お金のこと", exact=False)).to_have_count(0)          # お金の2問は削除
     page.get_by_role("button", name="質問へ進む →").click()
 
-    # 03 質問（14問）
-    assert page.get_by_text("1 / 14").is_visible()
-    assert page.get_by_text("この人は、").first.is_visible()
+    # 質問（14問）
+    expect(page.get_by_text("1 / 14")).to_be_visible()
+    expect(page.get_by_text("思いうかべた人（あなた自身でも、身近な人でも）に、あてはまりますか？")).to_be_visible()
+    expect(page.get_by_text("この人は", exact=False)).to_have_count(0)
     shot("03-question")
     for i in range(14):
         name = ["はい", "いいえ", "わからない"][i % 3]
         page.get_by_role("button", name=name, exact=True).click()
 
-    # 04 結果
-    assert page.get_by_text("注意：この結果は「はい／いいえ」の答えから考えた予想です。", exact=False).first.is_visible()
-    assert page.get_by_role("img", name="6つのかわし方のレーダーチャート").is_visible()
-    assert page.get_by_text("苦しくなっている側").is_visible()
+    # 結果
+    expect(page.get_by_text("注意：この結果は「はい／いいえ」の答えから考えた予想です。", exact=False).first).to_be_visible()
+    expect(page.get_by_role("img", name="6つのかわし方のレーダーチャート")).to_be_visible()
+    expect(page.get_by_text("お金の面での位置")).to_have_count(0)
     shot("04-result")
 
-    # ニュースに戻ると、選んだ分野に近いテーマに印が付く
-    page.get_by_role("button", name="01 ニュース").click()
-    assert page.get_by_text("● 働き方による上下の見方").is_visible()
+    # 結果からニュースにもどる（ループ）と、選んだ分野に近いテーマに印が付く
+    page.get_by_role("button", name="ニュースにもどる ↻").click()
+    expect(page.get_by_role("heading", name="ニュースが広める「ふつう」を読む。")).to_be_visible()
+    expect(page.get_by_text("● 働き方による上下の見方")).to_be_visible()
     return errors
 
 
@@ -109,8 +113,8 @@ def test_mobile_390(browser, server):
     assert no_hscroll(page)
     tops = page.evaluate("[...document.querySelectorAll('nav button')].map(b => Math.round(b.getBoundingClientRect().top))")
     assert len(set(tops)) == 1, tops                      # 手順のボタンが1行に並ぶ
-    for step in ("04 結果", "02 立場", "03 質問"):
-        page.get_by_role("button", name=step).click()
+    for step in ("結果", "立場", "質問"):
+        page.get_by_role("button", name=step, exact=True).click()
         assert no_hscroll(page), step
     assert no_hscroll(page)
     assert tap_targets_ok(page)
@@ -130,8 +134,8 @@ def test_review_badge_and_fetch(browser, server):
                body=json.dumps([{"date": "2026-11-18", "cases": [case, reviewed]}], ensure_ascii=False)))
     page.goto(server)
     page.wait_for_load_state("networkidle")
-    assert page.get_by_text("確認待ち — AIが書いた下書き（groq:test-model）").count() == 1
-    assert page.get_by_role("link", name="元の記事：example.jp（2026-11-18）").count() == 2
+    expect(page.get_by_text("確認待ち — AIが書いた下書き（groq:test-model）")).to_have_count(1)
+    expect(page.get_by_role("link", name="元の記事：example.jp（2026-11-18）")).to_have_count(2)
 
 
 def test_embedded_fallback_without_server(browser):
@@ -161,8 +165,8 @@ def test_seo_without_javascript(browser, server):
     assert page.locator('meta[property="og:image"]').get_attribute("content").endswith("og.png")
     ld = json.loads(page.locator('script[type="application/ld+json"]').inner_text())
     assert {g["@type"] for g in ld["@graph"]} == {"WebSite", "WebApplication", "Dataset"}
-    assert page.get_by_role("heading", level=1).count() == 1
-    assert page.locator(".static li").count() == 10
+    expect(page.get_by_role("heading", level=1)).to_have_count(1)
+    expect(page.locator(".static li")).to_have_count(10)
     ctx.close()
 
 
@@ -170,5 +174,23 @@ def test_single_h1_and_headings_with_js(browser, server):
     page = browser.new_page(viewport={"width": 390, "height": 844})
     page.goto(server)
     page.wait_for_load_state("networkidle")
-    assert page.locator("h1").count() == 1
-    assert page.locator(".static").count() == 0          # JS が動くと静的な本文は置きかわる
+    expect(page.locator("h1")).to_have_count(1)
+    expect(page.locator(".static")).to_have_count(0)          # JS が動くと静的な本文は置きかわる
+
+
+def test_reduced_motion_flow(browser, server):
+    """動きを減らす設定でも、同じ流れで最後まで動く（アニメーションなし）。"""
+    ctx = browser.new_context(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
+    page = ctx.new_page()
+    errors = run_flow(page, server)
+    assert errors == []
+    ctx.close()
+
+
+def test_loop_nav_has_no_numbers(browser, server):
+    page = browser.new_page(viewport={"width": 1280, "height": 900})
+    page.goto(server)
+    page.wait_for_load_state("networkidle")
+    labels = page.evaluate("[...document.querySelectorAll('nav button')].map(b => b.textContent.trim())")
+    assert labels == ["ニュース", "立場", "質問", "結果"]
+    assert page.evaluate("[...document.querySelectorAll('nav .arw')].map(a => a.textContent)") == ["→", "→", "→", "↻"]

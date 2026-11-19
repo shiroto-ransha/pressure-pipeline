@@ -2,7 +2,7 @@
  "date": "2026-11-14",
  "backend": "gkg-files",
  "sample": 1,
- "generated": "2026-11-19 13:34",
+ "generated": "2026-11-19 15:35",
  "files_expected": 192,
  "files_ok": 192,
  "items": {
@@ -122,6 +122,86 @@
    "jp": {
     "n": 1,
     "tone": -2.72
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "overwork": {
+   "jp": {
+    "n": 0,
+    "tone": null
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "caregiving": {
+   "jp": {
+    "n": 1,
+    "tone": 2.14
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "childcare": {
+   "jp": {
+    "n": 11,
+    "tone": 2.23
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "disability": {
+   "jp": {
+    "n": 4,
+    "tone": -2.45
+   },
+   "ref": {
+    "n": 1,
+    "tone": -4.42
+   }
+  },
+  "mental": {
+   "jp": {
+    "n": 9,
+    "tone": -2.25
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "gender_gap": {
+   "jp": {
+    "n": 3,
+    "tone": -2.26
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "elderly": {
+   "jp": {
+    "n": 23,
+    "tone": -0.86
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "dv": {
+   "jp": {
+    "n": 0,
+    "tone": null
    },
    "ref": {
     "n": 0,

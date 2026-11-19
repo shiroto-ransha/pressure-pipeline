@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-18",
+ "prev_keys": [
+  "inequality",
+  "scarcity",
+  "ethnic",
+  "ai_jobs",
+  "disability",
+  "elderly",
+  "harass",
+  "mental",
+  "hetero",
+  "precarious"
+ ],
+ "keys": [
+  "inequality",
+  "scarcity",
+  "ethnic",
+  "ai_jobs",
+  "disability",
+  "elderly",
+  "harass",
+  "mental",
+  "hetero",
+  "precarious"
+ ],
+ "swap": null,
+ "history": [
+  {
+   "date": "2026-11-17",
+   "in": "ai_jobs",
+   "out": "childcare"
+  },
+  {
+   "date": "2026-11-15",
+   "in": "childcare",
+   "out": "isolation"
+  },
+  {
+   "date": "2026-11-14",
+   "in": "mental",
+   "out": "marital"
+  },
+  {
+   "date": "2026-11-13",
+   "in": "disability",
+   "out": "objectify"
+  },
+  {
+   "date": "2026-11-12",
+   "in": "elderly",
+   "out": "service"
+  }
+ ]
+}
