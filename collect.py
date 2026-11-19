@@ -227,6 +227,8 @@ def build_site_json(day: dt.date, cfg: dict, backend: str, history_dir: pathlib.
             out[g][k] = entry
     if today.get("totals"):
         out["totals"] = today["totals"]
+    # 媒体群ごとの記事総数の推移（「記事全体に占める割合」の比較に使う）
+    out["totals_trend"] = {grp: [((hist[d] or {}).get("totals") or {}).get(grp) for d in days] for grp in ("jp", "ref")}
     return out
 
 

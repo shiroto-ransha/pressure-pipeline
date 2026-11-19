@@ -1,0 +1,146 @@
+{
+ "date": "2026-11-13",
+ "backend": "gkg-files",
+ "sample": 1,
+ "generated": "2026-11-19 13:31",
+ "files_expected": 192,
+ "files_ok": 192,
+ "items": {
+  "inequality": {
+   "jp": {
+    "n": 30,
+    "tone": -2.08
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "scarcity": {
+   "jp": {
+    "n": 17,
+    "tone": -0.0
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "ethnic": {
+   "jp": {
+    "n": 21,
+    "tone": -2.2
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "isolation": {
+   "jp": {
+    "n": 2,
+    "tone": -0.11
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "objectify": {
+   "jp": {
+    "n": 1,
+    "tone": -14.44
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "service": {
+   "jp": {
+    "n": 0,
+    "tone": null
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "harass": {
+   "jp": {
+    "n": 12,
+    "tone": -1.89
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "marital": {
+   "jp": {
+    "n": 2,
+    "tone": -1.38
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "hetero": {
+   "jp": {
+    "n": 2,
+    "tone": 3.05
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "precarious": {
+   "jp": {
+    "n": 10,
+    "tone": 2.09
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  }
+ },
+ "candidates": {
+  "flaming": {
+   "jp": {
+    "n": 3,
+    "tone": -2.33
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "ai_jobs": {
+   "jp": {
+    "n": 9,
+    "tone": 0.3
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "fraud": {
+   "jp": {
+    "n": 4,
+    "tone": -1.69
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  }
+ },
+ "totals": {
+  "jp": 1944,
+  "ref": 5
+ }
+}

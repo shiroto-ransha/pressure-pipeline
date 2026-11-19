@@ -62,6 +62,7 @@ def test_build_site_json_trend(tmp_path):
     assert it["jp"]["trend"] == [None, None, None, None, 3, None, 5]
     assert it["jp"]["n"] == 5 and it["ref"]["n"] == 1
     assert site["source"].startswith("The GDELT Project")
+    assert site["totals_trend"]["jp"] == [None, None, None, None, 9, None, 9]
 
 
 def test_zero_warning():
