@@ -17,6 +17,7 @@ import os
 import pathlib
 import socket
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -121,11 +122,11 @@ def _fill(template: str, env: dict, model: str = "") -> str:
 
 
 class Provider:
-    def __init__(self, name: str, spec: dict, env: dict, timeout: int, temperature: float):
+    def __init__(self, name: str, spec: dict, env: dict, timeout: int, temperature: float, model: str | None = None):
         self.name, self.spec, self.env = name, spec, env
         self.kind = spec["kind"]
         self.key = env.get(spec["key_env"], "")
-        self.model = env.get(spec["model_env"]) or spec.get("default_model", "")
+        self.model = model if model is not None else (model_list(spec, env) or [""])[0]
         self.base = _fill(env.get(spec.get("base_env", ""), "") or spec["base_url"], env).rstrip("/")
         self.timeout, self.temperature = timeout, temperature
 
@@ -198,6 +199,22 @@ class Provider:
             raise ProviderError(f"応答に本文がありません: {str(res)[:200]}") from e
 
 
+def model_list(spec: dict, env: dict) -> list[str]:
+    """*_MODEL（カンマ区切りで複数可）か default_model（文字列か配列）。前から順に試す。"""
+    raw = env.get(spec["model_env"]) or spec.get("default_model", "")
+    items = raw if isinstance(raw, list) else str(raw).split(",")
+    return [m.strip() for m in items if m and m.strip()]
+
+
+def is_transient(e: Exception) -> bool:
+    """混雑・一時的な障害（5xx・タイムアウト・通信障害）なら True。429（上限）は待っても戻りにくいので False。"""
+    msg = str(e)
+    return msg.startswith("HTTP 5") or msg.startswith("通信エラー")
+
+
+_sleep = time.sleep   # テストで差し替える
+
+
 def providers(order: list[str] | None = None, env: dict | None = None, cfg: dict | None = None) -> list[Provider]:
     cfg = cfg or load_config()
     env = dict(os.environ) if env is None else env
@@ -207,7 +224,9 @@ def providers(order: list[str] | None = None, env: dict | None = None, cfg: dict
         if n not in cfg["providers"]:
             print(f"  [{n}] 不明なプロバイダーです。飛ばします。", file=sys.stderr)
             continue
-        out.append(Provider(n, cfg["providers"][n], env, int(cfg.get("timeout_sec", 180)), float(cfg.get("temperature", 0.4))))
+        spec = cfg["providers"][n]
+        for m in model_list(spec, env) or [""]:
+            out.append(Provider(n, spec, env, int(cfg.get("timeout_sec", 180)), float(cfg.get("temperature", 0.4)), model=m))
     return out
 
 
@@ -217,7 +236,9 @@ def generate(system: str, prompt: str, schema: dict, *, force: str | None = None
 
     check(obj) -> list[str] を渡すと、スキーマ以外の検査（不合格なら再依頼の対象）も行う。
     """
+    cfg = cfg or load_config()
     chain = providers([force] if force else None, env=env, cfg=cfg)
+    retries, wait = int(cfg.get("transient_retries", 1)), float(cfg.get("transient_wait_sec", 20))
     log = []
     for p in chain:
         why = p.available()
@@ -232,10 +253,20 @@ def generate(system: str, prompt: str, schema: dict, *, force: str | None = None
         messages = [{"role": "user", "content": prompt}]
         for attempt in range(2):   # 初回＋スキーマ修正の再依頼1回
             try:
-                text = p.complete(system, messages, schema)
+                text = None
+                for r in range(retries + 1):   # 混雑（5xx・タイムアウト）なら少し待って同じモデルで再試行
+                    try:
+                        text = p.complete(system, messages, schema)
+                        break
+                    except ProviderError as e:
+                        if r < retries and is_transient(e):
+                            print(f"  [{p.label}] 一時的な失敗: {str(e)[:120]}。{wait:.0f}秒待って再試行します。", file=sys.stderr)
+                            _sleep(wait)
+                            continue
+                        raise
             except ProviderError as e:
-                log.append(f"{p.label}: {e}")
-                print(f"  [{p.label}] 失敗: {e}。次へ回します。", file=sys.stderr)
+                log.append(f"{p.label}: {str(e)[:300]}")
+                print(f"  [{p.label}] 失敗: {str(e)[:300]}。次へ回します。", file=sys.stderr)
                 break
             try:
                 obj = parse_json_text(text)

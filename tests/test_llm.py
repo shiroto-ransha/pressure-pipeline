@@ -60,7 +60,35 @@ def test_single_key_429_fails_cleanly(monkeypatch):
         llm.generate("s", "p", news_frames.SCHEMA, env={"GROQ_API_KEY": "k"}, cfg=CFG, verify_models=False)
 
 
+def test_transient_retry_same_model(monkeypatch):
+    monkeypatch.setattr(llm, "_sleep", lambda s: None)
+    fake = Fake({"api.groq.com": [llm.ProviderError("HTTP 503: high demand"), chat(GOOD)]})
+    monkeypatch.setattr(llm, "http", fake)
+    _, label = llm.generate("s", "p", news_frames.SCHEMA, env={"GROQ_API_KEY": "a"}, cfg=CFG, verify_models=False)
+    assert label.startswith("groq:") and len(fake.calls) == 2
+
+
+def test_429_not_retried(monkeypatch):
+    monkeypatch.setattr(llm, "_sleep", lambda s: None)
+    fake = Fake({"api.groq.com": [llm.ProviderError("HTTP 429"), chat(GOOD)]})
+    monkeypatch.setattr(llm, "http", fake)
+    with pytest.raises(llm.AllProvidersFailed):
+        llm.generate("s", "p", news_frames.SCHEMA, env={"GROQ_API_KEY": "a"}, cfg=CFG, verify_models=False)
+    assert len(fake.calls) == 1
+
+
+def test_model_list_falls_back_within_provider(monkeypatch):
+    monkeypatch.setattr(llm, "_sleep", lambda s: None)
+    fake = Fake({"/models/m1:": llm.ProviderError("HTTP 503"), "/models/m2:": gem(GOOD)})
+    monkeypatch.setattr(llm, "http", fake)
+    _, label = llm.generate("s", "p", news_frames.SCHEMA, env={"GEMINI_API_KEY": "g", "GEMINI_MODEL": "m1, m2"},
+                            cfg=CFG, verify_models=False)
+    assert label == "gemini:m2"
+    assert [u.rsplit("/", 1)[1] for _, u in fake.calls] == ["m1:generateContent"] * 2 + ["m2:generateContent"]
+
+
 def test_timeout_and_5xx_move_on(monkeypatch):
+    monkeypatch.setattr(llm, "_sleep", lambda s: None)
     fake = Fake({"generativelanguage": llm.ProviderError("通信エラー: timed out"),
                  "api.groq.com": llm.ProviderError("HTTP 503"),
                  "api.cerebras.ai": chat(GOOD)})

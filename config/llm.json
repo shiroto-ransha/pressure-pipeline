@@ -1,11 +1,14 @@
 {
  "_comment": "解説の下書きに使う LLM の接続先。上から順に試す（LLM_ORDER で変更可）。モデル名・接続先はすべて環境変数で上書きできる。無料枠の上限・モデルの提供状況は変わるので、各社の管理画面で確認すること（README の「確認が必要」）。default_model はこのファイルを書いた時点の例であり、起動時に各社のモデル一覧 API で存在を確かめ、なければ警告して次のプロバイダーへ回す。",
  "order": ["gemini", "groq", "cerebras", "cloudflare", "openrouter"],
- "timeout_sec": 300,
+ "timeout_sec": 150,
+ "transient_retries": 1,
+ "transient_wait_sec": 20,
+ "_retry_comment": "5xx・タイムアウトのとき、同じモデルで transient_retries 回まで再試行する。429 は再試行せず次へ。*_MODEL はカンマ区切りで複数のモデルを書ける（前から順に試す）。",
  "temperature": 0.4,
  "providers": {
   "gemini":     {"kind": "gemini", "base_url": "https://generativelanguage.googleapis.com/v1beta", "base_env": "GEMINI_BASE_URL",
-                 "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL", "default_model": "gemini-3.8-flash",
+                 "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL", "default_model": "gemini-3.8-flash,gemini-3.7-flash",
                  "generation_config": {"thinkingConfig": {"thinkingLevel": "low"}},
                  "_generation_config_note": "generationConfig に足す設定。Gemini 3 系は既定で長く考えるため low にして応答時間を抑える。モデルが受け付けない場合は {} にする。",
                  "_note": "2026-11-19 時点で gemini-2.5-flash は新規ユーザーに提供されておらず（API が gemini-3.8-flash を案内）、2.5 系は 2026-12-01 に廃止予定。変わったら GEMINI_MODEL で差し替える。"},
