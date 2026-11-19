@@ -146,7 +146,7 @@ Playwright のテスト（`e2e/`）は、`pip install playwright` と `python -m
 外部の上限値や仕様は変わります。コードには固定せず設定に出しています。使う前に各社の画面で確かめてください。
 
 - **無料枠の上限**：Gemini（AI Studio）、Groq、Cerebras、Cloudflare Workers AI（1日の Neuron 数）、OpenRouter の `:free` モデルは、上限と対象モデルが時期によって変わります。1日2回＋再依頼の呼び出しなので、通常はどれでも収まる見込みですが、**確認が必要**です。
-- **モデル名**：`config/llm.json` の `default_model` は執筆時点の例です。**Gemini 2.5 系は 2026年12月1日に廃止予定**なので、`GEMINI_MODEL` を AI Studio で使える後継の Flash 系に差し替えてください。各社のモデル名も変わります（起動時の確認で警告が出ます）。
+- **モデル名**：`config/llm.json` の `default_model` は執筆時点の例です。Gemini の既定は `gemini-3.8-flash` です（2026-11-19 の時点で `gemini-2.5-flash` は新規ユーザーに提供されておらず、2.5 系は 2026年12月1日に廃止予定）。変わったら Variables の `GEMINI_MODEL` で差し替えてください。各社のモデル名も変わります（起動時の確認で警告が出ます）。
 - **Cloudflare のモデル一覧**：`models/search` API で確認しています。OpenAI 互換エンドポイントの URL 形式と合わせて、**確認が必要**です。
 - **BigQuery**：`gdelt-bq.gdeltv2.gkg_partitioned` に翻訳系の記事が入っていること、1日あたりのスキャン量（列の選び方で数GB程度の見込み）は、dry run の表示で**確認が必要**です。サンドボックスの無料枠は月1TiB。
 - **ロイター**：2026-11-18 の GKG にはロイター（reuters.com）の記事が0件でした。GDELT 側で収集されていない可能性があり、参考媒体の件数は実質的に BBC・Bloomberg・NYTimes に依存します。参考媒体の日本関連記事は1日10件前後と少ないので、サイトでは直近7日の合計の割合で比べています。

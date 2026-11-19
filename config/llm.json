@@ -5,8 +5,8 @@
  "temperature": 0.4,
  "providers": {
   "gemini":     {"kind": "gemini", "base_url": "https://generativelanguage.googleapis.com/v1beta", "base_env": "GEMINI_BASE_URL",
-                 "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL", "default_model": "gemini-2.5-flash",
-                 "_note": "Gemini 2.5 系は 2026-12-01 に廃止予定。GEMINI_MODEL を AI Studio で使える後継の Flash 系に差し替えること。"},
+                 "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL", "default_model": "gemini-3.8-flash",
+                 "_note": "2026-11-19 時点で gemini-2.5-flash は新規ユーザーに提供されておらず（API が gemini-3.8-flash を案内）、2.5 系は 2026-12-01 に廃止予定。変わったら GEMINI_MODEL で差し替える。"},
   "groq":       {"kind": "openai", "base_url": "https://api.groq.com/openai/v1", "base_env": "GROQ_BASE_URL",
                  "key_env": "GROQ_API_KEY", "model_env": "GROQ_MODEL", "default_model": "openai/gpt-oss-120b"},
   "cerebras":   {"kind": "openai", "base_url": "https://api.cerebras.ai/v1", "base_env": "CEREBRAS_BASE_URL",
