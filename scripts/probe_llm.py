@@ -26,6 +26,11 @@ def main():
         return 1
     t = time.time()
     print(f"model_exists={p.model_exists()} ({time.time() - t:.1f}s)")
+    if p.kind == "gemini":
+        res = llm.http("GET", f"{p.base}/models?pageSize=1000", p._headers(), timeout=30)
+        names = [m["name"].removeprefix("models/") for m in res.get("models", [])
+                 if "generateContent" in m.get("supportedGenerationMethods", []) and "flash" in m["name"]]
+        print("flash models:", ", ".join(names))
 
     arts = json.loads((ROOT / "data" / "articles.json").read_text(encoding="utf-8"))
     pool = (arts["kinds"].get("事件") or [])[:5]
@@ -36,11 +41,11 @@ def main():
 
     base_gc = p.spec.get("generation_config", {})
     trials = [
-        ("tiny / schema小 / 設定なし", "JSON で ok=true を返してください。", tiny_schema, {}),
-        ("tiny / schema小 / 設定あり", "JSON で ok=true を返してください。", tiny_schema, base_gc),
-        ("候補5件 / 本番スキーマ / 設定あり", small, news_frames.SCHEMA, base_gc),
-        ("候補5件 / 本番スキーマ / 設定なし", small, news_frames.SCHEMA, {}),
-        (f"候補{len(full_pool)}件 / 本番スキーマ / 設定あり", full, news_frames.SCHEMA, base_gc),
+        ("tiny / 設定なし (1)", "JSON で ok=true を返してください。", tiny_schema, {}),
+        ("tiny / 設定なし (2)", "JSON で ok=true を返してください。", tiny_schema, {}),
+        ("tiny / 設定あり", "JSON で ok=true を返してください。", tiny_schema, base_gc),
+        ("候補5件 / 設定なし", small, news_frames.SCHEMA, {}),
+        (f"候補{len(full_pool)}件 / 設定なし", full, news_frames.SCHEMA, {}),
     ]
     for name, prompt, schema, gc in trials:
         p.spec = dict(p.spec, generation_config=gc)
@@ -53,7 +58,7 @@ def main():
             if schema is news_frames.SCHEMA:
                 print("     cases:", len(obj.get("cases", [])))
         except Exception as e:  # 診断なので全部表示して続ける
-            print(f"FAIL {time.time() - t:6.1f}s  {name}  {str(e)[:300]}")
+            print(f"FAIL {time.time() - t:6.1f}s  {name}  {str(e)[:600]!r}")
     return 0
 
 
