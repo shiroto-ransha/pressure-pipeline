@@ -1,0 +1,21 @@
+{
+ "_comment": "解説の下書きに使う LLM の接続先。上から順に試す（LLM_ORDER で変更可）。モデル名・接続先はすべて環境変数で上書きできる。無料枠の上限・モデルの提供状況は変わるので、各社の管理画面で確認すること（README の「確認が必要」）。default_model はこのファイルを書いた時点の例であり、起動時に各社のモデル一覧 API で存在を確かめ、なければ警告して次のプロバイダーへ回す。",
+ "order": ["gemini", "groq", "cerebras", "cloudflare", "openrouter"],
+ "timeout_sec": 180,
+ "temperature": 0.4,
+ "providers": {
+  "gemini":     {"kind": "gemini", "base_url": "https://generativelanguage.googleapis.com/v1beta", "base_env": "GEMINI_BASE_URL",
+                 "key_env": "GEMINI_API_KEY", "model_env": "GEMINI_MODEL", "default_model": "gemini-2.5-flash",
+                 "_note": "Gemini 2.5 系は 2026-12-01 に廃止予定。GEMINI_MODEL を AI Studio で使える後継の Flash 系に差し替えること。"},
+  "groq":       {"kind": "openai", "base_url": "https://api.groq.com/openai/v1", "base_env": "GROQ_BASE_URL",
+                 "key_env": "GROQ_API_KEY", "model_env": "GROQ_MODEL", "default_model": "openai/gpt-oss-120b"},
+  "cerebras":   {"kind": "openai", "base_url": "https://api.cerebras.ai/v1", "base_env": "CEREBRAS_BASE_URL",
+                 "key_env": "CEREBRAS_API_KEY", "model_env": "CEREBRAS_MODEL", "default_model": "gpt-oss-120b"},
+  "cloudflare": {"kind": "openai", "base_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/v1", "base_env": "CF_BASE_URL",
+                 "key_env": "CF_API_TOKEN", "model_env": "CF_MODEL", "default_model": "@cf/openai/gpt-oss-120b",
+                 "requires_env": ["CF_ACCOUNT_ID"],
+                 "models_url": "https://api.cloudflare.com/client/v4/accounts/{CF_ACCOUNT_ID}/ai/models/search?per_page=100&search={model_tail}"},
+  "openrouter": {"kind": "openai", "base_url": "https://openrouter.ai/api/v1", "base_env": "OPENROUTER_BASE_URL",
+                 "key_env": "OPENROUTER_API_KEY", "model_env": "OPENROUTER_MODEL", "default_model": "openai/gpt-oss-120b:free"}
+ }
+}
