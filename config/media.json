@@ -1,0 +1,26 @@
+{
+ "_comment": "媒体の判定（gkg.classify_media）。判定には記事 URL のホスト名を使い、なければ SourceCommonName を使う。jp_domains は 2026-11-18 の GKG 全96本×2系統（英語・翻訳）で出現を確認したもの。確認は scripts/check_media.py で再実行できる。",
+ "verified_on": "2026-11-18",
+ "jp_suffix": [".jp"],
+ "jp_domains": [
+  "asahi.com", "mainichi.jp", "yomiuri.co.jp", "nikkei.com", "sankei.com", "tokyo-np.co.jp", "chunichi.co.jp",
+  "kyodo.co.jp", "47news.jp", "jiji.com",
+  "nnn.co.jp", "hicbc.com", "kbc.co.jp", "1242.com", "joqr.co.jp",
+  "news.livedoor.com", "j-cast.com", "j-town.net", "nippon.com", "japantoday.com", "itmedia.co.jp", "impress.co.jp",
+  "japan.cnet.com", "japan.zdnet.com", "nikkan-gendai.com",
+  "sponichi.co.jp", "daily.co.jp", "oricon.co.jp", "famitsu.com", "webnewtype.com",
+  "373news.com", "minyu-net.com", "tohkaishimpo.com", "the-miyanichi.co.jp", "sakigake.jp", "oita-press.co.jp",
+  "yamagata-np.jp", "kyoto-np.co.jp", "saga-s.co.jp", "okinawatimes.co.jp", "shimotsuke.co.jp", "chugoku-np.co.jp",
+  "kobe-np.co.jp", "nishinippon.co.jp", "shikoku-np.co.jp", "agara.co.jp", "toonippo.co.jp", "chibanippo.co.jp", "iwate-np.co.jp"
+ ],
+ "_watch_comment": "日本の主要媒体だが、2026-11-18 の GKG では0件だったもの（.jp で終わるものは jp_suffix で拾える）。check_media.py が引き続き出現を数える。",
+ "watch_domains": ["nhk.or.jp", "japantimes.co.jp", "news.yahoo.co.jp", "fnn.jp", "newsdig.tbs.co.jp", "news.tv-asahi.co.jp",
+                   "toyokeizai.net", "nikkansports.com", "sanspo.com", "hochi.news", "news-postseven.com", "gendai.media",
+                   "bunshun.jp", "english.kyodonews.net", "hokkaido-np.co.jp", "kahoku.co.jp", "ryukyushimpo.jp"],
+ "_exclude_comment": "jp_suffix に当たるが報道機関ではないもの（官公庁・大学・自治体・ブログ・政党）。",
+ "exclude_domains": ["go.jp", "lg.jp", "ac.jp", "ed.jp", "ameblo.jp", "doorblog.jp", "livedoor.jp", "livedoor.blog",
+                     "hatenablog.jp", "hatena.ne.jp", "fc2.com", "jcp.or.jp", "boj.or.jp"],
+ "ref_domains": ["bbc.co.uk", "bbc.com", "reuters.com", "bloomberg.com", "nytimes.com"],
+ "ref_country_fips": "JA",
+ "_ref_comment": "reuters.com は 2026-11-18 の GKG に0件（GDELT 側で収集されていない可能性）。残すが、件数は他の4媒体に依存する。"
+}

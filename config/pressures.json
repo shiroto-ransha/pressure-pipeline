@@ -1,27 +1,76 @@
 {
-  "_comment": "圧力キー → GDELT の検索語（英語）。日本の媒体は sourcecountry:japan、参考の海外著名媒体は domain: で絞り、Japan を必ず含める。",
-  "window": "1m",
-  "japan_filter": "sourcecountry:japan",
-  "reference_filter": "(domain:bbc.co.uk OR domain:bbc.com OR domain:reuters.com OR domain:bloomberg.com OR domain:nytimes.com) Japan",
-  "pressures": {
-    "inequality":    {"name": "経済状況（社会上の格差）", "query": "(inequality OR poverty OR \"wealth gap\")"},
-    "scarcity":      {"name": "デフレ・低成長下の経済不安", "query": "(\"rising prices\" OR inflation OR \"real wages\")"},
-    "ethnic":        {"name": "同化圧力・民族的ステレオタイプ", "query": "(foreigners OR immigrants OR \"foreign residents\")"},
-    "isolation":     {"name": "孤立・居場所のなさ", "query": "(loneliness OR hikikomori OR \"social isolation\")"},
-    "objectify":     {"name": "性的対象化のまなざし", "query": "(\"sexual harassment\" OR voyeurism OR molestation)"},
-    "service":       {"name": "接客・感情労働での見下し", "query": "(\"customer harassment\" OR kasuhara)"},
-    "harass":        {"name": "ハラスメント被害の経験", "query": "(\"power harassment\" OR \"workplace harassment\")"},
-    "marital":       {"name": "結婚・出産規範", "query": "(\"declining birthrate\" OR \"marriage rate\")"},
-    "hetero":        {"name": "異性愛・シスジェンダー規範", "query": "(LGBT OR \"same-sex marriage\")"},
-    "precarious":    {"name": "雇用・職業による序列化", "query": "(\"non-regular workers\" OR \"temporary workers\")"}
-  },
-  "candidates": {
-    "flaming":  {"name": "炎上・ネット上の私刑", "query": "(\"online abuse\" OR cyberbullying OR \"online slander\")"},
-    "ai_jobs":  {"name": "生成AIによる仕事の置き換え不安", "query": "\"generative AI\""},
-    "fraud":    {"name": "特殊詐欺・投資詐欺の被害", "query": "(\"investment scam\" OR \"special fraud\" OR \"romance scam\")"}
-  },
-  "news_queries": {
-    "芸能・ゴシップ": "(celebrity OR entertainer OR idol) (apology OR criticism OR backlash) sourcecountry:japan",
-    "事件": "(arrested OR sentenced OR verdict) sourcecountry:japan"
-  }
+ "_comment": "圧力キー → GKG のテーマ（gkg_themes）と、見出し・URL へのキーワード（keywords）。テーマ名は scripts/check_themes.py で GDELT 公式の LOOKUP-GKGTHEMES.TXT に実在することを確かめる。日本語の記事は GDELT が機械翻訳してテーマを付けるが、見出しは原文（日本語）なので、キーワードは日本語と英語の両方を持たせる。query は GDELT_BACKEND=doc のときだけ使う。",
+ "window": "1d",
+ "trend_days": 7,
+ "japan_filter": "sourcecountry:japan",
+ "reference_filter": "(domain:bbc.co.uk OR domain:bbc.com OR domain:reuters.com OR domain:bloomberg.com OR domain:nytimes.com) Japan",
+ "pressures": {
+  "inequality": {"name": "経済状況（社会上の格差）",
+   "gkg_themes": ["INEQUALITY", "INCOME_INEQUALITY", "WB_2668_INCOME_INEQUALITY", "WB_700_INEQUALITY_AND_SHARED_PROSPERITY", "POVERTY", "WB_695_POVERTY"],
+   "keywords": ["格差", "貧困", "生活保護", "困窮", "wealth gap", "inequality", "poverty"],
+   "query": "(inequality OR poverty OR \"wealth gap\")"},
+  "scarcity": {"name": "デフレ・低成長下の経済不安",
+   "gkg_themes": ["ECON_INFLATION", "WB_442_INFLATION", "ECON_COST_OF_LIVING", "WB_2744_LIVING_WAGES"],
+   "keywords": ["物価高", "値上げ", "実質賃金", "生活苦", "インフレ", "rising prices", "real wages", "cost of living"],
+   "query": "(\"rising prices\" OR inflation OR \"real wages\")"},
+  "ethnic": {"name": "同化圧力・民族的ステレオタイプ",
+   "gkg_themes": ["IMMIGRATION", "WB_2837_IMMIGRATION", "DISCRIMINATION_IMMIGRATION", "DISCRIMINATION_IMMIGRATION_XENOPHOBIA", "DISCRIMINATION_IMMIGRATION_XENOPHOBIC", "DISCRIMINATION_IMMIGRATION_ANTIIMMIGRANT", "DISCRIMINATION_RACE", "DISCRIMINATION_RACE_RACISM", "TAX_FNCACT_IMMIGRANTS", "TAX_FNCACT_MIGRANT_WORKERS", "WB_2729_MIGRANT_WORKERS"],
+   "keywords": ["外国人", "移民", "技能実習", "在留", "ヘイト", "排外", "foreign residents", "immigrants", "xenophob"],
+   "query": "(foreigners OR immigrants OR \"foreign residents\")"},
+  "isolation": {"name": "孤立・居場所のなさ",
+   "gkg_themes": [],
+   "keywords": ["孤独", "孤立", "ひきこもり", "引きこもり", "孤独死", "居場所", "loneliness", "hikikomori", "social isolation"],
+   "query": "(loneliness OR hikikomori OR \"social isolation\")"},
+  "objectify": {"name": "性的対象化のまなざし",
+   "gkg_themes": ["TAX_DISEASE_VOYEURISM"],
+   "keywords": ["セクハラ", "痴漢", "盗撮", "性的な", "ルッキズム", "sexual harassment", "voyeur", "groping"],
+   "query": "(\"sexual harassment\" OR voyeurism OR molestation)"},
+  "service": {"name": "接客・感情労働での見下し",
+   "gkg_themes": [],
+   "keywords": ["カスハラ", "カスタマーハラスメント", "クレーマー", "迷惑客", "customer harassment", "kasuhara"],
+   "query": "(\"customer harassment\" OR kasuhara)"},
+  "harass": {"name": "ハラスメント被害の経験",
+   "gkg_themes": ["HARASSMENT", "BULLYING"],
+   "keywords": ["パワハラ", "ハラスメント", "いじめ", "モラハラ", "power harassment", "workplace harassment"],
+   "query": "(\"power harassment\" OR \"workplace harassment\")"},
+  "marital": {"name": "結婚・出産規範",
+   "gkg_themes": ["WB_2662_FERTILITY_RATE", "TAX_DISEASE_INFERTILITY"],
+   "keywords": ["少子化", "出生数", "出生率", "婚姻", "未婚", "婚活", "不妊", "birthrate", "birth rate", "marriage rate"],
+   "query": "(\"declining birthrate\" OR \"marriage rate\")"},
+  "hetero": {"name": "異性愛・シスジェンダー規範",
+   "gkg_themes": ["LGBT", "DISCRIMINATION_LGBT", "DISCRIMINATION_LGBT_HOMOPHOBIA", "DISCRIMINATION_LGBT_HOMOPHOBIC"],
+   "keywords": ["LGBT", "同性婚", "同性カップル", "性的少数者", "トランスジェンダー", "パートナーシップ制度", "same-sex", "transgender"],
+   "query": "(LGBT OR \"same-sex marriage\")"},
+  "precarious": {"name": "雇用・職業による序列化",
+   "gkg_themes": ["WB_2798_PART_TIME_WORK", "WB_2693_PART_TIME_EMPLOYMENT", "TAX_FNCACT_TEMPORARY_WORKERS", "TAX_FNCACT_TEMPORARY_WORKER", "WB_2692_INFORMAL_EMPLOYMENT"],
+   "keywords": ["非正規", "派遣社員", "派遣切り", "雇い止め", "パート", "アルバイト", "就職氷河期", "non-regular", "temporary workers"],
+   "query": "(\"non-regular workers\" OR \"temporary workers\")"}
+ },
+ "candidates": {
+  "flaming": {"name": "炎上・ネット上の私刑",
+   "gkg_themes": ["HATE_SPEECH"],
+   "keywords": ["炎上", "誹謗中傷", "ネット上の中傷", "私刑", "晒し", "online abuse", "cyberbullying"],
+   "query": "(\"online abuse\" OR cyberbullying OR \"online slander\")"},
+  "ai_jobs": {"name": "生成AIによる仕事の置き換え不安",
+   "gkg_themes": ["TECH_AUTOMATION"],
+   "keywords": ["生成AI", "AIに仕事", "AIで代替", "generative AI"],
+   "query": "\"generative AI\""},
+  "fraud": {"name": "特殊詐欺・投資詐欺の被害",
+   "gkg_themes": [],
+   "keywords": ["特殊詐欺", "投資詐欺", "ロマンス詐欺", "オレオレ", "還付金詐欺", "闇バイト", "investment scam", "romance scam"],
+   "query": "(\"investment scam\" OR \"special fraud\" OR \"romance scam\")"}
+ },
+ "news_categories": {
+  "芸能・ゴシップ": {
+   "gkg_themes": ["TAX_FNCACT_ACTOR", "TAX_FNCACT_ACTRESS", "TAX_FNCACT_SINGER", "TAX_FNCACT_COMEDIAN", "TAX_FNCACT_ENTERTAINER", "SCANDAL"],
+   "keywords": ["芸能", "俳優", "女優", "歌手", "アイドル", "芸人", "タレント", "番組", "ドラマ", "グループ", "不倫", "熱愛", "謝罪", "炎上", "活動休止", "結婚発表", "celebrity", "actor", "actress", "idol"]},
+  "事件": {
+   "gkg_themes": ["ARREST", "TRIAL", "SOC_GENERALCRIME", "WB_1014_CRIMINAL_JUSTICE", "CRIME_COMMON_ROBBERY", "TAX_FNCACT_CRIMINAL"],
+   "keywords": ["逮捕", "容疑", "判決", "起訴", "送検", "被告", "書類送検", "事件", "arrested", "sentenced", "verdict"]}
+ },
+ "news_exclude": {
+  "_comment": "LLM に渡す前に外す候補（規則：自殺・自傷、未成年が当事者、性犯罪の被害の詳細）。最終判断は LLM の規則と人の確認でも行う。",
+  "gkg_themes": ["SOC_SUICIDE", "RAPE", "WB_2443_RAPE_AND_SEXUAL_VIOLENCE", "TAX_DISEASE_PEDOPHILIA"],
+  "keywords": ["自殺", "自死", "自傷", "飛び降り", "少年", "少女", "女児", "男児", "小学生", "中学生", "高校生", "未成年", "児童", "性的暴行", "強制性交", "わいせつ", "suicide", "minor"]
+ }
 }
