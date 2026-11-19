@@ -9,7 +9,9 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import re
 import pathlib
 import shutil
 import sys
@@ -87,6 +89,90 @@ def place(name: str, checker, data: pathlib.Path, site: pathlib.Path, dry: bool)
     return True
 
 
+# ---------- SEO（公開の直前に実行。コミットはしない） ----------
+
+def _e(x) -> str:
+    return html.escape(str(x if x is not None else ""), quote=True)
+
+
+def head_tags(site_cfg: dict, asof: str) -> str:
+    url, title, desc = site_cfg["url"], site_cfg["title"], site_cfg["description"]
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "WebSite", "name": site_cfg["short_title"], "url": url, "inLanguage": "ja", "description": desc},
+        {"@type": "WebApplication", "name": site_cfg["short_title"], "url": url, "applicationCategory": "EducationalApplication",
+         "operatingSystem": "Web", "inLanguage": "ja", "isAccessibleForFree": True,
+         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}, "dateModified": asof},
+        {"@type": "Dataset", "name": "日本のニュースでの社会のプレッシャーの取り上げられ方（日別）", "url": url + "data/gdelt.json",
+         "description": "GDELT の GKG をもとに、日本のニュースサイトの記事数と論調をテーマ別に日ごとに集計したもの。",
+         "isBasedOn": "https://www.gdeltproject.org/", "creator": {"@type": "Organization", "name": site_cfg["short_title"]},
+         "license": "https://www.gdeltproject.org/about.html#termsofuse", "dateModified": asof, "inLanguage": "ja"}]}
+    return "\n".join([
+        f"<title>{_e(title)}</title>",
+        f'<meta name="description" content="{_e(desc)}">',
+        f'<link rel="canonical" href="{_e(url)}">',
+        '<meta name="robots" content="index,follow,max-image-preview:large">',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:locale" content="ja_JP">',
+        f'<meta property="og:site_name" content="{_e(site_cfg["short_title"])}">',
+        f'<meta property="og:title" content="{_e(title)}">',
+        f'<meta property="og:description" content="{_e(desc)}">',
+        f'<meta property="og:url" content="{_e(url)}">',
+        f'<meta property="og:image" content="{_e(url)}og.png">',
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'])
+
+
+def static_body(site_cfg: dict, gd: dict | None, news: list | None) -> str:
+    """JavaScript を動かさない検索エンジンや、読み込み中にも読める本文。"""
+    out = ['<div class="static">', f'<h1>{_e(site_cfg["short_title"])}</h1>', f'<p>{_e(site_cfg["description"])}</p>']
+    if gd and gd.get("items"):
+        items = sorted(gd["items"].values(), key=lambda v: -((v.get("jp") or {}).get("n") or 0))
+        out.append(f'<h2>{_e(gd.get("asof"))} のニュースでの取り上げられ方（日本のニュースサイト）</h2><ul>')
+        out += [f'<li>{_e(v["name"])}：{(v.get("jp") or {}).get("n") or 0}件</li>' for v in items]
+        out.append('</ul><p>データ：<a href="https://www.gdeltproject.org/">The GDELT Project</a></p>')
+    if news and news[0].get("cases"):
+        out.append(f'<h2>ニュースが広める「ふつう」の考え方（{_e(news[0].get("date"))}）</h2>')
+        for c in news[0]["cases"]:
+            f = (c.get("frames") or [{}])[0]
+            src = (c.get("sources") or [{}])[0]
+            out.append(f'<article><h3>{_e(f.get("name"))}</h3><p>{_e(c.get("kind"))}・{_e(c.get("title"))}</p>'
+                       f'<p>広まりやすい考え：「{_e(f.get("norm"))}」</p>'
+                       + (f'<p>元の記事：<a href="{_e(src.get("url"))}" rel="noopener">{_e(src.get("name"))}</a></p>' if src.get("url") else "")
+                       + '</article>')
+    out.append('<p>自分の立場でプレッシャーへのかわし方を考えるツールは、JavaScript を有効にすると使えます。</p></div>')
+    return "\n".join(out)
+
+
+def replace_block(text: str, name: str, body: str) -> str:
+    start = re.search(rf"<!-- {name}:start[^>]*-->", text)
+    end = text.find(f"<!-- {name}:end -->")
+    if not start or end < 0:
+        raise ValueError(f"index.html に {name} の印がありません")
+    return text[: start.end()] + "\n" + body + "\n" + text[end:]
+
+
+def seo(site_root: pathlib.Path) -> None:
+    site_cfg = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+    load = lambda n: json.loads((site_root / "data" / n).read_text(encoding="utf-8")) if (site_root / "data" / n).exists() else None
+    gd, news = load("gdelt.json"), load("news.json")
+    asof = (gd or {}).get("asof") or ""
+    index = site_root / "index.html"
+    text = index.read_text(encoding="utf-8")
+    text = replace_block(text, "seo", head_tags(site_cfg, asof))
+    text = replace_block(text, "static", static_body(site_cfg, gd, news))
+    index.write_text(text, encoding="utf-8")
+    url = site_cfg["url"]
+    (site_root / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{_e(url)}</loc>" + (f"<lastmod>{asof}</lastmod>" if asof else "")
+        + "<changefreq>daily</changefreq></url>\n</urlset>\n",
+        encoding="utf-8")
+    (site_root / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {url}sitemap.xml\n", encoding="utf-8")
+    print(f"SEO: head・静的な本文・sitemap.xml・robots.txt を書きました（{asof}）")
+
+
 def main(argv=None) -> int:
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
@@ -94,10 +180,14 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--only", choices=["gdelt", "news"])
+    ap.add_argument("--seo", action="store_true", help="公開用に head・静的な本文・sitemap.xml・robots.txt を書く")
     ap.add_argument("--data", default=str(ROOT / "data"))
     ap.add_argument("--site", default=str(ROOT / "site" / "data"))
     a = ap.parse_args(argv)
     data, site = pathlib.Path(a.data), pathlib.Path(a.site)
+    if a.seo:
+        seo(site.parent)
+        return 0
     jobs = [("gdelt.json", check_gdelt), ("news.json", check_news)]
     if a.only:
         jobs = [j for j in jobs if j[0].startswith(a.only)]

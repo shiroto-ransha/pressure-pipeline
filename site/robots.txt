@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://punai826-arch.github.io/pressure-pipeline/sitemap.xml

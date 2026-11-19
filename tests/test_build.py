@@ -45,3 +45,26 @@ def test_news_truncated_to_30(tmp_path):
     write(data / "news.json", days)
     assert build.main(["--data", str(data), "--site", str(site), "--only", "news"]) == 0
     assert len(json.loads((site / "news.json").read_text(encoding="utf-8"))) == 30
+
+
+def test_seo_writes_head_static_sitemap(tmp_path, monkeypatch):
+    import shutil
+    site = tmp_path / "site"
+    (site / "data").mkdir(parents=True)
+    shutil.copy(build.ROOT / "site" / "index.html", site / "index.html")
+    write(site / "data" / "gdelt.json", GD)
+    write(site / "data" / "news.json", [{"date": "2026-11-18", "cases": [CASE]}])
+    assert build.main(["--seo", "--site", str(site / "data")]) == 0
+    text = (site / "index.html").read_text(encoding="utf-8")
+    assert '<meta name="description"' in text and text.count("<title>") == 1
+    assert "<li>格差：3件</li>" in text and "<h3>n</h3>" in text
+    assert "<lastmod>2026-11-18</lastmod>" in (site / "sitemap.xml").read_text(encoding="utf-8")
+    assert "Sitemap: https://" in (site / "robots.txt").read_text(encoding="utf-8")
+    build.main(["--seo", "--site", str(site / "data")])          # 2回目でも重複しない
+    assert (site / "index.html").read_text(encoding="utf-8").count("<title>") == 1
+
+
+def test_static_body_escapes_html():
+    out = build.static_body({"short_title": "t", "description": "d"}, None,
+                            [{"date": "d", "cases": [dict(CASE, title="<script>x</script>")]}])
+    assert "<script>x" not in out and "&lt;script&gt;" in out

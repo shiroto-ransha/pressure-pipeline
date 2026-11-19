@@ -89,6 +89,22 @@ python -m pytest
 
 Playwright のテスト（`e2e/`）は、`pip install playwright` と `python -m playwright install chromium` のあとに `python -m pytest e2e` で動きます。390px と 1280px の画面のスクリーンショットを `e2e/screenshots/` に保存します。
 
+## 画面と言葉づかい
+
+- 最初の画面は「01 ニュース」です。続いて「02 立場 → 03 質問 → 04 結果」で、自分の立場でのかわし方を考えられます。
+- 文言は高校生にも分かる言葉にしています（専門用語を使わない）。AI の下書きにも、同じ決まりを `news_frames.py` の指示で守らせています。
+- スマホ（390px 幅）では、手順のボタンが1行に並び、横にはみ出さないことを Playwright で確かめています。日本と海外の比較は、開いて見る形にしています。
+
+## SEO（検索エンジン向け）
+
+公開の直前（`daily.yml` の deploy）に `python build.py --seo` が次を書きます。コミットはしません。
+
+- `<title>`・説明文・canonical・OGP（`site/og.png`）・Twitter カード・構造化データ（JSON-LD：WebSite / WebApplication / Dataset）
+- JavaScript を動かさない検索エンジンにも読める本文（その日のテーマ別の記事数と、ニュースの解説の要約）。JavaScript が動くと、いつもの画面に置きかわります。
+- `sitemap.xml`（更新日つき）と `robots.txt`
+
+サイトの URL・タイトル・説明文は `config/site.json` で変えられます。独自ドメインにしたら `url` を変えてください。共有用の画像は `python scripts/make_og.py` で作り直せます。Google Search Console に `sitemap.xml` を登録すると、検索に早く載ります（登録はサイトの持ち主の作業です）。
+
 ## データ源
 
 ### 報道環境：GDELT GKG 2.x の生ファイル（主経路）

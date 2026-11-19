@@ -43,39 +43,44 @@ def run_flow(page, url, shot_prefix=None):
     page.goto(url)
     page.wait_for_load_state("networkidle")
     shot = (lambda name: page.screenshot(path=str(SHOTS / f"{shot_prefix}-{name}.png"), full_page=True)) if shot_prefix else (lambda n: None)
-    shot("01-attr")
+    # 01 ニュース（最初の画面）
+    assert page.get_by_role("heading", name="ニュースが広める「ふつう」を読む。").is_visible()
+    assert page.get_by_role("link", name="The GDELT Project").is_visible()
+    page.get_by_text("日本と海外のニュースをくらべる").click()          # 開く
+    assert page.get_by_text("目安として見てください", exact=False).is_visible()
+    assert page.locator("svg[aria-label*='この7日の記事の数']").count() == 10
+    shot("01-news")
+    page.get_by_role("button", name="自分の立場で試してみる →").click()
 
-    # 01 属性
+    # 02 立場
+    shot("02-attr")
     page.get_by_role("button", name="女性", exact=True).click()
     page.get_by_role("button", name="30〜40代").click()
     page.get_by_role("button", name="働き方").click()
-    page.get_by_role("button", name="お金・格差").click()
-    page.get_by_role("button", name="孤立").click()            # 3つ目は選べない
+    page.get_by_role("button", name="お金", exact=True).click()
+    page.get_by_role("button", name="ひとりぼっち").click()      # 3つ目は選べない
     assert page.get_by_text("選べるのは2つまでです").is_visible()
-    rows = page.locator("text=物価高で暮らしが苦しくなった").locator("xpath=..")
+    rows = page.locator("text=物の値段が上がって、暮らしが苦しくなった").locator("xpath=..")
     rows.get_by_role("button", name="はい").click()
     page.get_by_role("button", name="質問へ進む →").click()
 
-    # 02 質問（14問）
+    # 03 質問（14問）
     assert page.get_by_text("1 / 14").is_visible()
-    shot("02-question")
+    assert page.get_by_text("この人は、").first.is_visible()
+    shot("03-question")
     for i in range(14):
         name = ["はい", "いいえ", "わからない"][i % 3]
         page.get_by_role("button", name=name, exact=True).click()
 
-    # 03 推定
-    assert page.get_by_text("前提：推定は「はい／いいえ」にもとづく仮説で、診断・評価・選別には用いない。").first.is_visible()
-    assert page.get_by_role("img", name="6つの方略のレーダーチャート").is_visible()
-    assert page.get_by_text("下向きの枝").is_visible()
-    shot("03-result")
+    # 04 結果
+    assert page.get_by_text("注意：この結果は「はい／いいえ」の答えから考えた予想です。", exact=False).first.is_visible()
+    assert page.get_by_role("img", name="6つのかわし方のレーダーチャート").is_visible()
+    assert page.get_by_text("苦しくなっている側").is_visible()
+    shot("04-result")
 
-    # 04 報道
-    page.get_by_role("button", name="04 報道").click()
-    assert page.get_by_role("link", name="The GDELT Project").is_visible()
-    assert page.get_by_text("日本の媒体と海外著名媒体").is_visible()
-    assert page.locator("svg[aria-label*='直近7日の件数']").count() == 10
-    assert page.get_by_text("● 雇用・職業による序列化").is_visible()   # 選んだ領域に対応する圧力の印
-    shot("04-news")
+    # ニュースに戻ると、選んだ分野に近いテーマに印が付く
+    page.get_by_role("button", name="01 ニュース").click()
+    assert page.get_by_text("● 働き方による上下の見方").is_visible()
     return errors
 
 
@@ -102,9 +107,11 @@ def test_mobile_390(browser, server):
     errors = run_flow(page, server, "mobile390")
     assert errors == []
     assert no_hscroll(page)
-    page.get_by_role("button", name="03 推定").click()
-    assert no_hscroll(page)
-    page.get_by_role("button", name="01 属性").click()
+    tops = page.evaluate("[...document.querySelectorAll('nav button')].map(b => Math.round(b.getBoundingClientRect().top))")
+    assert len(set(tops)) == 1, tops                      # 手順のボタンが1行に並ぶ
+    for step in ("04 結果", "02 立場", "03 質問"):
+        page.get_by_role("button", name=step).click()
+        assert no_hscroll(page), step
     assert no_hscroll(page)
     assert tap_targets_ok(page)
 
@@ -123,9 +130,8 @@ def test_review_badge_and_fetch(browser, server):
                body=json.dumps([{"date": "2026-11-18", "cases": [case, reviewed]}], ensure_ascii=False)))
     page.goto(server)
     page.wait_for_load_state("networkidle")
-    page.get_by_role("button", name="04 報道").click()
-    assert page.get_by_text("要確認 — LLM の下書き（groq:test-model）").count() == 1
-    assert page.get_by_role("link", name="出典：example.jp（2026-11-18）").count() == 2
+    assert page.get_by_text("確認待ち — AIが書いた下書き（groq:test-model）").count() == 1
+    assert page.get_by_role("link", name="元の記事：example.jp（2026-11-18）").count() == 2
 
 
 def test_embedded_fallback_without_server(browser):
@@ -141,3 +147,28 @@ def test_data_unavailable_uses_embedded(browser, server):
     page.route("**/data/*.json", lambda r: r.fulfill(status=404, body="not found"))
     errors = run_flow(page, server)
     assert [e for e in errors if "404" not in e] == []
+
+
+def test_seo_without_javascript(browser, server):
+    """JavaScript を動かさない検索エンジンにも、タイトル・説明・本文・構造化データが読める。"""
+    import json
+    ctx = browser.new_context(java_script_enabled=False)
+    page = ctx.new_page()
+    page.goto(server)
+    assert "ニュースで見る社会のプレッシャー" in page.title()
+    assert len(page.locator('meta[name="description"]').get_attribute("content")) > 50
+    assert page.locator('link[rel="canonical"]').get_attribute("href").startswith("https://")
+    assert page.locator('meta[property="og:image"]').get_attribute("content").endswith("og.png")
+    ld = json.loads(page.locator('script[type="application/ld+json"]').inner_text())
+    assert {g["@type"] for g in ld["@graph"]} == {"WebSite", "WebApplication", "Dataset"}
+    assert page.get_by_role("heading", level=1).count() == 1
+    assert page.locator(".static li").count() == 10
+    ctx.close()
+
+
+def test_single_h1_and_headings_with_js(browser, server):
+    page = browser.new_page(viewport={"width": 390, "height": 844})
+    page.goto(server)
+    page.wait_for_load_state("networkidle")
+    assert page.locator("h1").count() == 1
+    assert page.locator(".static").count() == 0          # JS が動くと静的な本文は置きかわる
