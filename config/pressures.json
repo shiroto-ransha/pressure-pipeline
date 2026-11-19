@@ -1,0 +1,27 @@
+{
+  "_comment": "圧力キー → GDELT の検索語（英語）。日本の媒体は sourcecountry:japan、参考の海外著名媒体は domain: で絞り、Japan を必ず含める。",
+  "window": "1m",
+  "japan_filter": "sourcecountry:japan",
+  "reference_filter": "(domain:bbc.co.uk OR domain:bbc.com OR domain:reuters.com OR domain:bloomberg.com OR domain:nytimes.com) Japan",
+  "pressures": {
+    "inequality":    {"name": "経済状況（社会上の格差）", "query": "(inequality OR poverty OR \"wealth gap\")"},
+    "scarcity":      {"name": "デフレ・低成長下の経済不安", "query": "(\"rising prices\" OR inflation OR \"real wages\")"},
+    "ethnic":        {"name": "同化圧力・民族的ステレオタイプ", "query": "(foreigners OR immigrants OR \"foreign residents\")"},
+    "isolation":     {"name": "孤立・居場所のなさ", "query": "(loneliness OR hikikomori OR \"social isolation\")"},
+    "objectify":     {"name": "性的対象化のまなざし", "query": "(\"sexual harassment\" OR voyeurism OR molestation)"},
+    "service":       {"name": "接客・感情労働での見下し", "query": "(\"customer harassment\" OR kasuhara)"},
+    "harass":        {"name": "ハラスメント被害の経験", "query": "(\"power harassment\" OR \"workplace harassment\")"},
+    "marital":       {"name": "結婚・出産規範", "query": "(\"declining birthrate\" OR \"marriage rate\")"},
+    "hetero":        {"name": "異性愛・シスジェンダー規範", "query": "(LGBT OR \"same-sex marriage\")"},
+    "precarious":    {"name": "雇用・職業による序列化", "query": "(\"non-regular workers\" OR \"temporary workers\")"}
+  },
+  "candidates": {
+    "flaming":  {"name": "炎上・ネット上の私刑", "query": "(\"online abuse\" OR cyberbullying OR \"online slander\")"},
+    "ai_jobs":  {"name": "生成AIによる仕事の置き換え不安", "query": "\"generative AI\""},
+    "fraud":    {"name": "特殊詐欺・投資詐欺の被害", "query": "(\"investment scam\" OR \"special fraud\" OR \"romance scam\")"}
+  },
+  "news_queries": {
+    "芸能・ゴシップ": "(celebrity OR entertainer OR idol) (apology OR criticism OR backlash) sourcecountry:japan",
+    "事件": "(arrested OR sentenced OR verdict) sourcecountry:japan"
+  }
+}

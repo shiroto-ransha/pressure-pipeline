@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>圧力と、その応じ方。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:inherit}a:hover{opacity:.75}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+<div style="min-height: 100vh; background: #F3EFE6; color: #161513; font-family: 'Noto Sans JP', sans-serif; box-sizing: border-box">
+<header style="border-bottom: 1px solid #161513; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 28px 48px 18px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; letter-spacing: 0.2em">SOCIAL PRESSURE / COPING</span>
+<h1 style="margin: 0; font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 34px; line-height: 1.2">圧力と、その応じ方。</h1>
+</div>
+<nav aria-label="手順" style="display: flex; gap: 4px; flex-wrap: wrap">
+<sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+<sc-if value="{{st.on}}" hint-placeholder-val="{{false}}"><button onClick="{{st.go}}" style="min-height: 44px; padding: 8px 18px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font: inherit; font-size: 14px; cursor: pointer">{{st.num}} {{st.label}}</button></sc-if>
+<sc-if value="{{st.off}}" hint-placeholder-val="{{true}}"><button onClick="{{st.go}}" style="min-height: 44px; padding: 8px 18px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; font-size: 14px; cursor: pointer">{{st.num}} {{st.label}}</button></sc-if>
+</sc-for>
+</nav>
+</header>
+<main style="max-width: 1280px; margin: 0 auto; padding: 40px 48px 64px; box-sizing: border-box">
+
+<sc-if value="{{isAttr}}" hint-placeholder-val="{{true}}">
+<section style="display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 18px">
+<span style="font-family: 'Noto Serif JP', serif; font-size: 120px; line-height: 0.9; color: {{accent}}">01</span>
+<h2 style="margin: 0; font-family: 'Noto Serif JP', serif; font-size: 40px; line-height: 1.3">立場を、記号で選ぶ。</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.8; color: #45423C">名前は使いません。性別と年代、そして圧力を感じる領域を2つまで選ぶと、質問は最大14問に絞られます。</p>
+</div>
+<div style="flex: 2 1 560px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; letter-spacing: 0.12em">性別</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{genders}}" as="g" hint-placeholder-count="3">
+<sc-if value="{{g.on}}" hint-placeholder-val="{{false}}"><button onClick="{{g.pick}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font: inherit; font-size: 15px; cursor: pointer">{{g.label}}</button></sc-if>
+<sc-if value="{{g.off}}" hint-placeholder-val="{{true}}"><button onClick="{{g.pick}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; font-size: 15px; cursor: pointer">{{g.label}}</button></sc-if>
+</sc-for></div></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; letter-spacing: 0.12em">年代</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><sc-for list="{{ages}}" as="g" hint-placeholder-count="3">
+<sc-if value="{{g.on}}" hint-placeholder-val="{{false}}"><button onClick="{{g.pick}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font: inherit; font-size: 15px; cursor: pointer">{{g.label}}</button></sc-if>
+<sc-if value="{{g.off}}" hint-placeholder-val="{{true}}"><button onClick="{{g.pick}}" style="min-height: 48px; padding: 0 22px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; font-size: 15px; cursor: pointer">{{g.label}}</button></sc-if>
+</sc-for></div></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; letter-spacing: 0.12em">圧力を感じる領域（2つまで）</span>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid #161513; border-left: 1px solid #161513"><sc-for list="{{doms}}" as="d" hint-placeholder-count="8">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{false}}"><button onClick="{{d.pick}}" style="min-height: 88px; padding: 14px; text-align: left; border: 0; border-right: 1px solid #161513; border-bottom: 1px solid #161513; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">{{d.label}}</button></sc-if>
+<sc-if value="{{d.off}}" hint-placeholder-val="{{true}}"><button onClick="{{d.pick}}" style="min-height: 88px; padding: 14px; text-align: left; border: 0; border-right: 1px solid #161513; border-bottom: 1px solid #161513; background: transparent; color: #161513; font: inherit; font-size: 15px; cursor: pointer">{{d.label}}</button></sc-if>
+</sc-for></div>
+<sc-if value="{{hasMsg}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; color: #A3361F">{{msg}}</span></sc-if></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; letter-spacing: 0.12em">経済状況</span>
+<sc-for list="{{kq}}" as="k" hint-placeholder-count="2"><div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #CFC8B8; padding: 6px 0"><span style="font-size: 15px">{{k.label}}</span><span style="display: flex; gap: 6px">
+<sc-if value="{{k.yesOn}}" hint-placeholder-val="{{false}}"><button onClick="{{k.yes}}" style="min-height: 44px; min-width: 64px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font: inherit; cursor: pointer">はい</button></sc-if>
+<sc-if value="{{k.yesOff}}" hint-placeholder-val="{{true}}"><button onClick="{{k.yes}}" style="min-height: 44px; min-width: 64px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; cursor: pointer">はい</button></sc-if>
+<sc-if value="{{k.noOn}}" hint-placeholder-val="{{false}}"><button onClick="{{k.no}}" style="min-height: 44px; min-width: 64px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font: inherit; cursor: pointer">いいえ</button></sc-if>
+<sc-if value="{{k.noOff}}" hint-placeholder-val="{{true}}"><button onClick="{{k.no}}" style="min-height: 44px; min-width: 64px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; cursor: pointer">いいえ</button></sc-if>
+</span></div></sc-for></div>
+<sc-if value="{{canStart}}" hint-placeholder-val="{{true}}"><button onClick="{{start}}" style="align-self: flex-start; min-height: 60px; padding: 0 40px; border: 0; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 18px; font-weight: 700; cursor: pointer">質問へ進む →</button></sc-if>
+<sc-if value="{{cannotStart}}" hint-placeholder-val="{{false}}"><span style="font-size: 14px; color: #5E5A52">性別と、領域を1つ以上選ぶと進めます。</span></sc-if>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isQ}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-direction: column; gap: 32px; max-width: 980px">
+<div style="height: 4px; background: #D9D2C3"><div style="height: 4px; background: {{accent}}; width: {{qPct}}"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span>{{qArea}}</span><span>{{qNum}} / {{qTotal}}</span></div>
+<p style="margin: 0; font-family: 'Noto Serif JP', serif; font-size: 44px; line-height: 1.45; min-height: 200px">{{qText}}</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<button onClick="{{yes}}" style="min-height: 120px; border: 1px solid #161513; background: #161513; color: #F3EFE6; font-family: 'Noto Serif JP', serif; font-size: 40px; cursor: pointer">はい</button>
+<button onClick="{{no}}" style="min-height: 120px; border: 1px solid #161513; background: transparent; color: #161513; font-family: 'Noto Serif JP', serif; font-size: 40px; cursor: pointer">いいえ</button>
+</div>
+<div style="display: flex; gap: 12px"><button onClick="{{skip}}" style="min-height: 44px; padding: 0 18px; border: 1px solid #8A8476; background: transparent; color: #45423C; font: inherit; cursor: pointer">わからない</button><button onClick="{{back}}" style="min-height: 44px; padding: 0 18px; border: 0; background: transparent; color: #45423C; font: inherit; text-decoration: underline; cursor: pointer">← 戻る</button></div>
+</section>
+</sc-if>
+
+<sc-if value="{{isRes}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-direction: column; gap: 40px">
+<sc-if value="{{noFocus}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 16px">「01 属性」で領域を選んでください。</p></sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; letter-spacing: 0.12em">全体の応じ方</span>
+<div style="position: relative; width: 320px; height: 320px; margin: 24px 64px">
+<svg width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="6つの方略のレーダーチャート"><polygon points="{{ring1}}" fill="none" stroke="#161513" stroke-width="1"></polygon><polygon points="{{ring2}}" fill="none" stroke="#CFC8B8" stroke-width="1"></polygon><polygon points="{{ring3}}" fill="none" stroke="#CFC8B8" stroke-width="1"></polygon><path d="{{spokePath}}" stroke="#CFC8B8" stroke-width="1"></path><polygon points="{{radar}}" fill="{{accent}}" fill-opacity="0.85" stroke="#161513" stroke-width="1.5"></polygon></svg>
+<sc-for list="{{axes}}" as="a" hint-placeholder-count="6"><span style="position: absolute; left: {{a.x}}px; top: {{a.y}}px; transform: translate({{a.tx}}, -50%); font-size: 14px; white-space: nowrap; font-weight: 700">{{a.label}} <span style="font-weight: 400; color: #5E5A52">{{a.val}}</span></span></sc-for>
+</div>
+</div>
+<div style="flex: 2 1 520px; display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{perP}}" as="p" hint-placeholder-count="2">
+<article style="border-top: 1px solid #161513; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-family: 'Noto Serif JP', serif; font-size: 22px">{{p.name}}</h3>
+<div style="display: flex; align-items: stretch; gap: 8px; height: 96px"><sc-for list="{{p.bars}}" as="b" hint-placeholder-count="6"><div style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px; flex: 1"><sc-if value="{{b.strong}}" hint-placeholder-val="{{false}}"><div style="width: 100%; background: {{accent}}; height: {{b.h}}"></div></sc-if><sc-if value="{{b.weak}}" hint-placeholder-val="{{true}}"><div style="width: 100%; background: #CFC8B8; height: {{b.h}}"></div></sc-if><span style="font-size: 12px; color: #45423C; white-space: nowrap">{{b.label}}</span></div></sc-for></div>
+</div>
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{p.hasTop}}" hint-placeholder-val="{{true}}"><p style="margin: 0; font-size: 16px; line-height: 1.7">主に<b style="color: {{accent}}">「{{p.top}}」</b>で応じている可能性。</p><p style="margin: 0; font-size: 14px; line-height: 1.7; color: #45423C"><span style="border: 1px solid #161513; padding: 1px 6px; font-size: 12px; margin-right: 6px">{{p.place}}</span>{{p.example}}</p></sc-if>
+<sc-if value="{{p.noTop}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 15px; color: #45423C">まだ傾向は見えていません。</p></sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid #161513">
+<div style="padding: 20px 24px 20px 0; border-right: 1px solid #CFC8B8; display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; letter-spacing: 0.12em">正当性への過敏さ</span>
+<sc-for list="{{jsb}}" as="j" hint-placeholder-count="2"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px">{{j.label}} {{j.val}}</span><div style="height: 10px; background: #D9D2C3"><div style="height: 10px; background: #161513; width: {{j.w}}"></div></div></div></sc-for>
+<p style="margin: 0; font-size: 13px; line-height: 1.7; color: #45423C">{{jsLine}}</p></div>
+<div style="padding: 20px 24px; border-right: 1px solid #CFC8B8; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; letter-spacing: 0.12em">経済格差の中の位置</span>
+<svg width="220" height="160" viewBox="0 0 220 160" role="img" aria-label="K字型の位置"><path d="M14,80 L110,80 L206,22 M110,80 L206,138" fill="none" stroke="#161513" stroke-width="2"></path><circle cx="{{kx}}" cy="{{ky}}" r="9" fill="{{accent}}" stroke="#161513" stroke-width="1.5"></circle></svg>
+<span style="font-family: 'Noto Serif JP', serif; font-size: 22px">{{kLabel}}</span></div>
+<div style="padding: 20px 0 20px 24px; display: flex; flex-direction: column; gap: 8px"><span style="font-size: 13px; letter-spacing: 0.12em">次の一歩</span>
+<button onClick="{{restart}}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; border: 1px solid #161513; background: transparent; color: #161513; font: inherit; cursor: pointer">別の領域で試す</button>
+<p style="margin: 0; font-size: 12px; line-height: 1.7; color: #5E5A52">前提：推定は「はい／いいえ」にもとづく仮説で、診断・評価・選別には用いない。</p></div>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isNews}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; letter-spacing: 0.12em">報道環境 — 日本の媒体・直近1か月（GDELT {{gdAsof}}）</span>
+<sc-for list="{{gd}}" as="g" hint-placeholder-count="8"><div style="display: grid; grid-template-columns: 180px 1fr 60px; gap: 10px; align-items: center; border-bottom: 1px solid #D9D2C3; padding: 6px 0">
+<span style="font-size: 14px">{{g.name}}</span>
+<sc-if value="{{g.has}}" hint-placeholder-val="{{false}}"><div style="height: 14px; background: #D9D2C3"><div style="height: 14px; background: #161513; width: {{g.w}}"></div></div></sc-if>
+<sc-if value="{{g.none}}" hint-placeholder-val="{{true}}"><span style="font-size: 12px; color: #5E5A52">未取得 — 毎朝の自動集計で埋まります</span></sc-if>
+<span style="font-size: 13px; text-align: right; color: {{g.toneColor}}">{{g.tone}}</span></div></sc-for>
+<span style="font-size: 12px; color: #5E5A52">データ：<a href="https://www.gdeltproject.org/">The GDELT Project</a>。右端はトーン（マイナスほど否定的）。</span>
+</div>
+<div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 0">
+<span style="font-size: 13px; letter-spacing: 0.12em; margin-bottom: 12px">世間の反応が供給する枠組み — {{newsDate}}</span>
+<sc-for list="{{news}}" as="n" hint-placeholder-count="4"><article style="border-top: 1px solid #161513; padding: 14px 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; color: #5E5A52">{{n.kind}} ・ {{n.title}}</span>
+<span style="font-family: 'Noto Serif JP', serif; font-size: 20px">{{n.frame}}</span>
+<span style="font-size: 14px; color: #45423C">「{{n.norm}}」</span>
+<span style="font-size: 12px; color: {{accent}}">刺激される過敏さ：{{n.js}}</span></article></sc-for>
+</div>
+</section>
+</sc-if>
+</main>
+</div>
+
+</template>
+<script>
+/* 初期データ（data/*.json が読めればそちらで上書きする） */
+var PRESS = {"objectify": {"n": "性的対象化のまなざし", "q": {"HIDE": "服装・化粧・話し方などで、女性らしさを感じさせる記号を意識的に消している", "FIT": "男性中心の場で「男っぽい」ノリや話題に積極的に合わせる", "SHOW": "女性らしさや性的な魅力をあえて強調し、それを武器や承認の源にしている", "BLAME": "性的な目で見られるのは、本人の服装や振る舞いのせいだと考えている", "BOOST": "外見ではなく実力で評価されようと、仕事や勉強で過剰なほど努力する", "PUSH": "性的な冗談や視線に対して、その場で不快だとはっきり伝える"}, "ex": {"HIDE": ["電車・駅", "通勤では体の線が出ない服と最小限の化粧を選び、混んだ車両ではうつむいて目立たないようにする"], "FIT": ["飲食店・飲み会", "男性の同僚と一緒に下ネタに笑って乗り、「女扱いしないで」という立ち位置をとる"], "SHOW": ["店舗・接客", "接客の場で女性らしさを意識的に演出し、好意的な扱いや指名につなげる"], "BLAME": ["路上・公園", "声をかけられたりつきまとわれたりしても、「自分の服装が悪かった」と考えて誰にも言わない"], "BOOST": ["職場", "会議で外見に触れられないよう、資料と数字で圧倒しようと過剰に準備する"], "PUSH": ["電車・駅", "痴漢や盗撮に気づいたとき、声を上げたり駅員に通報したりする"]}}, "masc": {"n": "「男らしさ」規範", "q": {"HIDE": "弱さや不安、悲しみを人に見せないようにしている", "FIT": "男性の集団の中で、下ネタや武勇伝など「男らしい」ノリに無理に合わせる", "SHOW": "強さ・稼ぎ・支配力を誇示して、自分の価値を示そうとする", "BLAME": "弱音を吐く男性や稼げない男性を、情けないと見下す", "BOOST": "収入や地位で劣ることを恐れ、仕事に過剰に打ち込む", "PUSH": "「男だから」という押しつけに対して、おかしいと声に出す"}, "ex": {"HIDE": ["役所・病院・窓口", "体や心の不調があっても受診せず、「大丈夫」で押し通す"], "FIT": ["飲食店・飲み会", "酒の強さや武勇伝を競う場で、無理をして飲み続ける"], "SHOW": ["店舗・接客", "店員に横柄な態度をとったり、高い会計を見せつけたりして優位を示す"], "BLAME": ["職場", "育休を取る男性の同僚を「やる気がない」と陰で批判する"], "BOOST": ["職場", "収入や役職で負けまいと、休日も働き続ける"], "PUSH": ["職場", "「男なんだから泣くな」と言われた後輩をかばい、言った人に異議を唱える"]}}, "hetero": {"n": "異性愛・シスジェンダー規範", "q": {"HIDE": "恋愛やパートナーの話題になると、相手の性別をぼかしたり話をそらしたりする", "FIT": "周囲に合わせて、異性愛を前提にした振る舞いや冗談に加わる", "SHOW": "性的少数者としての特徴をあえて目立たせ、キャラクターとして打ち出す", "BLAME": "自分のセクシュアリティや性自認を、恥ずかしいもの・直すべきものと感じている", "BOOST": "「普通」でないことを補うように、仕事や人間関係で完璧であろうとする", "PUSH": "差別的な発言や決めつけに、その場で異議を唱える"}, "ex": {"HIDE": ["職場", "休日の話では、パートナーの性別を「相手」「友達」とぼかして話す"], "FIT": ["飲食店・飲み会", "異性の好みを聞かれて話を合わせ、架空のタイプを答える"], "SHOW": ["店舗・接客", "いわゆる「オネエキャラ」などの型をあえて演じ、場を盛り上げる役を担う"], "BLAME": ["冠婚葬祭・地域行事", "親戚に結婚を急かされ、「自分がおかしいのだ」と感じて黙る"], "BOOST": ["職場", "私生活を詮索されないよう、仕事では非の打ちどころのない人物であろうとする"], "PUSH": ["役所・病院・窓口", "書類の性別欄や家族の定義について、窓口で疑問を伝える"]}}, "class": {"n": "階層・文化資本の差", "q": {"HIDE": "実家の経済状況や親の職業、学歴の話題を避ける", "FIT": "上の階層の趣味・言葉遣い・消費を身につけ、出自が分からないように振る舞う", "SHOW": "「叩き上げ」「苦労人」であることを強調し、それを武器にする", "BLAME": "貧しさや学歴の低さは、本人の努力不足の結果だと考えている", "BOOST": "学歴・収入・ブランドなど、目に見える成功の証を過剰に追い求める", "PUSH": "生まれによる格差や不公平について、はっきり問題提起する"}, "ex": {"HIDE": ["飲食店・飲み会", "実家や親の職業を聞かれると、話題をそらしたり曖昧に答えたりする"], "FIT": ["飲食店・飲み会", "高級店のマナーや教養的な話題を必死に覚え、育ちの違いを悟らせない"], "SHOW": ["職場", "「叩き上げ」「苦労人」の経歴を繰り返し語り、エリートとの差別化に使う"], "BLAME": ["役所・病院・窓口", "受けられる支援があっても、「甘え」だと考えて申請しない"], "BOOST": ["店舗・接客", "ブランド品や肩書きなど、目に見える成功の証を過剰に身につける"], "PUSH": ["学校・PTA", "行事の費用負担や家庭による格差について、学校に問題提起する"]}}, "family": {"n": "「普通の家庭」規範", "q": {"HIDE": "家族の話題になると、話をそらしたり、作り話でやり過ごしたりする", "FIT": "「普通の家庭で育った人」らしく振る舞い、違いを悟らせない", "SHOW": "家庭の苦労話を強調し、同情や特別扱いを引き出している", "BLAME": "自分の家庭環境のせいで、自分には欠陥があると感じている", "BOOST": "家庭の不利を見返そうと、人一倍の成果を出そうとする", "PUSH": "家庭環境による不平等や偏見について、はっきり問題提起する"}, "ex": {"HIDE": ["学校・PTA", "家庭の事情を学校や周囲に伝えず、ひとりで抱え込む"], "FIT": ["冠婚葬祭・地域行事", "「普通の家庭」らしい行事や贈答の習慣を、無理をしてでもこなす"], "SHOW": ["職場", "家庭の苦労話を繰り返し語り、同情や配慮を引き出す"], "BLAME": ["役所・病院・窓口", "支援制度への相談を、「自分の家がおかしいせいだ」と恥じてためらう"], "BOOST": ["学校・PTA", "「片親だから」と言わせないよう、子どもの行事や身なりを過剰に整える"], "PUSH": ["役所・病院・窓口", "特定の家族のかたちを前提にした制度の不備について、窓口で声を上げる"]}}, "precarious": {"n": "雇用・職業による序列化", "q": {"HIDE": "勤め先や雇用形態を聞かれると、ぼかしたり話をそらしたりする", "FIT": "正社員らしい服装や振る舞い、肩書きを必要以上に整えて見せる", "SHOW": "「自由な働き方」「好きでやっている」ことを強調し、引け目を魅力に変えて見せる", "BLAME": "安定した職に就けないのは、自分の能力や努力が足りないせいだと考えている", "BOOST": "資格の取得や副業などで、職業上の不利を過剰に取り返そうとする", "PUSH": "雇用形態による待遇の差や見下しに、はっきり異議を唱える"}, "ex": {"HIDE": ["冠婚葬祭・地域行事", "親戚に仕事を聞かれると、「会社員」とだけ答えて詳しく話さない"], "FIT": ["職場", "派遣先でも正社員と同じ服装や言葉遣いを徹底し、見分けがつかないようにする"], "SHOW": ["SNS・ネット", "「会社に縛られない生き方」を強調し、引け目を魅力として打ち出す"], "BLAME": ["役所・病院・窓口", "失業給付や支援の申請を、恥ずかしいことと感じてためらう"], "BOOST": ["職場", "資格の取得や副業で、肩書きの不利を取り返そうとする"], "PUSH": ["職場", "雇用形態による福利厚生や休憩室の差について、改善を求める"]}}, "looks": {"n": "外見による序列化", "q": {"HIDE": "体型や顔を隠すような服装や振る舞いをする", "FIT": "世間の美の基準に合わせることに、多くの時間やお金をかける", "SHOW": "自分の外見の特徴を、あえてネタにしたり強調したりする", "BLAME": "自分の容姿では愛されない、認められないと思っている", "BOOST": "外見の劣等感を、能力や面白さで埋め合わせようとする", "PUSH": "容姿いじりや外見による扱いの差に、はっきり異議を唱える"}, "ex": {"HIDE": ["電車・駅", "大きめの服やマスクで、顔や体型を隠して過ごす"], "FIT": ["店舗・接客", "美容やダイエットに多額の費用をかけ、世間の基準に近づこうとする"], "SHOW": ["飲食店・飲み会", "自分の容姿をネタにした自虐で笑いをとる"], "BLAME": ["店舗・接客", "店員の態度が冷たいと、「自分の見た目のせいだ」と考える"], "BOOST": ["職場", "見た目の劣等感を補うように、面白さや仕事の能力で存在感を示す"], "PUSH": ["職場", "容姿いじりに対して、「それはやめてほしい」とその場で伝える"]}}, "isolation": {"n": "孤立・居場所のなさ", "q": {"HIDE": "孤独や居場所のなさを悟られないよう、充実しているふりをする", "FIT": "どこかの集団に属そうと、興味のない付き合いにも無理に加わる", "SHOW": "孤独や「ぼっち」であることを、キャラクターやネタとして打ち出す", "BLAME": "居場所がないのは、自分に魅力や価値がないからだと考えている", "BOOST": "仕事や趣味の成果に打ち込み、人とのつながりの欠如を埋めようとする", "PUSH": "孤立を自己責任とする見方に、はっきり異議を唱える"}, "ex": {"HIDE": ["SNS・ネット", "予定が詰まっているような投稿をして、充実しているように見せる"], "FIT": ["飲食店・飲み会", "興味のない集まりにも、ひとりになるのが怖くて参加する"], "SHOW": ["SNS・ネット", "「ぼっち飯」などをネタにして発信する"], "BLAME": ["飲食店・飲み会", "誘われないのは自分に魅力がないからだと考え、ますます引きこもる"], "BOOST": ["職場", "人間関係の空白を埋めるように、仕事に没頭する"], "PUSH": ["役所・病院・窓口", "孤立を自己責任とする対応に、窓口で異議を唱える"]}}, "ideo_minority": {"n": "思想的少数派としての圧力", "q": {"HIDE": "政治や社会問題の話題になると、自分の考えを言わずにやり過ごす", "FIT": "周囲の多数派の意見に、本心とは違っても同調してみせる", "SHOW": "自分の立場をことさら強い言葉で表明し、旗印のように打ち出す", "BLAME": "自分の考えは間違っているのかもしれない、と自分の立場を恥じている", "BOOST": "立場で軽んじられないよう、知識や実績で相手を上回ろうとする", "PUSH": "自分の立場への冷笑やレッテル貼りに、はっきり反論する"}, "ex": {"HIDE": ["職場", "選挙や時事の話題になると、当たり障りのない返事でやり過ごす"], "FIT": ["飲食店・飲み会", "多数派の政治的な冗談に、本心と違っても笑って合わせる"], "SHOW": ["SNS・ネット", "自分の立場を強い言葉で繰り返し発信し、旗印のように掲げる"], "BLAME": ["冠婚葬祭・地域行事", "親族に考えを笑われ、「自分がおかしいのか」と黙り込む"], "BOOST": ["職場", "立場で軽んじられないよう、議論で負けない知識を蓄える"], "PUSH": ["飲食店・飲み会", "自分の立場へのレッテル貼りに、その場で反論する"]}}, "inequality": {"n": "経済状況（社会上の格差）", "q": {"HIDE": "自分の経済状況（豊かさや苦しさ）を、周囲に悟られないようにしている", "FIT": "経済的に上の層の消費や話題に、無理をしてでも合わせる", "SHOW": "自分の経済状況（豊かさや苦しさ）を、ことさら打ち出す", "BLAME": "経済的な位置は本人の努力の結果だ、という考えを自分にも当てはめている", "BOOST": "経済的な位置を変えよう（守ろう）と、仕事や投資に過剰に打ち込む", "PUSH": "格差を広げる仕組みについて、はっきり問題提起する"}, "ex": {"HIDE": ["飲食店・飲み会", "会計の場面で、経済状況が悟られないよう振る舞いを整える"], "FIT": ["店舗・接客", "周りに合わせて、無理をして同じ価格帯の店や品物を選ぶ"], "SHOW": ["SNS・ネット", "豊かさ、あるいは苦しさを、ことさら発信する"], "BLAME": ["役所・病院・窓口", "支援や制度の相談を、「自分の努力の問題だ」と考えてためらう"], "BOOST": ["職場", "経済的な位置を変えよう（守ろう）と、本業の後も副業や投資に打ち込む"], "PUSH": ["役所・病院・窓口", "税や社会保障の不公平について、自治体や議員に意見を届ける"]}}};
+var GD = {"asof": "2026-11-19", "items": {"inequality": {"name": "経済状況（社会上の格差）", "jp": {"n": 21, "tone": -1.76}, "ref": null}, "scarcity": {"name": "デフレ・低成長下の経済不安", "jp": null, "ref": null}, "ethnic": {"name": "同化圧力・民族的ステレオタイプ", "jp": {"n": 11, "tone": -2.27}, "ref": null}, "isolation": {"name": "孤立・居場所のなさ", "jp": null, "ref": null}, "objectify": {"name": "性的対象化のまなざし", "jp": null, "ref": null}, "service": {"name": "接客・感情労働での見下し", "jp": null, "ref": null}, "harass": {"name": "ハラスメント被害の経験", "jp": null, "ref": null}, "marital": {"name": "結婚・出産規範", "jp": null, "ref": null}, "hetero": {"name": "異性愛・シスジェンダー規範", "jp": null, "ref": null}, "precarious": {"name": "雇用・職業による序列化", "jp": null, "ref": null}}};
+var NEWS = [{"symbol": "人物A〔女性・30代・お笑い芸人〕", "title": "写真に写った「目元」に注目が集まる", "summary": "お笑いコンビの公式SNSに投稿された2ショット写真について、ネットニュースが「目元に異変」と報じた。記事は、コメント欄の「どうしたの」「そんな目だった？」といった声を紹介した。", "frames": [{"name": "外見の変化は「説明を求められる出来事」である", "text": "「異変」という見出しと、理由を尋ねるコメントが重なることで、外見が変わることそのものが、本人の説明を要する出来事として扱われます。", "places": ["SNS・ネット", "職場", "冠婚葬祭・地域行事"], "norm": "人の外見の変化に気づいたら、それを話題にし、理由を尋ねてもよい", "effect": "外見の変化を隠す（無徴化）か、先にネタにして主導権をとる（誇張）方向へ、同じ立場の人を押しやります。", "js": {"f": "observer", "t": "変化を説明しないことを「隠し事」や不誠実さと見なし、それを指摘してよいとする観察者としての過敏さを刺激します。"}}, {"name": "「心配」の言葉で包まれた評価", "text": "「どうしたの」という気遣いの言葉の形をとることで、外見を評価の対象にすることが、悪意のない行為として受け入れられやすくなります。", "places": ["SNS・ネット", "職場"], "norm": "気遣いの形をとれば、他人の身体について言及してもよい", "effect": "言われた側が不快を示すと「心配したのに」と返されやすく、異議を唱えにくい空気（対抗の抑制）をつくります。", "js": {"f": "perpetrator", "t": "「心配しただけ」と、自分の言及が加害ではないことを守ろうとする加害者としての過敏さを刺激し、言及した側の弁明を強めます。"}}], "sources": [{"name": "ライブドアニュース（2026年11月19日）", "url": "https://news.livedoor.com/topics/detail/32851020/"}], "kind": "芸能・ゴシップ"}, {"symbol": "人物B〔男性・20代・新人アイドル〕", "title": "他人の騒動を模したハロウィン投稿で謝罪", "summary": "新人アイドルグループのメンバーが、騒動で釈放された別の芸能人の姿を模した仮装写真をSNSに投稿した。批判が相次いで投稿は削除され、本人が謝罪し、所属事務所も管理体制の不備を認める声明を出した。", "frames": [{"name": "入れ子になった制裁", "text": "他人の不祥事を笑いにした人が、今度は集団の批判の対象になります。この流れが、「不適切な人は叩いてよい」という枠組みを、叩く側の正しさとともに強めます。", "places": ["SNS・ネット"], "norm": "不適切だと判断された人には、多くの人が同時に批判を向けてよい", "effect": "公共空間での発信そのものを控える（場面回避）か、当たり障りのない表現に徹する（無徴化）方向へ、多くの人を押しやります。", "js": {"f": "observer", "t": "他人の不祥事を笑った行為を「見過ごせない不正」とする観察者としての憤りを動員し、集団で制裁することに正当性を与えます。"}}, {"name": "個人の行為は「組織の管理」の問題である", "text": "本人の謝罪に加えて事務所が管理体制の不備を認めることで、個人の発信が所属組織の管理責任として語られます。", "places": ["職場", "学校・PTA"], "norm": "所属する人の言動は、組織が管理し、組織が責任を負う", "effect": "職場や学校で、個人の発信への事前チェックや連帯責任を正当化する枠組みとして働きます。", "js": {"f": "perpetrator", "t": "組織が先回りして加害の責任を引き受けることで、所属する人に「自分も加害者になりうる」という過敏さを広げ、発信の自己検閲を促します。"}}], "sources": [{"name": "ライブドアニュース（2026年11月5日）", "url": "https://news.livedoor.com/topics/detail/32737023/"}], "kind": "芸能・ゴシップ"}, {"symbol": "人物群C〔40代・男性・離職後に実家暮らし〕ほか", "title": "生活が苦しくても配信者に「投げ銭」を続ける人たち", "summary": "マネーポストWEBの特集記事が、手取りを超える額や親のクレジットカードを使ってまで、配信者に投げ銭を続ける人々を「投げ銭の沼」にハマる人たちとして取り上げた。", "frames": [{"name": "「沼」という個人の嗜癖の物語", "text": "「沼にハマる」という表現は、孤立や離職といった背景を、個人の嗜癖や判断の誤りの物語としてまとめます。", "places": ["SNS・ネット", "役所・病院・窓口"], "norm": "お金の使い方の問題は、本人の弱さや判断の誤りとして語ってよい", "effect": "孤立や経済的な困難を抱える人が、窓口や周囲に相談することをためらう（内面化・無徴化）方向に働きます。", "js": {"f": "victim", "t": "「自分は我慢して真面目に暮らしているのに」という被害者としての過敏さを刺激し、他人の浪費を不公正と見なす自己責任の論調を強めます。"}}, {"name": "承認はお金で買われるもの", "text": "「存在を認めてもらう安心感」をお金の対価として描くことで、人とのつながりが、支払いによって得られる商品として理解されやすくなります。", "places": ["SNS・ネット", "飲食店・飲み会"], "norm": "人に認められることと、お金を払うことは結びついている", "effect": "「お金を持つことが居場所につながる」という、相対的な将来不安と拝金的な規範を同時に強める枠組みになります。", "js": {"f": "beneficiary", "t": "支払いによって承認が得られる構図は、受け取る側を「不当に得をしている」と見なす過敏さを刺激し、批判の矛先を配信者の側にも向けます。"}}], "sources": [{"name": "マネーポストWEB（特集記事）", "url": "https://www.moneypost.jp/1252535/2/"}], "kind": "芸能・ゴシップ"}, {"kind": "事件", "symbol": "人物D〔男性・60代・被告〕", "title": "あおり運転に執行猶予付き判決、被害者は「甘すぎる」", "summary": "救急車に道を譲るために止まった車に対し、クラクションを鳴らし続け、追い越して急ブレーキをかけるなどした罪に問われた男性に、地裁は拘禁刑1年・執行猶予3年の判決を言い渡した。事実を認めて反省していることが考慮された。被害を受けた男性は、判決後に判決は甘すぎると述べた。", "frames": [{"name": "刑の重さは被害の感じ方で測られる", "text": "被害者の「甘すぎる」という言葉が判決と並んで報じられることで、刑の重さを、被害を受けた側の感情の大きさで評価する見方が広がります。", "places": ["SNS・ネット", "路上・公園"], "norm": "処罰が十分かどうかは、被害を受けた側の感じ方で判断してよい", "effect": "司法の判断に代わって、ネットでの「晒し」や私的な制裁を正当なものに見せやすくします。", "js": {"f": "victim", "t": "「自分も同じ目に遭うかもしれない」という被害者としての過敏さを刺激し、厳罰を求める声を強めます。"}}, {"name": "道路は「悪質な他人」と出会う場所", "text": "「あおり運転」という呼び名が定着したことで、道路は、いつ悪質な他人に遭うかわからない場所として描かれます。", "places": ["路上・公園"], "norm": "道路では、他人の運転を見張り、記録しておくべきだ", "effect": "ドライブレコーダーによる相互監視を当たり前のものにし、公共空間を「記録し合う場」に変えていきます。", "js": {"f": "observer", "t": "他人の違反への観察者としての憤りを動員し、記録映像をネットで共有して批判することに正当性を与えます。"}}], "sources": [{"name": "MBSニュース（2026年11月17日、Infoseekニュース掲載）", "url": "https://news.infoseek.co.jp/article/mbs_3090119/"}]}, {"kind": "事件", "symbol": "人物E〔女性・40代・外国籍・容疑者〕", "title": "詐欺と窃盗の疑いで再逮捕、報道は国籍を明記", "summary": "島根県警は、別の詐欺・窃盗の容疑ですでに逮捕されていた女性を、詐欺と窃盗の疑いで再逮捕した。報道は女性の国籍を明記している。女性は容疑を否認している。", "frames": [{"name": "国籍の付記が、犯罪と属性を結びつける", "text": "犯罪の報道で国籍が明記されると、個別の容疑が、その国籍をもつ人々の属性と結びつけて受け取られやすくなります。", "places": ["SNS・ネット", "店舗・接客", "役所・病院・窓口"], "norm": "犯罪のニュースでは、容疑者の国籍を知らせることに意味がある", "effect": "同じ国籍やルーツをもつ人々を、出自を伏せる（無徴化）方向か、人一倍模範的に振る舞う（補償）方向へ押しやります。", "js": {"f": "victim", "t": "「自分たちが被害を受ける側だ」という被害者としての過敏さを、特定の国籍の人々への警戒へと向けやすくします。"}}, {"name": "逮捕の積み重ねが、有罪の印象をつくる", "text": "本人が否認していても、逮捕と再逮捕の報道が重なることで、罪を犯したことが確定したかのような印象が生まれます。", "places": ["SNS・ネット"], "norm": "逮捕された人は、罪を犯した人として扱ってよい", "effect": "判決の前から社会的な制裁が始まり、推定無罪の原則が公共空間で働きにくくなります。", "js": {"f": "observer", "t": "不正を見過ごせないという観察者としての過敏さが、判決を待たずに批判を向けることを正当なものに見せます。"}}], "sources": [{"name": "山陰中央新報（2026年11月19日）", "url": "https://www.sanin-chuo.co.jp/articles/-/1118404"}]}, {"kind": "事件", "symbol": "人物F〔女性・20代・被害者〕／人物G〔男性・30代・容疑者〕", "title": "駅近くの路上で女性が刺され死亡、容疑者の供述が報じられる", "summary": "東京都内の駅近くの路上で、女性が刃物で刺されて亡くなり、バッグが奪われた事件で、男性が逮捕された。報道機関は、逮捕された男性が取り調べで話したとされる内容を伝えている。", "frames": [{"name": "供述の詳細が、事件を「語り」として流通させる", "text": "容疑者が話したとされる犯行時の様子が見出しになることで、事件が、被害の事実よりも容疑者の語りを通して受け取られるようになります。", "places": ["SNS・ネット"], "norm": "事件の詳しい様子は、公共の関心事として知ってよい", "effect": "亡くなった人の尊厳よりも、語りの消費が優先されやすくなります。同じような事件の報道で、詳細を求める受け手を増やします。", "js": {"f": "observer", "t": "観察者としての憤りが、詳細を知ることを「事件に向き合うこと」と同じものに見せ、詳しい報道への需要を正当なものにします。"}}, {"name": "危険は「場所と時間帯」の問題である", "text": "「駅近くの路上」という場所が強調されることで、危険が、特定の場所や時間帯を避ければ防げるものとして描かれます。", "places": ["電車・駅", "路上・公園"], "norm": "危険な場所や時間帯を避けるのは、個人の責任だ", "effect": "女性など狙われやすいとされる立場の人の行動範囲を狭め、夜の外出や一人歩きを控える（場面回避）方向へ押しやります。", "js": {"f": "victim", "t": "「自分も被害に遭うかもしれない」という被害者としての過敏さを刺激し、自衛を個人に求める声を強めます。"}}], "sources": [{"name": "FNNプライムオンライン（2026年11月19日、ライブドアニュース掲載）", "url": "https://news.livedoor.com/topics/detail/32849341/"}]}];
+var NEWS_DATE = '2026-11-19';
+var JSN = {"victim":"被害者としての過敏さ","observer":"観察者としての過敏さ","beneficiary":"受益者としての過敏さ","perpetrator":"加害者としての過敏さ"};
+var DEFAULT_ACCENT = '#B5341A';
+
+/* ---- .dc.html テンプレートの最小ランタイム（{{穴}}・sc-if・sc-for・onClick） ---- */
+class DCLogic{constructor(p){this.props=p||{};this.state={}}setState(o){Object.assign(this.state,o);paint()}}
+function look(path,sc){path=path.trim();if(path==='true')return true;if(path==='false')return false;
+  var ps=path.split('.'),v;for(var i=sc.length-1;i>=0;i--){if(ps[0] in sc[i]){v=sc[i][ps[0]];break}}
+  for(var j=1;j<ps.length&&v!=null;j++)v=v[ps[j]];return v}
+var HOLE=/\{\{\s*([^}]+?)\s*\}\}/g, WHOLE=/^\{\{\s*([^}]+?)\s*\}\}$/;
+function interp(s,sc){return s.replace(HOLE,function(_,p){var v=look(p,sc);return v==null?'':String(v)})}
+function proc(node,sc,out){
+  if(node.nodeType===3){out.appendChild(document.createTextNode(interp(node.nodeValue,sc)));return}
+  if(node.nodeType!==1)return;var tag=node.tagName.toLowerCase();
+  if(tag==='sc-if'){if(look(WHOLE.exec(node.getAttribute('value'))[1],sc))node.childNodes.forEach(function(c){proc(c,sc,out)});return}
+  if(tag==='sc-for'){var list=look(WHOLE.exec(node.getAttribute('list'))[1],sc)||[],as=node.getAttribute('as');
+    list.forEach(function(it,ix){var s={};s[as]=it;s.$index=ix;var sc2=sc.concat([s]);node.childNodes.forEach(function(c){proc(c,sc2,out)})});return}
+  var el=node.namespaceURI==='http://www.w3.org/2000/svg'?document.createElementNS(node.namespaceURI,node.tagName):document.createElement(node.tagName);
+  Array.from(node.attributes).forEach(function(a){var m=WHOLE.exec(a.value);
+    if(a.name.indexOf('on')===0&&m){var fn=look(m[1],sc);if(typeof fn==='function')el.addEventListener(a.name.slice(2),fn);return}
+    if(a.name.indexOf('hint-')===0)return;el.setAttribute(a.name,interp(a.value,sc))});
+  node.childNodes.forEach(function(c){proc(c,sc,el)});out.appendChild(el)}
+var APP,TPL;
+function paint(){var root=document.getElementById('app');var frag=document.createDocumentFragment();var vals=APP.renderVals();
+  TPL.content.childNodes.forEach(function(c){proc(c,[vals],frag)});root.replaceChildren(frag)}
+
+var AX = [
+  {k:'HIDE',  n:'隠す', sh:'隠す',       d:'属性の記号を消す・場を避ける'},
+  {k:'FIT',   n:'合わせる', sh:'合わせる',   d:'多数派に過剰に合わせる'},
+  {k:'SHOW',  n:'誇張する', sh:'誇張',   d:'属性をあえて打ち出す'},
+  {k:'BLAME', n:'自分を責める', sh:'自責', d:'否定的な見方を内面化する'},
+  {k:'BOOST', n:'補う', sh:'補う',       d:'別の領域の成果で取り返す'},
+  {k:'PUSH',  n:'抗う', sh:'抗う',       d:'不当さを指摘する'}];
+var DOMS = [
+  {k:'sex',    n:'性別・性のあり方'},
+  {k:'origin', n:'出自・学歴', p:'class'},
+  {k:'family', n:'家族の役割', p:'family'},
+  {k:'work',   n:'働き方',     p:'precarious'},
+  {k:'body',   n:'心身・容姿', p:'looks'},
+  {k:'lonely', n:'孤立',       p:'isolation'},
+  {k:'ideo',   n:'思想・情報', p:'ideo_minority'},
+  {k:'money',  n:'お金・格差', p:'inequality'}];
+var JSQ = [
+  {k:'victim',   n:'自分への不公正', q:'自分が不当に扱われたことに強く反応し、そのことを長く考え続ける'},
+  {k:'observer', n:'他者への不公正', q:'他人が不当に扱われているのを見ると、自分のことでなくても強い憤りを示す'}];
+var R = 118, CX = 160, CY = 160;
+function pt(i, v) { var a = (-90 + i * 60) * Math.PI / 180; return [CX + Math.cos(a) * R * v, CY + Math.sin(a) * R * v]; }
+function poly(vals) { return vals.map(function (v, i) { var p = pt(i, v); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {step: 'attr', gender: null, age: null, doms: [], kA: null, kD: null, ans: {}, qi: 0, msg: ''};
+  }
+  pressOf(dk) {
+    if (dk !== 'sex') return DOMS.find(function (d) { return d.k === dk; }).p;
+    return this.state.gender === 'male' ? 'masc' : this.state.gender === 'female' ? 'objectify' : 'hetero';
+  }
+  questions() {
+    var self = this, qs = [];
+    this.state.doms.forEach(function (dk) {
+      var pk = self.pressOf(dk), P = PRESS[pk];
+      AX.forEach(function (a) { qs.push({id: pk + ':' + a.k, area: P.n, text: 'この人物は' + P.q[a.k]}); });
+    });
+    JSQ.forEach(function (j) { qs.push({id: 'JS:' + j.k, area: '正当性への過敏さ', text: 'この人物は' + j.q}); });
+    return qs;
+  }
+  answer(v) {
+    var qs = this.questions(), q = qs[this.state.qi], ans = Object.assign({}, this.state.ans);
+    ans[q.id] = v;
+    var next = this.state.qi + 1;
+    this.setState({ans: ans, qi: next, step: next >= qs.length ? 'res' : 'q'});
+  }
+  score(id) { var v = this.state.ans[id]; return v === true ? 1 : v === false ? 0 : 0.5; }
+  renderVals() {
+    var self = this, s = this.state, qs = this.questions();
+    var go = function (st) { return function () { self.setState({step: st}); }; };
+    var steps = [['attr', '01', '属性'], ['q', '02', '質問'], ['res', '03', '推定'], ['news', '04', '報道']].map(function (x) {
+      var on = s.step === x[0];
+      return {num: x[1], label: x[2], go: go(x[0]), on: on, off: !on};
+    });
+    var pick = function (field, v) { return function () { var o = {}; o[field] = v; self.setState(o); }; };
+    var genders = [['female', '女性'], ['male', '男性'], ['other', 'その他']].map(function (g) { return {label: g[1], on: s.gender === g[0], off: s.gender !== g[0], pick: pick('gender', g[0])}; });
+    var ages = [['young', '10〜20代'], ['mid', '30〜40代'], ['old', '50代以上']].map(function (g) { return {label: g[1], on: s.age === g[0], off: s.age !== g[0], pick: pick('age', g[0])}; });
+    var doms = DOMS.map(function (d) {
+      var on = s.doms.indexOf(d.k) >= 0;
+      return {label: d.n, on: on, off: !on, pick: function () {
+        var a = s.doms.slice(), i = a.indexOf(d.k);
+        if (i >= 0) a.splice(i, 1); else if (a.length < 2) a.push(d.k); else { self.setState({msg: '選べるのは2つまでです'}); return; }
+        self.setState({doms: a, msg: '', ans: {}, qi: 0});
+      }};
+    });
+    var kq = [['kA', '資産の値上がりの恩恵を受けている'], ['kD', '物価高で暮らしが苦しくなった']].map(function (k) {
+      return {label: k[1], yesOn: s[k[0]] === true, yesOff: s[k[0]] !== true, noOn: s[k[0]] === false, noOff: s[k[0]] !== false,
+              yes: pick(k[0], true), no: pick(k[0], false)};
+    });
+    var canStart = s.doms.length > 0 && !!s.gender;
+    var q = qs[Math.min(s.qi, qs.length - 1)] || {text: '', area: ''};
+    var answered = Object.keys(s.ans).length;
+
+    /* 推定 */
+    var focus = s.doms.map(function (dk) { return self.pressOf(dk); });
+    var agg = AX.map(function (a) { return focus.length ? focus.reduce(function (t, pk) { return t + self.score(pk + ':' + a.k); }, 0) / focus.length : 0.5; });
+    var axes = AX.map(function (a, i) {
+      var p = pt(i, 1.24);
+      return {label: a.n, x: p[0].toFixed(0), y: p[1].toFixed(0), tx: Math.abs(p[0] - CX) < 5 ? '-50%' : p[0] > CX ? '0%' : '-100%',
+              val: Math.round(agg[i] * 100), w: Math.round(agg[i] * 100) + '%'};
+    });
+    var perP = focus.map(function (pk) {
+      var P = PRESS[pk], vals = AX.map(function (a) { return self.score(pk + ':' + a.k); });
+      var best = -1, bi = -1;
+      vals.forEach(function (v, i) { if (v > 0.5 && v > best) { best = v; bi = i; } });
+      var top = bi >= 0 ? AX[bi] : null, ex = top ? P.ex[top.k] : null;
+      return {name: P.n, poly: poly(vals.map(function (v) { return 0.15 + v * 0.85; })),
+              bars: AX.map(function (a, i) { return {label: a.sh, h: Math.round(8 + vals[i] * 56) + 'px', strong: vals[i] > 0.5, weak: vals[i] <= 0.5}; }),
+              hasTop: !!top, noTop: !top, top: top ? top.n : '', topD: top ? top.d : '',
+              place: ex ? ex[0] : '', example: ex ? ex[1] : ''};
+    });
+    var jsb = JSQ.map(function (j) { var v = self.score('JS:' + j.k); return {label: j.n, val: Math.round(v * 100), w: Math.round(v * 100) + '%'}; });
+    var vic = this.score('JS:victim'), obs = this.score('JS:observer');
+    var jsLine = vic > obs ? '過敏さは自分への不公正に向いています。搾取への警戒や、不公平感と重なると先鋭化の要因と同じ方向に働きえます。'
+      : obs > vic ? '過敏さは他者への不公正に向いています。抗う方略は、他者のための憤りから来ている可能性があります。'
+      : '自分と他者への不公正に、同じくらい反応しています。';
+    var kLabel = s.kA === true && s.kD !== true ? '上向きの枝' : s.kD === true && s.kA !== true ? '下向きの枝' : (s.kA === null && s.kD === null) ? '未回答' : '分岐点付近';
+    var kDot = kLabel === '上向きの枝' ? [196, 28] : kLabel === '下向きの枝' ? [196, 132] : [110, 80];
+
+    /* 報道環境（GDELT） */
+    var maxN = Math.max.apply(null, Object.keys(GD.items).map(function (k) { var x = GD.items[k].jp; return x && x.n ? x.n : 1; }));
+    var gd = Object.keys(GD.items).map(function (k) {
+      var it = GD.items[k], jp = it.jp, ref = it.ref, has = !!(jp && jp.n);
+      var t = has && jp.tone !== null ? jp.tone : 0;
+      return {name: it.name, has: has, none: !has, n: has ? jp.n + '件' : '未取得', w: has ? Math.max(4, Math.round(jp.n / maxN * 100)) + '%' : '0%',
+              tone: has && jp.tone !== null ? (jp.tone > 0 ? '+' : '') + jp.tone.toFixed(2) : '–',
+              toneColor: t < -1 ? '#C2410C' : t > 1 ? '#1D4ED8' : '#6B7280',
+              ref: ref && ref.n ? '海外著名媒体 ' + ref.n + '件' : '海外著名媒体 未取得',
+              focus: focus.indexOf(k) >= 0};
+    });
+    var news = NEWS.map(function (c) { var f = c.frames[0]; return {kind: c.kind || '芸能・ゴシップ', title: c.title, frame: f.name, norm: f.norm, js: JSN[f.js.f] || ''}; });
+
+    return {
+      steps: steps, isAttr: s.step === 'attr', isQ: s.step === 'q', isRes: s.step === 'res', isNews: s.step === 'news',
+      genders: genders, ages: ages, doms: doms, kq: kq, msg: s.msg, hasMsg: !!s.msg,
+      canStart: canStart, cannotStart: !canStart, start: function () { self.setState({step: 'q', qi: 0, ans: {}}); },
+      qText: q.text, qArea: q.area, qNum: Math.min(s.qi + 1, qs.length), qTotal: qs.length,
+      qPct: Math.round(answered / Math.max(1, qs.length) * 100) + '%',
+      yes: function () { self.answer(true); }, no: function () { self.answer(false); }, skip: function () { self.answer(null); },
+      back: function () { if (s.qi > 0) self.setState({qi: s.qi - 1}); },
+      hasFocus: focus.length > 0, noFocus: focus.length === 0,
+      radar: poly(agg.map(function (v) { return 0.08 + v * 0.92; })), ring1: poly([1, 1, 1, 1, 1, 1]), ring2: poly([.66, .66, .66, .66, .66, .66]), ring3: poly([.33, .33, .33, .33, .33, .33]),
+      spokePath: AX.map(function (a, i) { var p = pt(i, 1); return 'M' + CX + ',' + CY + ' L' + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '),
+      axes: axes, perP: perP, jsb: jsb, jsLine: jsLine,
+      kLabel: kLabel, kx: kDot[0], ky: kDot[1],
+      gd: gd, gdAsof: GD.asof, news: news, newsDate: NEWS_DATE,
+      restart: function () { self.setState({step: 'attr', ans: {}, qi: 0}); },
+      accent: this.props.accent ?? DEFAULT_ACCENT
+    };
+  }
+}
+
+TPL=document.getElementById('tpl');APP=new Component({});paint();
+Promise.all([fetch('data/gdelt.json').then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+             fetch('data/news.json').then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(x){
+  if(x[0]&&x[0].items){GD={asof:x[0].asof,items:x[0].items}}
+  if(x[1]&&x[1].length&&x[1][0].cases.length){NEWS=x[1][0].cases;NEWS_DATE=x[1][0].date}
+  paint()});
+</script>
+</body>
+</html>

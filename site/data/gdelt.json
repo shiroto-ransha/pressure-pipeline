@@ -1,0 +1,64 @@
+{
+ "asof": "2026-11-19",
+ "window": "1m",
+ "source": "The GDELT Project (https://www.gdeltproject.org/)",
+ "items": {
+  "inequality": {
+   "name": "経済状況（社会上の格差）",
+   "jp": {
+    "n": 21,
+    "tone": -1.76
+   },
+   "ref": null
+  },
+  "scarcity": {
+   "name": "デフレ・低成長下の経済不安",
+   "jp": null,
+   "ref": null
+  },
+  "ethnic": {
+   "name": "同化圧力・民族的ステレオタイプ",
+   "jp": {
+    "n": 11,
+    "tone": -2.27
+   },
+   "ref": null
+  },
+  "isolation": {
+   "name": "孤立・居場所のなさ",
+   "jp": null,
+   "ref": null
+  },
+  "objectify": {
+   "name": "性的対象化のまなざし",
+   "jp": null,
+   "ref": null
+  },
+  "service": {
+   "name": "接客・感情労働での見下し",
+   "jp": null,
+   "ref": null
+  },
+  "harass": {
+   "name": "ハラスメント被害の経験",
+   "jp": null,
+   "ref": null
+  },
+  "marital": {
+   "name": "結婚・出産規範",
+   "jp": null,
+   "ref": null
+  },
+  "hetero": {
+   "name": "異性愛・シスジェンダー規範",
+   "jp": null,
+   "ref": null
+  },
+  "precarious": {
+   "name": "雇用・職業による序列化",
+   "jp": null,
+   "ref": null
+  }
+ },
+ "candidates": {}
+}
