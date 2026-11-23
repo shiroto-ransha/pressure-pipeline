@@ -1,5 +1,5 @@
 {
- "date": "2026-11-22",
+ "date": "2026-11-23",
  "prev_keys": [
   "inequality",
   "scarcity",
@@ -21,11 +21,19 @@
   "elderly",
   "harass",
   "mental",
-  "hetero",
+  "isolation",
   "precarious"
  ],
- "swap": null,
+ "swap": {
+  "in": "isolation",
+  "out": "hetero"
+ },
  "history": [
+  {
+   "date": "2026-11-23",
+   "in": "isolation",
+   "out": "hetero"
+  },
   {
    "date": "2026-11-17",
    "in": "ai_jobs",

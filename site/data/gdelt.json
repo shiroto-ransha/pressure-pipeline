@@ -1,16 +1,16 @@
 {
- "asof": "2026-11-22",
+ "asof": "2026-11-23",
  "window": "1d",
  "backend": "gkg-files",
  "source": "The GDELT Project (https://www.gdeltproject.org/)",
  "trend_dates": [
-  "2026-11-16",
   "2026-11-17",
   "2026-11-18",
   "2026-11-19",
   "2026-11-20",
   "2026-11-21",
-  "2026-11-22"
+  "2026-11-22",
+  "2026-11-23"
  ],
  "display_rule": "この7日の記事の数で、表示の外にある項目が表示中のいちばん少ない項目を上回ったら、1日に1つだけ入れかえる",
  "items": {
@@ -18,88 +18,88 @@
    "name": "高齢者への見方・老後の不安",
    "kind": "candidate",
    "jp": {
-    "n": 20,
-    "tone": 0.03,
+    "n": 32,
+    "tone": 0.65,
     "trend": [
-     45,
      40,
      37,
      44,
      27,
      23,
-     20
+     20,
+     32
     ]
    },
    "ref": {
     "n": 0,
     "tone": null,
     "trend": [
-     0,
      1,
      0,
      0,
      2,
      1,
+     0,
      0
     ]
    },
-   "score7": 236,
+   "score7": 223,
    "is_new": false
   },
   "inequality": {
    "name": "お金の格差（貧困・生活の苦しさ）",
    "kind": "pressure",
    "jp": {
-    "n": 26,
-    "tone": -1.87,
+    "n": 41,
+    "tone": -1.55,
     "trend": [
-     34,
      31,
      30,
      34,
      28,
      32,
-     26
+     26,
+     41
     ]
    },
    "ref": {
     "n": 0,
     "tone": null,
     "trend": [
-     0,
      2,
      0,
      0,
      2,
      1,
+     0,
      0
     ]
    },
-   "score7": 215,
+   "score7": 222,
    "is_new": false
   },
   "scarcity": {
    "name": "物価高・お金の先行きへの不安",
    "kind": "pressure",
    "jp": {
-    "n": 2,
-    "tone": 0.83,
+    "n": 7,
+    "tone": 0.73,
     "trend": [
-     22,
      17,
      23,
      18,
      9,
      9,
-     2
+     2,
+     7
     ]
    },
    "ref": {
     "n": 0,
     "tone": null,
     "trend": [
-     0,
      1,
+     0,
      0,
      0,
      0,
@@ -107,23 +107,23 @@
      0
     ]
    },
-   "score7": 100,
+   "score7": 85,
    "is_new": false
   },
   "harass": {
    "name": "パワハラ・いじめ",
    "kind": "pressure",
    "jp": {
-    "n": 4,
-    "tone": -1.53,
+    "n": 9,
+    "tone": -0.96,
     "trend": [
-     19,
      22,
      11,
      13,
      19,
      2,
-     4
+     4,
+     9
     ]
    },
    "ref": {
@@ -139,23 +139,23 @@
      0
     ]
    },
-   "score7": 90,
+   "score7": 80,
    "is_new": false
   },
   "disability": {
    "name": "障害のある人への偏見",
    "kind": "candidate",
    "jp": {
-    "n": 3,
-    "tone": -1.05,
+    "n": 17,
+    "tone": -1.63,
     "trend": [
-     20,
      10,
      15,
      15,
      9,
      5,
-     3
+     3,
+     17
     ]
    },
    "ref": {
@@ -165,92 +165,28 @@
      0,
      0,
      0,
-     0,
      1,
+     0,
      0,
      0
     ]
    },
-   "score7": 77,
+   "score7": 74,
    "is_new": false
   },
   "mental": {
    "name": "心の不調への偏見",
    "kind": "candidate",
    "jp": {
-    "n": 3,
-    "tone": -1.07,
+    "n": 7,
+    "tone": -3.26,
     "trend": [
-     4,
      6,
      9,
      14,
      24,
      10,
-     3
-    ]
-   },
-   "ref": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     1,
-     0
-    ]
-   },
-   "score7": 70,
-   "is_new": false
-  },
-  "ethnic": {
-   "name": "外国にルーツがある人への偏見",
-   "kind": "pressure",
-   "jp": {
-    "n": 2,
-    "tone": -1.24,
-    "trend": [
-     9,
-     16,
-     8,
-     5,
-     8,
-     12,
-     2
-    ]
-   },
-   "ref": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     0,
-     2,
-     0,
-     0,
-     1,
-     0,
-     0
-    ]
-   },
-   "score7": 60,
-   "is_new": false
-  },
-  "ai_jobs": {
-   "name": "AIに仕事を取られる不安",
-   "kind": "candidate",
-   "jp": {
-    "n": 7,
-    "tone": -0.82,
-    "trend": [
-     7,
-     6,
-     15,
-     5,
-     12,
-     0,
+     3,
      7
     ]
    },
@@ -262,27 +198,59 @@
      0,
      0,
      0,
+     1,
+     0,
+     0
+    ]
+   },
+   "score7": 73,
+   "is_new": false
+  },
+  "ethnic": {
+   "name": "外国にルーツがある人への偏見",
+   "kind": "pressure",
+   "jp": {
+    "n": 5,
+    "tone": -2.2,
+    "trend": [
+     16,
+     8,
+     5,
+     8,
+     12,
+     2,
+     5
+    ]
+   },
+   "ref": {
+    "n": 0,
+    "tone": null,
+    "trend": [
+     2,
+     0,
+     0,
+     1,
      0,
      0,
      0
     ]
    },
-   "score7": 52,
+   "score7": 56,
    "is_new": false
   },
-  "precarious": {
-   "name": "働き方による上下の見方",
-   "kind": "pressure",
+  "ai_jobs": {
+   "name": "AIに仕事を取られる不安",
+   "kind": "candidate",
    "jp": {
     "n": 1,
-    "tone": 0.13,
+    "tone": 2.66,
     "trend": [
-     8,
      6,
-     11,
-     4,
-     9,
+     15,
+     5,
+     12,
      0,
+     7,
      1
     ]
    },
@@ -299,118 +267,22 @@
      0
     ]
    },
-   "score7": 39,
+   "score7": 46,
    "is_new": false
   },
-  "hetero": {
-   "name": "恋愛や性のあり方の「ふつう」",
+  "precarious": {
+   "name": "働き方による上下の見方",
    "kind": "pressure",
-   "jp": {
-    "n": 3,
-    "tone": -1.49,
-    "trend": [
-     10,
-     4,
-     4,
-     1,
-     2,
-     2,
-     3
-    ]
-   },
-   "ref": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0
-    ]
-   },
-   "score7": 26,
-   "is_new": false
-  }
- },
- "candidates": {
-  "caregiving": {
-   "name": "介護の負担",
-   "kind": "candidate",
-   "jp": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     15,
-     2,
-     1,
-     6,
-     0,
-     1,
-     0
-    ]
-   },
-   "ref": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0
-    ]
-   },
-   "score7": 25
-  },
-  "isolation": {
-   "name": "ひとりぼっち・居場所のなさ",
-   "kind": "pressure",
-   "jp": {
-    "n": 4,
-    "tone": -0.44,
-    "trend": [
-     1,
-     3,
-     5,
-     1,
-     4,
-     5,
-     4
-    ]
-   },
-   "ref": {
-    "n": 0,
-    "tone": null,
-    "trend": [
-     0,
-     0,
-     0,
-     0,
-     0,
-     0,
-     0
-    ]
-   },
-   "score7": 23
-  },
-  "flaming": {
-   "name": "ネットでの炎上・集団での攻撃",
-   "kind": "candidate",
    "jp": {
     "n": 2,
-    "tone": 0.6,
+    "tone": -0.92,
     "trend": [
-     2,
-     1,
-     1,
-     1,
-     2,
+     6,
      11,
+     4,
+     9,
+     0,
+     1,
      2
     ]
    },
@@ -427,22 +299,57 @@
      0
     ]
    },
-   "score7": 20
+   "score7": 33,
+   "is_new": false
   },
-  "childcare": {
-   "name": "子育ての負担",
-   "kind": "candidate",
+  "isolation": {
+   "name": "ひとりぼっち・居場所のなさ",
+   "kind": "pressure",
    "jp": {
-    "n": 7,
-    "tone": 0.84,
+    "n": 1,
+    "tone": -2.88,
     "trend": [
      3,
-     0,
+     5,
      1,
      4,
-     2,
+     5,
+     4,
+     1
+    ]
+   },
+   "ref": {
+    "n": 0,
+    "tone": null,
+    "trend": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "score7": 23,
+   "is_new": true
+  }
+ },
+ "candidates": {
+  "flaming": {
+   "name": "ネットでの炎上・集団での攻撃",
+   "kind": "candidate",
+   "jp": {
+    "n": 0,
+    "tone": null,
+    "trend": [
      1,
-     7
+     1,
+     1,
+     2,
+     11,
+     2,
+     0
     ]
    },
    "ref": {
@@ -460,20 +367,20 @@
    },
    "score7": 18
   },
-  "marital": {
-   "name": "結婚・出産へのプレッシャー",
+  "hetero": {
+   "name": "恋愛や性のあり方の「ふつう」",
    "kind": "pressure",
    "jp": {
-    "n": 0,
-    "tone": null,
+    "n": 1,
+    "tone": 0.84,
     "trend": [
-     2,
-     1,
+     4,
      4,
      1,
-     0,
-     8,
-     0
+     2,
+     2,
+     3,
+     1
     ]
    },
    "ref": {
@@ -484,27 +391,58 @@
      0,
      0,
      0,
-     1,
+     0,
      0,
      0
     ]
    },
-   "score7": 16
+   "score7": 17
+  },
+  "childcare": {
+   "name": "子育ての負担",
+   "kind": "candidate",
+   "jp": {
+    "n": 2,
+    "tone": -0.16,
+    "trend": [
+     0,
+     1,
+     4,
+     2,
+     1,
+     7,
+     2
+    ]
+   },
+   "ref": {
+    "n": 0,
+    "tone": null,
+    "trend": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "score7": 17
   },
   "gender_gap": {
    "name": "男女の格差",
    "kind": "candidate",
    "jp": {
-    "n": 0,
-    "tone": null,
+    "n": 1,
+    "tone": -4.39,
     "trend": [
-     0,
      1,
      4,
      7,
      2,
      2,
-     0
+     0,
+     1
     ]
    },
    "ref": {
@@ -520,30 +458,61 @@
      0
     ]
    },
-   "score7": 16
+   "score7": 17
+  },
+  "marital": {
+   "name": "結婚・出産へのプレッシャー",
+   "kind": "pressure",
+   "jp": {
+    "n": 1,
+    "tone": -0.45,
+    "trend": [
+     1,
+     4,
+     1,
+     0,
+     8,
+     0,
+     1
+    ]
+   },
+   "ref": {
+    "n": 0,
+    "tone": null,
+    "trend": [
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ]
+   },
+   "score7": 15
   },
   "overwork": {
    "name": "長時間労働・働きすぎ",
    "kind": "candidate",
    "jp": {
-    "n": 0,
-    "tone": null,
+    "n": 1,
+    "tone": -2.12,
     "trend": [
-     1,
      3,
      2,
      0,
      8,
      0,
-     0
+     0,
+     1
     ]
    },
    "ref": {
     "n": 0,
     "tone": null,
     "trend": [
-     0,
      1,
+     0,
      0,
      0,
      0,
@@ -557,13 +526,44 @@
    "name": "性的な目で見られること",
    "kind": "pressure",
    "jp": {
-    "n": 1,
-    "tone": -2.61,
+    "n": 0,
+    "tone": null,
     "trend": [
      1,
+     4,
+     4,
      1,
-     4,
-     4,
+     0,
+     1,
+     0
+    ]
+   },
+   "ref": {
+    "n": 0,
+    "tone": null,
+    "trend": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "score7": 11
+  },
+  "caregiving": {
+   "name": "介護の負担",
+   "kind": "candidate",
+   "jp": {
+    "n": 1,
+    "tone": -3.13,
+    "trend": [
+     2,
+     1,
+     6,
+     0,
      1,
      0,
      1
@@ -582,22 +582,22 @@
      0
     ]
    },
-   "score7": 12
+   "score7": 11
   },
-  "service": {
-   "name": "お客からのいやがらせ（カスハラ）",
-   "kind": "pressure",
+  "fraud": {
+   "name": "詐欺の被害",
+   "kind": "candidate",
    "jp": {
-    "n": 0,
-    "tone": null,
+    "n": 1,
+    "tone": -4.69,
     "trend": [
-     1,
-     2,
-     2,
-     2,
-     2,
      0,
-     0
+     2,
+     2,
+     1,
+     3,
+     0,
+     1
     ]
    },
    "ref": {
@@ -615,19 +615,19 @@
    },
    "score7": 9
   },
-  "fraud": {
-   "name": "詐欺の被害",
-   "kind": "candidate",
+  "service": {
+   "name": "お客からのいやがらせ（カスハラ）",
+   "kind": "pressure",
    "jp": {
     "n": 0,
     "tone": null,
     "trend": [
-     0,
-     0,
      2,
      2,
-     1,
-     3,
+     2,
+     2,
+     0,
+     0,
      0
     ]
    },
@@ -650,16 +650,16 @@
    "name": "家庭の中の暴力",
    "kind": "candidate",
    "jp": {
-    "n": 0,
-    "tone": null,
+    "n": 1,
+    "tone": -5.88,
     "trend": [
-     2,
      0,
      0,
      0,
      0,
      0,
-     0
+     0,
+     1
     ]
    },
    "ref": {
@@ -675,32 +675,38 @@
      0
     ]
    },
-   "score7": 2
+   "score7": 1
   }
  },
- "swap": null,
+ "swap": {
+  "in": "isolation",
+  "out": "hetero",
+  "date": "2026-11-23",
+  "in_name": "ひとりぼっち・居場所のなさ",
+  "out_name": "恋愛や性のあり方の「ふつう」"
+ },
  "totals": {
-  "jp": 1068,
-  "ref": 5
+  "jp": 1128,
+  "ref": 2
  },
  "totals_trend": {
   "jp": [
-   1676,
    1964,
    2141,
    2039,
    2305,
    1267,
-   1068
+   1068,
+   1128
   ],
   "ref": [
-   13,
    24,
    9,
    7,
    11,
    6,
-   5
+   5,
+   2
   ]
  }
 }
