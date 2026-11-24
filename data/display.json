@@ -1,18 +1,6 @@
 {
- "date": "2026-11-23",
+ "date": "2026-11-24",
  "prev_keys": [
-  "inequality",
-  "scarcity",
-  "ethnic",
-  "ai_jobs",
-  "disability",
-  "elderly",
-  "harass",
-  "mental",
-  "hetero",
-  "precarious"
- ],
- "keys": [
   "inequality",
   "scarcity",
   "ethnic",
@@ -24,11 +12,28 @@
   "isolation",
   "precarious"
  ],
+ "keys": [
+  "inequality",
+  "scarcity",
+  "ethnic",
+  "ai_jobs",
+  "disability",
+  "elderly",
+  "harass",
+  "mental",
+  "marital",
+  "precarious"
+ ],
  "swap": {
-  "in": "isolation",
-  "out": "hetero"
+  "in": "marital",
+  "out": "isolation"
  },
  "history": [
+  {
+   "date": "2026-11-24",
+   "in": "marital",
+   "out": "isolation"
+  },
   {
    "date": "2026-11-23",
    "in": "isolation",
