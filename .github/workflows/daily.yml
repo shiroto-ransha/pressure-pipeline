@@ -24,6 +24,10 @@ on:
       date:
         description: "集計する日（JST, YYYY-MM-DD）。空なら昨日"
         required: false
+      deploy_only:
+        description: "公開だけをやり直す（集計・下書きはしない）。news.json を手で直したあとにも使う"
+        type: boolean
+        default: false
   push:                      # 確認用 PR のマージや手動の修正で main が変わったら、公開し直す
     branches: [main]
     paths: ["site/**"]
@@ -44,7 +48,7 @@ env:
 
 jobs:
   update:
-    if: github.event_name != 'push'
+    if: github.event_name != 'push' && !inputs.deploy_only
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
