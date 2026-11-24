@@ -55,7 +55,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    },
    {
     "kind": "事件",
@@ -107,7 +108,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    }
   ],
   "incomplete": [
@@ -168,7 +170,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    },
    {
     "kind": "芸能・ゴシップ",
@@ -219,7 +222,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    },
    {
     "kind": "芸能・ゴシップ",
@@ -270,161 +274,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
-   },
-   {
-    "kind": "事件",
-    "symbol": "医師派遣汚職事件",
-    "title": "大学教授への謝礼を巡る汚職疑惑",
-    "summary": "医師派遣を巡る汚職事件で、医療法人の理事が謝礼の額を独自に決めて元教授に渡していたとされる疑惑が報じられた。",
-    "frames": [
-     {
-      "name": "慣例の謝礼という見方",
-      "text": "人を紹介してもらったお礼としてお金を渡すのは、業界ではよくある挨拶やマナーの延長だと捉える見方です。",
-      "norm": "お世話になった相手にはお金を包んで感謝を示すべきだ",
-      "places": [
-       "職場"
-      ],
-      "effect": "組織同士の付き合いで、暗黙の謝礼や贈り物を断りにくくなります。",
-      "js": {
-       "f": "beneficiary",
-       "t": "関係を円滑にするための慣習に従っただけだと受け止めやすくなります。"
-      },
-      "pressures": [
-       "service",
-       "money_rank"
-      ]
-     },
-     {
-      "name": "立場を利用した便宜",
-      "text": "人の配置を決める力を持つ立場を利用して、個人的に利益を得ていたのではないかと疑う見方です。",
-      "norm": "公的な立場にある人は個人的な見返りを受け取るべきではない",
-      "places": [
-       "職場",
-       "役所・病院・窓口"
-      ],
-      "effect": "専門職や管理職が行う決定の公正さに強い疑いの目が向けられます。",
-      "js": {
-       "f": "observer",
-       "t": "権限を持つ人たちが裏で得をしていることへの不満が強まります。"
-      },
-      "pressures": [
-       "inequality",
-       "money_rank"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "oita-press.co.jp（2026-11-21）",
-      "url": "https://www.oita-press.co.jp/1010000000/2026/11/21/JDC2026112004214"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.7-flash"
-   },
-   {
-    "kind": "事件",
-    "symbol": "阿波市長の修理費水増し疑惑",
-    "title": "市長による公金だまし取りの疑い",
-    "summary": "市長が交通事故の修繕費用について工事代金の水増しを依頼し、市からお金をだまし取ったとされる疑惑が報じられた。",
-    "frames": [
-     {
-      "name": "公費の私的流用への不信",
-      "text": "自治体のトップが自分の事故の負担を軽くするために公の予算を使ったのではないかと見る枠組みです。",
-      "norm": "税金から出るお金を自分の都合でごまかして使うべきではない",
-      "places": [
-       "役所・病院・窓口",
-       "SNS・ネット"
-      ],
-      "effect": "自治体の代表者や幹部による経費の使い方全般に厳しい監視の目が向けられます。",
-      "js": {
-       "f": "victim",
-       "t": "自分たちが納めた税金を勝手に使われたという怒りが湧きやすくなります。"
-      },
-      "pressures": [
-       "inequality",
-       "money_rank"
-      ]
-     },
-     {
-      "name": "業者への無理な依頼",
-      "text": "強い立場を使って、地元の業者に見積もりの水増しなど不正な手続きを強いたのではないかと捉える見方です。",
-      "norm": "発注側の権力を使って下請けに不正を頼むべきではない",
-      "places": [
-       "職場",
-       "店舗・接客"
-      ],
-      "effect": "力関係の差から取引先の不正な要求を断れない問題に注目が集まります。",
-      "js": {
-       "f": "observer",
-       "t": "立場が弱い側が巻き込まれて逆らえない構図に不公正さを感じます。"
-      },
-      "pressures": [
-       "harass",
-       "precarious"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "news.livedoor.com（2026-11-21）",
-      "url": "https://news.livedoor.com/article/detail/32865497/"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.7-flash"
-   },
-   {
-    "kind": "事件",
-    "symbol": "官製談合とOB採用疑惑",
-    "title": "自治体OB採用と談合疑惑",
-    "summary": "公共事業を巡る官製談合で、予定価格などの情報を手に入れるために自治体の退職者を雇っていたとされる供述が報じられた。",
-    "frames": [
-     {
-      "name": "情報目当てのOB天下り",
-      "text": "役所の内情や秘密の情報を手に入れるために、元職員を雇い入れて利用するやり方だと捉える見方です。",
-      "norm": "入札の情報を引き出す目的で役所のOBを雇うべきではない",
-      "places": [
-       "職場",
-       "役所・病院・窓口"
-      ],
-      "effect": "公務員を退職した人の再就職全般が、癒着のための行動ではないかと疑われやすくなります。",
-      "js": {
-       "f": "observer",
-       "t": "特別な人脈を持つ者だけが有利に仕事を獲得していることへの不信感が高まります。"
-      },
-      "pressures": [
-       "inequality",
-       "echo"
-      ]
-     },
-     {
-      "name": "競争を装った筋書き",
-      "text": "表向きは公正な入札を行いながら、裏で事前に価格を教えてもらい落札者を決めていたと見る枠組みです。",
-      "norm": "公共の仕事はルール通りに公平な競争で決めるべきだ",
-      "places": [
-       "職場"
-      ],
-      "effect": "公的な入札制度の公平性そのものが形骸化しているという見方が広がります。",
-      "js": {
-       "f": "victim",
-       "t": "ルールを守って参加している真面目な事業者が損をしているという感覚が強まります。"
-      },
-      "pressures": [
-       "scarcity",
-       "inequality"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "asahi.com（2026-11-21）",
-      "url": "https://www.asahi.com/articles/ASVCN32G6VCNULOB01MM.html"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.7-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    }
   ]
  },
@@ -433,173 +284,7 @@
   "updated": "2026-11-20 07:44",
   "generated_by": "gemini:gemini-3.8-flash",
   "review_required": true,
-  "cases": [
-   {
-    "kind": "事件",
-    "symbol": "訪問介護先での放火容疑",
-    "title": "介護職員が利用者の居宅に放火したとされる事案の報道",
-    "summary": "訪問介護を担当していた職員の男が、利用者の住宅に火をつけたとして逮捕された。被疑者は利用者から暴言を受けていたという趣旨の話をしているとされる。",
-    "frames": [
-     {
-      "name": "密室ケアでのストレス強調",
-      "text": "支援の現場で暴言や理不尽な対応があっても、我慢し続けるのが当然だという見方を強めます。密室でのトラブルを個人同士の感情対立として片付ける視線を作ります。",
-      "norm": "仕事中の暴言や理不尽な扱いには耐え抜くべきだ",
-      "places": [
-       "職場",
-       "役所・病院・窓口",
-       "SNS・ネット"
-      ],
-      "effect": "対人支援や福祉の現場で働く人々が、利用者からのハラスメントに悩んでも声を上げにくくなります。",
-      "js": {
-       "f": "observer",
-       "t": "介護現場の大変さに同情しつつも、暴力で返した行為への非難に集中する心理。"
-      },
-      "pressures": [
-       "service",
-       "harass",
-       "precarious"
-      ]
-     },
-     {
-      "name": "要介護者の態度への視線",
-      "text": "支援を受ける立場であっても、職員に対して礼儀正しく感謝を示すべきだという空気を広げます。問題の原因が利用者の態度にあったかのように探る見方を促します。",
-      "norm": "支援を受ける側は常に穏やかで感謝を示すべきだ",
-      "places": [
-       "役所・病院・窓口",
-       "職場",
-       "SNS・ネット"
-      ],
-      "effect": "心身の不調や障害によって感情のコントロールが難しい人たちが、社会から敬遠されたり責められたりしやすくなります。",
-      "js": {
-       "f": "beneficiary",
-       "t": "支援を受ける側が過度に良い態度を求められ、少しの摩擦で批判の的になる恐れ。"
-      },
-      "pressures": [
-       "able",
-       "service",
-       "grievance"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "yomiuri.co.jp（2026-11-19）",
-      "url": "https://www.yomiuri.co.jp/yomidr/article/20261119-GYT1T00136/"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
-   },
-   {
-    "kind": "事件",
-    "symbol": "元交際相手へのSNS反応と規制法違反",
-    "title": "元交際相手のSNSへのリアクション行為に有罪判決が出た事案の報道",
-    "summary": "元交際相手のSNS投稿に対して反応を示した行為について、ストーカー規制法違反が認められた判決を元裁判官が解説する報道。",
-    "frames": [
-     {
-      "name": "公開機能でも接触とみなす枠組",
-      "text": "ネット上のボタンを押すだけの日常的な行為でも、相手や文脈によっては重大なつきまといと扱われる基準を周知します。相手の関心を無理に引く行為への警戒を強めます。",
-      "norm": "拒絶された相手のネット投稿には一切触れるべきではない",
-      "places": [
-       "SNS・ネット"
-      ],
-      "effect": "別れた相手や関係がこじれた知人を持つ人が、ネット上でのささいな閲覧や反応にも強い恐怖や萎縮を覚えるようになります。",
-      "js": {
-       "f": "victim",
-       "t": "オンライン上の何気ない反応でも精神的な脅威に感じてしまう被害者の不安。"
-      },
-      "pressures": [
-       "echo",
-       "harass",
-       "isolation"
-      ]
-     },
-     {
-      "name": "未練の可視化への監視",
-      "text": "恋愛感情や執着が少しでも外部に見えた場合、危険な行動の兆候として厳密に取り締まるべきだという意識を共有させます。",
-      "norm": "関係が終わった相手への執着は完全に断ち切らなければならない",
-      "places": [
-       "SNS・ネット",
-       "職場",
-       "学校・PTA"
-      ],
-      "effect": "失恋や対人関係の破綻に悩む人が、自分の感情を誰にも打ち明けられず孤立を深めることにつながります。",
-      "js": {
-       "f": "perpetrator",
-       "t": "軽い気持ちで行った反応が犯罪とみなされ処罰されることへの当惑や恐れ。"
-      },
-      "pressures": [
-       "hetero",
-       "marital",
-       "isolation"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "sankei.com（2026-11-19）",
-      "url": "https://www.sankei.com/article/20261119-T4SGHDO4BNIWTJ4MSFIXQT4DF4/"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
-   },
-   {
-    "kind": "事件",
-    "symbol": "医師派遣を巡る汚職疑惑",
-    "title": "大学の元教授が医師派遣に絡んで現金を受け取ったとされる事案の報道",
-    "summary": "大学の元教授が、医療法人の理事長から医師派遣の便宜を図る目的で現金を受け取っていた疑いがあるという報道。",
-    "frames": [
-     {
-      "name": "人繰りを巡る権力構造の視線",
-      "text": "医師不足に悩む現場と、人材を差配できる有力者との間で、特別な便宜や金銭のやり取りが起きやすい構図を意識させます。",
-      "norm": "重要な人材の配置は個人的な関係や便宜で決めてはならない",
-      "places": [
-       "職場",
-       "役所・病院・窓口"
-      ],
-      "effect": "人手不足の中で地域医療を支えようと努力している一般の医療関係者が、周囲から疑いの目で見られやすくなります。",
-      "js": {
-       "f": "observer",
-       "t": "専門職の配置が公正に行われていないことに対する一般社会の不信感。"
-      },
-      "pressures": [
-       "scarcity",
-       "money_rank",
-       "inequality"
-      ]
-     },
-     {
-      "name": "地位を利用した謝礼の常態化視線",
-      "text": "専門的な地位や権限を持つ立場の人なら、裏で謝礼や金品を受け取っているのではないかという見方を広げます。",
-      "norm": "地位や立場を利用して私的な利益を得るべきではない",
-      "places": [
-       "職場",
-       "役所・病院・窓口",
-       "SNS・ネット"
-      ],
-      "effect": "公的な役割や専門職に就く人全体に対して、透明性の確保や厳格なルール遵守を過度に迫る雰囲気を作ります。",
-      "js": {
-       "f": "beneficiary",
-       "t": "力関係を利用して利益を得ていた側に対する社会的な怒り。"
-      },
-      "pressures": [
-       "class",
-       "fame",
-       "money_rank"
-      ]
-     }
-    ],
-    "sources": [
-     {
-      "name": "oita-press.co.jp（2026-11-19）",
-      "url": "https://www.oita-press.co.jp/1010000000/2026/11/19/JDC2026111803667"
-     }
-    ],
-    "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
-   }
-  ],
+  "cases": [],
   "incomplete": [
    "芸能・ゴシップ"
   ]
