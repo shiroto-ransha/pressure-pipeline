@@ -4,7 +4,8 @@
 #   どこかが失敗しても、前日までのデータで公開を続ける（continue-on-error と、build.py が壊れたデータを置かないこと）。
 #
 # 公開前の確認（Variables の REVIEW_MODE）:
-#   pr（既定）  ニュースの下書きは main に入れず、ブランチ news-review に積んで PR を開く。人が確認してマージすると公開される。
+#   automerge（既定） ニュースの下書きを PR に積み、review_gate.py の規則で確かめて、反する事例を外してから自動でマージする。
+#   pr          ニュースの下書きは main に入れず、ブランチ news-review に積んで PR を開く。人が確認してマージすると公開される。
 #               報道環境の集計（gdelt.json）は機械的な数値なので、毎朝そのまま main に入れて公開する。
 #   auto        確認なしでニュースも main に入れて公開する。
 #
@@ -13,7 +14,7 @@
 #   BigQuery を使う場合: GCP_SA_KEY（サービスアカウント JSON）
 # Variables（任意）:
 #   LLM_ORDER, GEMINI_MODEL, GROQ_MODEL, CEREBRAS_MODEL, CF_MODEL, OPENROUTER_MODEL,
-#   GDELT_BACKEND（gkg-files | bigquery | doc）, GKG_SAMPLE, REVIEW_MODE（pr | auto）, BQ_PROJECT
+#   GDELT_BACKEND（gkg-files | bigquery | doc）, GKG_SAMPLE, REVIEW_MODE（automerge | pr | auto）, BQ_PROJECT
 name: daily-update
 on:
   schedule:
@@ -38,7 +39,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  REVIEW_MODE: ${{ vars.REVIEW_MODE || 'pr' }}
+  REVIEW_MODE: ${{ vars.REVIEW_MODE || 'automerge' }}
   REVIEW_BRANCH: news-review
 
 jobs:
@@ -71,8 +72,8 @@ jobs:
           BQ_PROJECT: ${{ vars.BQ_PROJECT }}
         run: python collect.py ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 
-      - name: 確認待ちのニュースを引き継ぐ（REVIEW_MODE=pr）
-        if: env.REVIEW_MODE == 'pr'
+      - name: 確認待ちのニュースを引き継ぐ（REVIEW_MODE=pr / automerge）
+        if: env.REVIEW_MODE != 'auto'
         run: |
           if git ls-remote --exit-code --heads origin "$REVIEW_BRANCH" >/dev/null; then
             git fetch -q origin "$REVIEW_BRANCH"
@@ -112,8 +113,8 @@ jobs:
           git diff --cached --quiet || git commit -q -m "daily update $(TZ=Asia/Tokyo date +%F)"
           git push -q origin HEAD:main
 
-      - name: ニュースの下書きを確認用 PR に積む（REVIEW_MODE=pr）
-        if: env.REVIEW_MODE == 'pr' && steps.news.outcome == 'success'
+      - name: ニュースの下書きを PR に積む（REVIEW_MODE=pr / automerge）
+        if: env.REVIEW_MODE != 'auto' && steps.news.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -126,11 +127,47 @@ jobs:
           git commit -q -m "ニュースの下書き $(TZ=Asia/Tokyo date +%F)（要確認）"
           git push -q -f origin "$REVIEW_BRANCH"
           if [ -z "$(gh pr list --head "$REVIEW_BRANCH" --state open --json number --jq '.[].number')" ]; then
-            gh pr create --base main --head "$REVIEW_BRANCH" --title "ニュースの枠組みの下書き（要確認）" --body-file .github/review_checklist.md
+            if [ "$REVIEW_MODE" = "automerge" ]; then TITLE="ニュースの枠組みの下書き（自動チェック後に公開）"; else TITLE="ニュースの枠組みの下書き（要確認）"; fi
+            gh pr create --base main --head "$REVIEW_BRANCH" --title "$TITLE" --body-file .github/review_checklist.md
           else
             gh pr comment "$REVIEW_BRANCH" --body "$(TZ=Asia/Tokyo date +%F) の下書きを追加しました。"
           fi
           git switch -q main
+
+      # 人の確認の代わりに review_gate.py の規則で確かめ、規則に反する事例を外してから PR をマージする。
+      # LLM が失敗した日でも、確認待ちの PR があればここで処理する。
+      - name: 自動チェックして PR をマージ（REVIEW_MODE=automerge）
+        if: always() && env.REVIEW_MODE == 'automerge'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898099+github-actions[bot]@users.noreply.github.com"
+          PR=$(gh pr list --head "$REVIEW_BRANCH" --state open --json number --jq '.[0].number')
+          if [ -z "$PR" ]; then echo "マージを待つ PR はありません"; exit 0; fi
+          git fetch -q origin "$REVIEW_BRANCH"
+          git switch -q -C "$REVIEW_BRANCH" "origin/$REVIEW_BRANCH"
+          python review_gate.py data/news.json --report "$RUNNER_TEMP/gate.md"
+          python build.py --only news
+          if ! python build.py --check --only news; then
+            gh pr comment "$PR" --body "news.json の形の確認に失敗したので、マージしませんでした。Actions の記録を見てください。"
+            exit 1
+          fi
+          git add data/news.json site/data/news.json
+          if ! git diff --cached --quiet; then
+            git commit -q -m "自動チェック：規則に反する事例を外し、auto_checked を付ける"
+            git push -q origin "$REVIEW_BRANCH"
+          fi
+          gh pr comment "$PR" --body-file "$RUNNER_TEMP/gate.md"
+          for i in 1 2 3 4 5; do
+            if gh pr merge "$PR" --squash --subject "ニュースの下書きを公開（自動チェック済み） $(TZ=Asia/Tokyo date +%F)"; then
+              git push -q origin --delete "$REVIEW_BRANCH" || true
+              echo "PR #$PR をマージしました"; git switch -q main; exit 0
+            fi
+            sleep 15
+          done
+          gh pr comment "$PR" --body "自動マージできませんでした（競合など）。手でマージするか、ブランチを消してください。"
+          exit 1
 
   deploy:
     needs: update

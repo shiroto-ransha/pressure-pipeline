@@ -226,13 +226,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #B5341A;outline-offset:2p
 <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 0">
 <span style="font-size: 13px; letter-spacing: 0.12em; margin-bottom: 12px">ニュースが広める「ふつう」の考え方 — {{newsDate}}</span>
 <sc-for list="{{news}}" as="n" hint-placeholder-count="4"><article style="border-top: 1px solid #161513; padding: 14px 0 6px; display: flex; flex-direction: column; gap: 4px">
-<sc-if value="{{n.review}}" hint-placeholder-val="{{false}}"><span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: {{accent}}; border: 1px solid {{accent}}; padding: 1px 8px">確認待ち — AIが書いた下書き（{{n.by}}）</span></sc-if>
+<sc-if value="{{n.review}}" hint-placeholder-val="{{false}}"><span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: {{accent}}; border: 1px solid {{accent}}; padding: 1px 8px">{{n.badge}}</span></sc-if>
 <span style="font-size: 12px; color: #5E5A52">{{n.kind}} ・ {{n.title}}</span>
 <span style="font-family: 'Noto Serif JP', serif; font-size: 20px">{{n.frame}}</span>
 <span style="font-size: 14px; color: #45423C">広まりやすい考え：「{{n.norm}}」</span>
 <span style="font-size: 12px; color: {{accent}}">強まりやすい気持ち：{{n.js}}</span>
 <sc-if value="{{n.hasSrc}}" hint-placeholder-val="{{true}}"><a href="{{n.url}}" target="_blank" rel="noopener noreferrer" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; color: #45423C; text-decoration: underline">元の記事：{{n.src}}</a></sc-if></article></sc-for>
-<span style="font-size: 12px; line-height: 1.7; color: #5E5A52; border-top: 1px solid #161513; padding-top: 10px">見出しなどの情報だけをもとにした解説です。人の名前は出さず、「人物A」のような記号にしています。逮捕された人や裁判中の人を、犯人だと決めつけません。「確認待ち」の付いたものは、まだ人がチェックしていないAIの下書きです。</span>
+<span style="font-size: 12px; line-height: 1.7; color: #5E5A52; border-top: 1px solid #161513; padding-top: 10px">見出しなどの情報だけをもとにした解説です。人の名前は出さず、「人物A」のような記号にしています。逮捕された人や裁判中の人を、犯人だと決めつけません。「AIの下書き」「確認待ち」の付いたものは、まだ人がチェックしていない解説です。実名や不適切な内容に気づいたら、すぐに取り下げます。</span>
 </div>
 </section>
 </sc-if>
@@ -438,6 +438,7 @@ class Component extends DCLogic {
       var f = c.frames[0], src = (c.sources || [])[0];
       return {kind: c.kind || '芸能・ゴシップ', title: c.title, frame: f.name, norm: f.norm, js: JSN[f.js.f] || '',
               review: c.review_required === true, by: c.generated_by || 'LLM',
+              badge: (c.auto_checked ? 'AIの下書き — 自動チェック済み・人の確認前（' : '確認待ち — AIが書いた下書き（') + (c.generated_by || 'LLM') + '）',
               hasSrc: !!(src && /^https?:/.test(src.url)), url: src ? src.url : '', src: src ? src.name : ''};
     });
 

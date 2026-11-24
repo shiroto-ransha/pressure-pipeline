@@ -24,6 +24,7 @@ import re
 import sys
 
 import llm
+import review_gate
 
 ROOT = pathlib.Path(__file__).resolve().parent
 DATA = ROOT / "data"
@@ -45,7 +46,7 @@ RULES = f"""あなたは、報道に対する「世間の反応（報道の見�
 - 高校生にも分かる、やさしい日本語で書く。一文は短くする。専門用語（規範、内面化、無徴化、言説、正当化、方略など）は使わず、日常の言葉に言いかえる。
 - name（枠組みの名前）は20字以内の、ひと目で意味が分かる言い方にする。norm は「〜してよい」「〜するべきだ」のような、ふだんの言葉の一文にする。
 - 渡された見出しとメタデータに書かれていることだけを事実として扱う。書かれていない事実・発言・反応を作らない。
-- 実名・グループ名・番組名は書かない。人物は「人物A〔性別・年代・職業カテゴリ〕」のように記号化する（不明な要素は省く）。
+- 実名・グループ名・番組名は書かない。「〇〇市長」「〇〇社長」のように、地名や会社名と役職で個人が分かる書き方もしない。symbol は必ず「人物A〔性別・年代・職業カテゴリ〕」の形にする（事件名や出来事の名前は書かない）。人物は「人物A〔性別・年代・職業カテゴリ〕」のように記号化する（不明な要素は省く）。
 - 容疑者・被告は推定無罪として扱い、断定しない。被害者の人物像や行為の手口には立ち入らない。
 - 次のものは選ばない: 自殺・自傷、未成年が当事者のもの、性犯罪の被害の詳細、一般人（芸能人・公人以外）が中心のもの。
 - 解説するのは「世間の反応（報道を含む）が公共空間に供給する枠組み」だけ。当事者の内心や対処方略は扱わない。良い・悪いの評価を入れない。政治的な話題はどの立場にも同じ基準で書く。
@@ -127,6 +128,12 @@ def make_check(pool: list[dict]):
                 errs.append(f"cases[{n}].source_index={i!r} は候補一覧にありません")
                 continue
             errs += [f"cases[{n}]: {e}" for e in quote_problems(c, pool[i]["title"])]
+            # 公開前の自動チェック（review_gate）と同じ規則。出典はあとで付けるので、ここでは仮に付けて調べる
+            probe = dict(c, sources=[{"url": pool[i]["url"]}])
+            errs += [f"cases[{n}]: {e}" for e in review_gate.case_problems(probe, pool[i]["title"])]
+            hard = review_gate.jargon_in(c)
+            if hard:
+                errs.append(f"cases[{n}]: 硬い言葉（{', '.join(hard)}）を、高校生にも分かる言葉に言いかえる")
         return errs
     return check
 
@@ -141,9 +148,9 @@ def link_sources(cases: list[dict], pool: list[dict], kind: str, date: str, gene
             print(f"  出典をたどれない事例を捨てました: {c.get('title')}", file=sys.stderr)
             continue
         a = pool[i]
-        probs = quote_problems(c, a["title"])
+        probs = quote_problems(c, a["title"]) + review_gate.case_problems(dict(c, sources=[{"url": a["url"]}]), a["title"])
         if probs:
-            print(f"  引用の規則に反する事例を捨てました: {c.get('title')}（{probs}）", file=sys.stderr)
+            print(f"  規則に反する事例を捨てました: {c.get('title')}（{probs}）", file=sys.stderr)
             continue
         c["kind"] = kind
         c["sources"] = [{"name": f"{a['domain']}（{date}）", "url": a["url"]}]

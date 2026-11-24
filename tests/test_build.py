@@ -12,7 +12,7 @@ GD = {"asof": "2026-11-18", "source": "The GDELT Project (https://www.gdeltproje
       "items": {"inequality": {"name": "格差", "jp": {"n": 3, "tone": -1.0, "trend": [3]}, "ref": None}}}
 CASE = {"kind": "事件", "symbol": "人物A", "title": "t", "summary": "s",
         "frames": [{"name": "n", "text": "t", "norm": "n", "places": ["職場"], "effect": "e", "js": {"f": "victim", "t": "x"}}],
-        "sources": [{"name": "a.jp", "url": "https://a.jp/1"}], "review_required": True}
+        "sources": [{"name": "a.jp", "url": "https://a.jp/1"}], "review_required": True, "auto_checked": True}
 
 
 def test_places_valid_files(tmp_path):
@@ -68,3 +68,9 @@ def test_static_body_escapes_html():
     out = build.static_body({"short_title": "t", "description": "d"}, None,
                             [{"date": "d", "cases": [dict(CASE, title="<script>x</script>")]}])
     assert "<script>x" not in out and "&lt;script&gt;" in out
+
+
+def test_static_body_skips_unchecked_drafts():
+    draft = dict(CASE, auto_checked=False, title="未チェックの下書き")
+    out = build.static_body({"short_title": "t", "description": "d"}, None, [{"date": "d", "cases": [draft, CASE]}])
+    assert "未チェックの下書き" not in out and "<h3>n</h3>" in out

@@ -129,13 +129,15 @@ def test_review_badge_and_fetch(browser, server):
             "sources": [{"name": "example.jp（2026-11-18）", "url": "https://example.jp/1"}],
             "review_required": True, "generated_by": "groq:test-model"}
     reviewed = dict(case, title="確認済みの事例", review_required=False)
+    auto = dict(case, title="自動チェック済みの事例", auto_checked=True)
     import json
     page.route("**/data/news.json", lambda r: r.fulfill(content_type="application/json",
-               body=json.dumps([{"date": "2026-11-18", "cases": [case, reviewed]}], ensure_ascii=False)))
+               body=json.dumps([{"date": "2026-11-18", "cases": [case, reviewed, auto]}], ensure_ascii=False)))
     page.goto(server)
     page.wait_for_load_state("networkidle")
     expect(page.get_by_text("確認待ち — AIが書いた下書き（groq:test-model）")).to_have_count(1)
-    expect(page.get_by_role("link", name="元の記事：example.jp（2026-11-18）")).to_have_count(2)
+    expect(page.get_by_role("link", name="元の記事：example.jp（2026-11-18）")).to_have_count(3)
+    expect(page.get_by_text("AIの下書き — 自動チェック済み・人の確認前（groq:test-model）")).to_have_count(1)
 
 
 def test_embedded_fallback_without_server(browser):

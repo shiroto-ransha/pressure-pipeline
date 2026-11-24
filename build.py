@@ -135,6 +135,8 @@ def static_body(site_cfg: dict, gd: dict | None, news: list | None) -> str:
     if news and news[0].get("cases"):
         out.append(f'<h2>ニュースが広める「ふつう」の考え方（{_e(news[0].get("date"))}）</h2>')
         for c in news[0]["cases"]:
+            if c.get("review_required") is True and not c.get("auto_checked"):
+                continue          # 自動チェック前の下書きは、検索エンジン向けの本文に出さない
             f = (c.get("frames") or [{}])[0]
             src = (c.get("sources") or [{}])[0]
             out.append(f'<article><h3>{_e(f.get("name"))}</h3><p>{_e(c.get("kind"))}・{_e(c.get("title"))}</p>'
