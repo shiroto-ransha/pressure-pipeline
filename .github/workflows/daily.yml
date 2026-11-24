@@ -173,13 +173,11 @@ jobs:
           gh pr comment "$PR" --body "自動マージできませんでした（競合など）。手でマージするか、ブランチを消してください。"
           exit 1
 
-  deploy:
+  # 公開用のファイルを作ってアップロードする（失敗しても、main にある前回までのデータで公開を続ける）
+  pages-build:
     needs: update
-    if: always() && needs.update.result != 'cancelled'   # 失敗しても、main にある前回までのデータで公開を続ける
+    if: always() && needs.update.result != 'cancelled'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
         with: {ref: main}
@@ -190,5 +188,15 @@ jobs:
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with: {path: site}
+
+  # アップロードが終わってから、別のジョブで公開する（同じジョブだと、アップロード直後に見つからないことがある）
+  deploy:
+    needs: pages-build
+    if: always() && needs.pages-build.result == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v5
