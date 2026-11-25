@@ -54,7 +54,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    },
    {
     "kind": "事件",
@@ -106,7 +107,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    },
    {
     "kind": "事件",
@@ -158,7 +160,8 @@
      }
     ],
     "review_required": true,
-    "generated_by": "gemini:gemini-3.8-flash"
+    "generated_by": "gemini:gemini-3.8-flash",
+    "auto_checked": true
    }
   ],
   "incomplete": [
