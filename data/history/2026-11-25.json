@@ -1,0 +1,226 @@
+{
+ "date": "2026-11-25",
+ "backend": "gkg-files",
+ "sample": 1,
+ "generated": "2026-11-26 07:39",
+ "files_expected": 192,
+ "files_ok": 192,
+ "items": {
+  "inequality": {
+   "jp": {
+    "n": 39,
+    "tone": -0.92
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "scarcity": {
+   "jp": {
+    "n": 9,
+    "tone": -0.61
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "ethnic": {
+   "jp": {
+    "n": 25,
+    "tone": -0.18
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "isolation": {
+   "jp": {
+    "n": 2,
+    "tone": 0.67
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "objectify": {
+   "jp": {
+    "n": 3,
+    "tone": -2.69
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "service": {
+   "jp": {
+    "n": 0,
+    "tone": null
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "harass": {
+   "jp": {
+    "n": 23,
+    "tone": -1.71
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "marital": {
+   "jp": {
+    "n": 3,
+    "tone": -1.76
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "hetero": {
+   "jp": {
+    "n": 9,
+    "tone": 1.54
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "precarious": {
+   "jp": {
+    "n": 4,
+    "tone": 2.28
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  }
+ },
+ "candidates": {
+  "flaming": {
+   "jp": {
+    "n": 1,
+    "tone": -0.26
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "ai_jobs": {
+   "jp": {
+    "n": 4,
+    "tone": -0.47
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "overwork": {
+   "jp": {
+    "n": 2,
+    "tone": -2.5
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "caregiving": {
+   "jp": {
+    "n": 5,
+    "tone": -1.66
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "childcare": {
+   "jp": {
+    "n": 5,
+    "tone": -0.57
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "disability": {
+   "jp": {
+    "n": 13,
+    "tone": -0.75
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "mental": {
+   "jp": {
+    "n": 16,
+    "tone": -1.94
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "gender_gap": {
+   "jp": {
+    "n": 2,
+    "tone": -3.54
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "elderly": {
+   "jp": {
+    "n": 47,
+    "tone": -0.91
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "dv": {
+   "jp": {
+    "n": 1,
+    "tone": -0.62
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  },
+  "fraud": {
+   "jp": {
+    "n": 1,
+    "tone": -1.37
+   },
+   "ref": {
+    "n": 0,
+    "tone": null
+   }
+  }
+ },
+ "totals": {
+  "jp": 2018,
+  "ref": 7
+ }
+}
