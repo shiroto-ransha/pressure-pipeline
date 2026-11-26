@@ -1,5 +1,5 @@
 {
- "date": "2026-11-25",
+ "date": "2026-11-26",
  "prev_keys": [
   "inequality",
   "scarcity",
@@ -9,7 +9,7 @@
   "elderly",
   "harass",
   "mental",
-  "marital",
+  "childcare",
   "precarious"
  ],
  "keys": [
@@ -22,13 +22,18 @@
   "harass",
   "mental",
   "childcare",
-  "precarious"
+  "hetero"
  ],
  "swap": {
-  "in": "childcare",
-  "out": "marital"
+  "in": "hetero",
+  "out": "precarious"
  },
  "history": [
+  {
+   "date": "2026-11-26",
+   "in": "hetero",
+   "out": "precarious"
+  },
   {
    "date": "2026-11-25",
    "in": "childcare",
