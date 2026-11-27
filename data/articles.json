@@ -1,152 +1,152 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "source": "The GDELT Project (https://www.gdeltproject.org/)",
  "kinds": {
   "芸能・ゴシップ": [
    {
-    "title": "大黒摩季のラジオ番組、宇徳敬子に関する発言で訂正・謝罪を発表「お寄せいただいたお声を真摯に受け止め」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000117000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 0.917431192660551,
-    "date": "20261126073000",
+    "title": "佐藤浩市が「ずっと謝りたかった芸人」ネタ番組で酷評「ずっと気になってて」岡村隆史「ずっと気になってはったんや」/芸能/デイリースポーツ online",
+    "url": "https://www.daily.co.jp/gossip/2026/11/27/0021080476.shtml",
+    "domain": "daily.co.jp",
+    "tone": 2.20588235294118,
+    "date": "20261127134500",
     "lang": "jpn",
     "themes": []
    },
    {
-    "title": "紅白歌手「純烈」を敬愛、銭湯お笑い6人組「強烈」　産経ニュース「風呂の日」生配信MC",
-    "url": "https://www.sankei.com/article/20261126-KCQ5N63E3FHVHLNRLQY6H6RSUU/",
-    "domain": "sankei.com",
-    "tone": 4.43548387096774,
-    "date": "20261126054500",
+    "title": "あべこうじ、当面の間は芸能活動を自粛　ひき逃げの疑いで任意聴取…所属の吉本興業が謝罪「捜査中のため、詳細の公表は控えさせていただきます」【全文】",
+    "url": "https://www.the-miyanichi.co.jp/oricon/1295684.html",
+    "domain": "the-miyanichi.co.jp",
+    "tone": -0.313971742543171,
+    "date": "20261127100000",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR",
      "TAX_FNCACT_ENTERTAINER",
-     "TAX_FNCACT_SINGER"
-    ]
-   },
-   {
-    "title": "浅草の芸人励ました笑い声　松倉久幸・東洋興業会長を悼む　江戸川大教授・西条昇氏寄稿",
-    "url": "https://www.sankei.com/article/20261126-AGHQBNSKYJKYZNYAVRIAPG5NO4/",
-    "domain": "sankei.com",
-    "tone": 3.6480686695279,
-    "date": "20261126034500",
-    "lang": "jpn",
-    "themes": [
-     "LGBT",
-     "SOC_GENERALCRIME",
-     "TAX_FNCACT_ACTOR",
-     "TAX_FNCACT_COMEDIAN",
-     "TAX_FNCACT_ENTERTAINER"
-    ]
-   },
-   {
-    "title": "野呂佳代、今後も「自分を信じて」前進　アイドルや俳優活動で貫いた信念「このぐらいしかできないけど、頑張ることはできる」",
-    "url": "https://373news.com/news/national/oricon/detail/2495277/",
-    "domain": "373news.com",
-    "tone": 3.34672021419009,
-    "date": "20261126104500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "山里亮太　人気女優と「ラジオ一緒に」意外な関わりぶっちゃけ再会喜ぶも…「周りから見たら」心配のワケ - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000165000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": -0.16,
-    "date": "20261126034500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTRESS"
-    ]
-   },
-   {
-    "title": "中島健人、2026年はステージ活動が充実「音楽的にもアイドル人生的にも強くなれた」",
-    "url": "https://www.chibanippo.co.jp/life/oricon/1697495",
-    "domain": "chibanippo.co.jp",
-    "tone": 5.08474576271186,
-    "date": "20261125201500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR",
-     "TAX_FNCACT_SINGER"
-    ]
-   },
-   {
-    "title": "酒豪伝説の島崎和歌子　感謝祭１００万ＧＥＴタレントに「ご飯行くよね？」→高級焼肉屋「赤字なくらい」酒浸り/芸能/デイリースポーツ online",
-    "url": "https://www.daily.co.jp/gossip/2026/11/26/0021075698.shtml",
-    "domain": "daily.co.jp",
-    "tone": 5.0,
-    "date": "20261126084500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "博多大吉　飲んでみたい同郷＆同学年の人気女優　ラブコール届かず「同じ時代に同じ福岡で育ったからね」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000414000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 3.66197183098592,
-    "date": "20261126141500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "「宅建試験」合格発表、芸能人ら喜びの声　瀬戸早妃は「空の上で見守ってくれていた父へ」メッセージ、元セクシー女優、元プロ野球選手も：紀伊民報AGARA｜和歌山県のニュースサイト",
-    "url": "https://www.agara.co.jp/article/717894",
-    "domain": "agara.co.jp",
-    "tone": 3.25,
-    "date": "20261126071500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "「夫が吉田栄作なの！？」【上田と女】ナチュラル美の１３歳年下女優に騒然「久しぶり見た」「出てる」「やっぱかわい」「吉田栄作勝ち組だろ」/芸能/デイリースポーツ online",
-    "url": "https://www.daily.co.jp/gossip/2026/11/26/0021074449.shtml",
-    "domain": "daily.co.jp",
-    "tone": 2.7027027027027,
-    "date": "20261126034500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "趣里＆杉野遥亮、フジ月9ドラマ初主演が決定　横浜市消防局が舞台…命をつなぐ最前線で戦う救急救命士、救助隊員に【コメントあり】｜秋田魁新報電子版",
-    "url": "https://www.sakigake.jp/news/article/20261126OR0021/",
-    "domain": "sakigake.jp",
-    "tone": 2.53857640617222,
-    "date": "20261125213000",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR",
-     "TAX_FNCACT_ACTRESS",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "彩輝なお　初めて手にしたレコードは「およげ！たいやきくん」その後は人気アイドルの「ＬＰを」/芸能/デイリースポーツ online",
-    "url": "https://www.daily.co.jp/gossip/2026/11/26/0021075791.shtml",
-    "domain": "daily.co.jp",
-    "tone": 2.31023102310231,
-    "date": "20261126084500",
+    "title": "Netflixでいま観るべき、おすすめドラマ・番組76選【2026年最新】",
+    "url": "https://wired.jp/article/netflix-best-shows-2026/",
+    "domain": "wired.jp",
+    "tone": -2.56410256410256,
+    "date": "20261127090000",
     "lang": "jpn",
-    "themes": []
+    "themes": [
+     "HARASSMENT",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_ACTOR",
+     "WB_1620_ELDERLY"
+    ]
    },
    {
-    "title": "千原ジュニア「このスタッフがやってる番組終わるな」の予想が的中　品格が分かりやすく出る場所とは - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000125000c.html",
+    "title": "信子　自宅に招かれる大物芸人とは　手料理「コース仕立て5品」「昔とがってたのウソだと思ってる」 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000159000c.html",
     "domain": "sponichi.co.jp",
-    "tone": 2.29591836734694,
-    "date": "20261126034500",
+    "tone": 7.34265734265734,
+    "date": "20261127064500",
     "lang": "jpn",
     "themes": []
    },
    {
-    "title": "松下洸平、俳優目線で語るティモシー・シャラメの魅力　『デューン』完結編アンバサダーに就任",
-    "url": "https://www.the-miyanichi.co.jp/oricon/1288478.html",
-    "domain": "the-miyanichi.co.jp",
-    "tone": 2.25118483412322,
-    "date": "20261125230000",
+    "title": "品川祐　自宅に招く人気芸人の\"迷惑行為\"ぶっちゃけ　「あんな悲しいことない」悲痛訴え - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000291000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": 3.93258426966292,
+    "date": "20261127104500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "芸人あべこうじさん、ひき逃げか／歩行者けが、警視庁が聴取 | 全国ニュース",
+    "url": "http://www.shikoku-np.co.jp/national/social/article.aspx?id=20261127000364",
+    "domain": "shikoku-np.co.jp",
+    "tone": -3.03030303030303,
+    "date": "20261127043000",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_ENTERTAINER"
+    ]
+   },
+   {
+    "title": "佐久間宣行氏　ゴッドタン放送開始前に意識した\"オバケ番組\"　自身もADで参加「すぐ勝てるわけがない」 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000132000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": 2.5440313111546,
+    "date": "20261127064500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "蛍原徹が放送事故級の衝撃映像を回想「朝のワイドショー番組で」局に電話が殺到「掛け軸の目が開いた！」/芸能/デイリースポーツ online",
+    "url": "https://www.daily.co.jp/gossip/2026/11/27/0021079724.shtml",
+    "domain": "daily.co.jp",
+    "tone": -2.46913580246914,
+    "date": "20261127084500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "長嶋一茂　「モーニングショー」オープニングでいきなり謝罪「申し訳ない…ここノーコメントでいい？」 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000082000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": -2.41379310344828,
+    "date": "20261127021500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "物理学者の大槻義彦さんが死去　90歳　プラズマ研究第一人者　TV番組で\"オカルト派\"との対決が人気 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s000413H4384000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": -2.16606498194946,
+    "date": "20261127141500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "ＬＩＧＨＴＳＵＭが再デビューで大反響！　Ｋ－ＰＯＰアイドルから「日本式アイドル」転身！？→空白の２年経てＭＶ５２４万再生突破/芸能/デイリースポーツ online",
+    "url": "https://www.daily.co.jp/gossip/2026/11/27/0021077435.shtml",
+    "domain": "daily.co.jp",
+    "tone": 1.87074829931973,
+    "date": "20261126230000",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "船越英一郎　66歳で\"2歳パパ\"育児の参考にしている芸人YouTubeとは　23歳下妻と一緒に視聴 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000117000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": 1.66204986149584,
+    "date": "20261127021500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "薬師丸ひろ子　歌手デビュー45年　歌い続ける道へと導いてくれた恩人「こういう世界に関われたら…」 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000422000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": 1.65016501650165,
+    "date": "20261126180000",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "テレ東「ポケットモンスター」新シーズン27年10月開始　なにわ男子＆レインボーMCの30周年番組も - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000336000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": 1.31233595800525,
+    "date": "20261127141500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "乃木坂46中西アルノ『Spicy Sessions』は「希望の光が見える番組」　黒沢薫と2度目のライブイベント【レポート＆インタビュー】：紀伊民報AGARA｜和歌山県のニュースサイト",
+    "url": "https://www.agara.co.jp/article/718422",
+    "domain": "agara.co.jp",
+    "tone": 1.19424811113819,
+    "date": "20261127053000",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR",
@@ -154,358 +154,313 @@
     ]
    },
    {
-    "title": "ＡＣＥｅｓ佐藤龍我、ドラマ単独初主演　型破りのラブコメディー「クスッと笑えるドラマ」共演の中島瑠菜「世界観がとても面白い」/芸能/デイリースポーツ online",
-    "url": "https://www.daily.co.jp/gossip/2026/11/26/0021073910.shtml",
+    "title": "早瀬憩「撮影が始まるのが楽しみ」フジ系ドラマ「この世は戦う価値がある」に出演決定　主演・桜田ひよりと３度目共演/芸能/デイリースポーツ online",
+    "url": "https://www.daily.co.jp/gossip/2026/11/27/0021077437.shtml",
     "domain": "daily.co.jp",
-    "tone": 2.01342281879195,
-    "date": "20261125230000",
+    "tone": 0.808625336927224,
+    "date": "20261126230000",
     "lang": "jpn",
     "themes": []
    },
    {
-    "title": "松村沙友理　実はママ友になりたいと思っている人気タレント実名告白「連絡してみようかなと思ったけど」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000162000c.html",
+    "title": "あの人気芸人主宰のYouTube番組が引き金か…　千葉の強豪・市立柏高校野球部が「チンチロリン」で処分　その背景とは",
+    "url": "https://news.livedoor.com/article/detail/32912870/",
+    "domain": "news.livedoor.com",
+    "tone": -0.65359477124183,
+    "date": "20261127014500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "関根勤　「芝居はうまい」大物女優の超天然エピソード暴露　2時間ドラマ撮影後にまさかの発言（スポニチ）",
+    "url": "https://mainichi.jp/articles/20261127/spp/sp0/006/204000c",
+    "domain": "mainichi.jp",
+    "tone": 0.651465798045602,
+    "date": "20261127051500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "12月は声優・歌手の夏川椎菜！『オールナイトニッポンPODCAST』月替わりパーソナリティ",
+    "url": "https://news.1242.com/article/556807",
+    "domain": "news.1242.com",
+    "tone": -0.468384074941452,
+    "date": "20261126164500",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_SINGER"
+    ]
+   },
+   {
+    "title": "大黒摩季、4月放送のラジオでの\"発言\"を謝罪　90年代デビューの前の話に「事実と異なる点や、誤った印象を与える表現がありました」　放送局も謝罪",
+    "url": "https://www.the-miyanichi.co.jp/oricon/1294781.html",
+    "domain": "the-miyanichi.co.jp",
+    "tone": -0.396301188903566,
+    "date": "20261127070000",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_SINGER",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "ごみ清掃芸人「触れると科学火傷を起こす可能性があります」家電リモコンのチェック＆処理方法を指南 - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/27/kiji/20261127s00041000131000c.html",
     "domain": "sponichi.co.jp",
-    "tone": 1.65876777251185,
-    "date": "20261126034500",
+    "tone": 0.364963503649634,
+    "date": "20261127064500",
     "lang": "jpn",
     "themes": []
    },
    {
-    "title": "HKT48　東京拠点の新ユニット設立へ　東京で1年間生活「グループを大きくするため様々な活動に」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000381000c.html",
+    "title": "近藤真彦　歌番組で共演の人気歌手を「ちょっと俺嫌で」と思っていた過去明かす　コンサートでも「ネタ」に（スポニチ）",
+    "url": "https://mainichi.jp/articles/20261127/spp/sp0/006/300000c",
+    "domain": "mainichi.jp",
+    "tone": 0.25062656641604,
+    "date": "20261127091500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "大黒摩季、ラジオで謝罪　宇徳敬子について「誤った印象を与える表現がありました」放送前から異例\"予告\" - スポニチ Sponichi Annex 芸能",
+    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261127s00041000012000c.html",
     "domain": "sponichi.co.jp",
-    "tone": 0.938967136150235,
-    "date": "20261126141500",
+    "tone": 0.162866449511401,
+    "date": "20261126180000",
     "lang": "jpn",
     "themes": []
    },
    {
-    "title": "山里亮太　\"パパ友\"の人気芸人を実名告白「どんだけ子供が好きかずっとしゃべっていた」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000172000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 0.719424460431655,
-    "date": "20261126073000",
+    "title": "2026年、最も話題を集めた映画・俳優は？ 第50回日本アカデミー賞「話題賞」投票開始",
+    "url": "https://www.chibanippo.co.jp/life/oricon/1698091",
+    "domain": "chibanippo.co.jp",
+    "tone": 4.10714285714286,
+    "date": "20261126173000",
     "lang": "jpn",
-    "themes": []
+    "themes": [
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
    },
    {
-    "title": "26年「年間CM露出タレント」今田美桜が2年連続1位！　「起用社数」は27社の川口春奈が5年連続1位 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000209000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 0.641025641025641,
-    "date": "20261126073000",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "岸谷蘭丸、生年月日が全く同じの人気女優とは？成功した姿に嫉妬「マジで悔しくて…」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/25/kiji/20261125s00041000397000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 0.0,
-    "date": "20261125163000",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "SixTONES京本大我、ハイトーンボイスでグループに貢献　音楽表現に意欲「素敵な音楽とたくさん出会えるように」｜秋田魁新報電子版",
-    "url": "https://www.sakigake.jp/news/article/20261126OR0198/",
-    "domain": "sakigake.jp",
-    "tone": 4.1958041958042,
-    "date": "20261126094500",
+    "title": "ONE OR EIGHT・REIA、『黒崎くんの言いなりになんてならない』で国内ドラマ初出演　きょうからインスタ開設も：紀伊民報AGARA｜和歌山県のニュースサイト",
+    "url": "https://www.agara.co.jp/article/718707",
+    "domain": "agara.co.jp",
+    "tone": 3.57142857142857,
+    "date": "20261127104500",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR"
     ]
    },
    {
-    "title": "【あすから】ハン・ジミン＆イ・ジュニョクのヒーリングラブコメ　韓国ドラマ『わたしの完璧な秘書』放送スタート＜キャスト・あらすじ＞｜ORICON NEWS｜Web東奥",
-    "url": "https://www.toonippo.co.jp/articles/-/2411557",
+    "title": "活動休止中のILLIT・MOKA、Weverse再開　復帰を予告「ゆっくり待っていていただけたらと思います…!!」【投稿全文訳】｜ORICON NEWS｜Web東奥",
+    "url": "https://www.toonippo.co.jp/articles/-/2412154",
     "domain": "toonippo.co.jp",
-    "tone": 3.88768898488121,
-    "date": "20261126091500",
+    "tone": 3.55239786856128,
+    "date": "20261127050000",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR"
     ]
    },
    {
-    "title": "『25時、赤坂で』TBSで来年アニメ化　斉藤壮馬＆佐藤拓也がドラマCDから続投",
-    "url": "https://www.47news.jp/15285888.html",
-    "domain": "47news.jp",
-    "tone": 2.22222222222222,
-    "date": "20261125231500",
+    "title": "岡本信彦、鬼頭明里ら所属のラクーンドッグ、タレントへの迷惑行為に声明「厳正に対処いたします」　警察への通報・法的措置も【全文】｜オリコンニュース｜北國新聞",
+    "url": "https://www.hokkoku.co.jp/articles/-/2303359",
+    "domain": "hokkoku.co.jp",
+    "tone": -3.45423143350605,
+    "date": "20261127054500",
     "lang": "jpn",
     "themes": [
-     "LGBT",
      "TAX_FNCACT_ACTOR"
     ]
    },
    {
-    "title": "お笑い芸人・徳井健太さん「必要なのはおせっかい」　ヤングケアラー経験を長野で講演",
-    "url": "https://www.sankei.com/article/20261126-7IGPGXJPWNOCNPX73IFTBHWONI/",
-    "domain": "sankei.com",
-    "tone": 2.12765957446809,
-    "date": "20261126063000",
+    "title": "内田理央、芸能界入りのきっかけとなった\"思い出の場所\"で美脚披露「高校の時ここでスカウトされて…」｜ORICON NEWS｜Web東奥",
+    "url": "https://www.toonippo.co.jp/articles/-/2411902",
+    "domain": "toonippo.co.jp",
+    "tone": 3.35195530726257,
+    "date": "20261127003000",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "宮世琉弥、アイドルの妹と登山へ　オフ満喫の兄妹2ショットに反響「お顔似てるなぁ」「胸熱」",
+    "url": "http://373news.com/news/national/oricon/detail/2495222/",
+    "domain": "373news.com",
+    "tone": 3.24189526184539,
+    "date": "20261126161500",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "沢村玲＆鬼倉龍大、人気BL『そんなに言うなら抱いてやる』実写ドラマ化「今までに経験のないかわいらしい役」【コメント全文】",
+    "url": "https://www.the-miyanichi.co.jp/oricon/1292411.html",
+    "domain": "the-miyanichi.co.jp",
+    "tone": 3.19693094629156,
+    "date": "20261126230000",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "ドラマ『黒崎くんの言いなりになんてならない』メインキャスト6人解禁　主演はドラマ初単独主演の月島琉衣｜オリコンニュース｜北國新聞",
+    "url": "https://www.hokkoku.co.jp/articles/-/2303575",
+    "domain": "hokkoku.co.jp",
+    "tone": 3.08139534883721,
+    "date": "20261127103000",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "『徹子の部屋』、朝ドラ俳優の出演にSNS反響「日本語かなり上手くなってる！」　黒柳徹子「35歳、ずいぶんお若いんですね？驚きました」",
+    "url": "https://373news.com/news/national/oricon/detail/2495673/",
+    "domain": "373news.com",
+    "tone": 2.5,
+    "date": "20261127064500",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "アニメ『ポケモン』ワンダーボヤージュの続編となる新シーズンが2027年10月より放送。アニポケ30周年記念番組の放送も決定",
+    "url": "https://www.famitsu.com/article/202611/95342",
+    "domain": "famitsu.com",
+    "tone": 1.49425287356322,
+    "date": "20261127133000",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ENTERTAINER"
     ]
    },
    {
-    "title": "41歳女優　難関国家資格に合格「自分の限界を何度も超えようとした1年2ヶ月」　24年にはFP1級合格（スポニチ）",
-    "url": "https://mainichi.jp/articles/20261126/spp/sp0/006/221000c",
-    "domain": "mainichi.jp",
-    "tone": 2.06422018348624,
-    "date": "20261126051500",
+    "title": "「旦那をバカにすんじゃねぇよ」田口淳之介　顔出し妻がアンチを\"強火\"で撃退…夫かばう姿に指摘される「元恋人女優との共通点」",
+    "url": "https://news.livedoor.com/article/detail/32909136/",
+    "domain": "news.livedoor.com",
+    "tone": 1.33010882708585,
+    "date": "20261127014500",
     "lang": "jpn",
     "themes": [
+     "ARREST",
      "TAX_FNCACT_ACTRESS"
     ]
    },
    {
-    "title": "河井ゆずる「45のおじさん」自覚も…チラ見えする\"イケメン\"度に仲良し芸人は苦言「リア充が出てる」（スポニチ）",
-    "url": "https://mainichi.jp/articles/20261126/spp/sp0/006/172000c",
-    "domain": "mainichi.jp",
-    "tone": 2.0442930153322,
-    "date": "20261126030000",
+    "title": "神木隆之介、\"生中継\"会見の様子にSNS驚き「すごい緊張してる。はじめてみた」　29年大河ドラマ『三成のうた』主演",
+    "url": "https://www.oricon.co.jp/news/2495163/",
+    "domain": "oricon.co.jp",
+    "tone": -1.30890052356021,
+    "date": "20261127124500",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_ACTOR"
+    ]
+   },
+   {
+    "title": "【PrimeVideo】2026年12月の新着作品：嵐のドキュメンタリー＆ライブ、『Michael／マイケル』など年末年始に楽しみたい映画・ドラマも続々",
+    "url": "https://www.the-miyanichi.co.jp/oricon/1293146.html",
+    "domain": "the-miyanichi.co.jp",
+    "tone": -1.28676470588235,
+    "date": "20261127020000",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ENTERTAINER"
     ]
    },
    {
-    "title": "ついに…「石田三成」大河ドラマ主人公決定に地元歓喜　予習作品は「岡田准一さん主演の映画」【過去10年＆今後の主人公一覧あり】｜ORICON NEWS｜Web東奥",
-    "url": "https://www.toonippo.co.jp/articles/-/2411323",
+    "title": "『ポケモン』新シーズン来年10月放送で主人公リコ＆ロイ続投　1月から新番組で過去回を深掘り｜ORICON NEWS｜Web東奥",
+    "url": "https://www.toonippo.co.jp/articles/-/2412468",
     "domain": "toonippo.co.jp",
-    "tone": -1.69811320754717,
-    "date": "20261126053000",
+    "tone": 1.26336248785228,
+    "date": "20261127113000",
     "lang": "jpn",
     "themes": [
-     "TAX_FNCACT_ACTOR"
+     "TAX_FNCACT_ENTERTAINER"
     ]
    },
    {
-    "title": "戸田恵梨香、俳優活動を悶々と考えていたことを吐露　30代で仕事との向き合い方に変化「心が豊かになって満たされていくことが大事」",
-    "url": "https://373news.com/news/national/oricon/detail/2495274/",
-    "domain": "373news.com",
-    "tone": 1.31061598951507,
-    "date": "20261126101500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "ドラマ「花嫁のれん」が12年ぶり復活で能登各地でロケ　スペシャルドラマが来年1月4日に放送：北陸中日新聞Web",
-    "url": "https://www.chunichi.co.jp/article/1344152",
-    "domain": "chunichi.co.jp",
-    "tone": -1.28040973111396,
-    "date": "20261125190000",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "三上博史、ライフワーク的番組が20年＆500回　\"大天使\"の役割を続ける　盟友のプロデューサーの思いを「意思を継いでいく」：紀伊民報AGARA｜和歌山県のニュースサイト",
-    "url": "https://www.agara.co.jp/article/718025",
+    "title": "『2026年ブレイク俳優（女性編）』朝ドラ『風、薫る』ヒロイン・見上愛が1位に：紀伊民報AGARA｜和歌山県のニュースサイト",
+    "url": "https://www.agara.co.jp/article/718168",
     "domain": "agara.co.jp",
-    "tone": 1.00273473108478,
-    "date": "20261126100000",
+    "tone": 0.839630562552477,
+    "date": "20261127003000",
     "lang": "jpn",
     "themes": [
+     "SOC_GENERALCRIME",
      "TAX_FNCACT_ACTOR"
     ]
    },
    {
-    "title": "テレ東BIZ番組が書籍化 19人のゲスト語る：紀伊民報AGARA｜和歌山県のニュースサイト",
-    "url": "https://www.agara.co.jp/article/717794",
-    "domain": "agara.co.jp",
-    "tone": 0.837988826815642,
-    "date": "20261126053000",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "フジテレビドラマで初\"シェアード・ユニバース\"の試み　1月期『ラスト・サイレン』→4月期『119』…横浜市消防局の全面協力で月9ドラマの世界観つなぐ【コメントあり】 | ORICON NEWS | 国内海外のニュース",
-    "url": "https://373news.com/news/national/oricon/detail/2495271/",
+    "title": "神田愛花、フリー転身の理由＆\"野望\"告白「夕方（の報道番組）やりたい」→宮根誠司がバッサリ「もう戻れない」 | ORICON NEWS | 国内海外のニュース",
+    "url": "http://373news.com/news/national/oricon/detail/2495660/",
     "domain": "373news.com",
-    "tone": -0.718778077268643,
-    "date": "20261125210000",
+    "tone": 0.694444444444445,
+    "date": "20261127051500",
     "lang": "jpn",
     "themes": [
      "TAX_FNCACT_ACTOR"
     ]
    },
    {
-    "title": "CM起用社数タレントランキング発表　1位は5年連続で川口春奈　2位は今田美桜＆大谷翔平｜ORICON NEWS｜Web東奥",
-    "url": "https://www.toonippo.co.jp/articles/-/2411374",
-    "domain": "toonippo.co.jp",
-    "tone": 0.630914826498423,
-    "date": "20261126061500",
+    "title": "ソン・ヘギョ×コン・ユ『タンタラの詩』、12・11Netflixで配信　芸能界での成功を夢見て突き進む【本予告解禁】｜秋田魁新報電子版",
+    "url": "https://www.sakigake.jp/news/article/20261127OR0054/",
+    "domain": "sakigake.jp",
+    "tone": 0.557880055788006,
+    "date": "20261127020000",
     "lang": "jpn",
     "themes": [
+     "POVERTY",
      "TAX_FNCACT_ACTOR"
     ]
-   },
-   {
-    "title": "石井正則、母の死去を明かす「今年の頭に亡くなりまして」　最後に話した芸能人は榊原郁恵",
-    "url": "https://www.the-miyanichi.co.jp/oricon/1288334.html",
-    "domain": "the-miyanichi.co.jp",
-    "tone": 0.515463917525773,
-    "date": "20261125201500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "CM露出タレントランキング今田美桜が2年連続1位　起用社数は川口春奈がトップ【順位一覧】",
-    "url": "https://373news.com/news/national/oricon/detail/2495390/",
-    "domain": "373news.com",
-    "tone": 0.27027027027027,
-    "date": "20261126061500",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "timelesz篠塚大輝＆橋本将生、『小5クイズ』初参戦　\"高学歴アイドル\"の実力とコンビネーションが見どころに | ORICON NEWS | 国内海外のニュース",
-    "url": "https://373news.com/news/national/oricon/detail/2495084/",
-    "domain": "373news.com",
-    "tone": 0.221238938053097,
-    "date": "20261125230000",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_ACTOR"
-    ]
-   },
-   {
-    "title": "遠藤憲一　「20年ぶりに共演しました」上戸彩との2S披露「仲の良いのが伝わってくる」「笑顔が素敵」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000099000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 7.30593607305936,
-    "date": "20261126001500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "辻希美、長女・希空の19歳誕生日を祝福「10代ラスト全力で楽しんで」　19年前の感謝「私をママに…」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000194000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 7.27272727272727,
-    "date": "20261126073000",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "佐々木希「絶対冷蔵庫にある」万能調味料明かす　愛情たっぷり料理に「美味しそう」「素敵」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000227000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 7.25806451612903,
-    "date": "20261126073000",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "\"食いしん坊デカ盛りRQ\"水瀬琴音　アディダスのフリルジャージー＆ミニスカ姿披露に「おしゃれ～」 - スポニチ Sponichi Annex 芸能",
-    "url": "https://www.sponichi.co.jp/entertainment/news/2026/11/26/kiji/20261126s00041000096000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": 6.78733031674208,
-    "date": "20261126001500",
-    "lang": "jpn",
-    "themes": []
    }
   ],
   "事件": [
    {
-    "title": "福井県あわら市の死体遺棄事件　女性に対する殺人容疑で男を再逮捕へ：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCV0TXHVCVPJLB006M.html",
+    "title": "事務所に入り被害男性と接触か　福岡刺殺事件、関与疑われる男を送検 [福岡県]：朝日新聞",
+    "url": "https://www.asahi.com/articles/ASVCW1FS3VCWTIPE00XM.html",
     "domain": "asahi.com",
-    "tone": -8.28828828828829,
-    "date": "20261126061500",
+    "tone": -6.9060773480663,
+    "date": "20261127063000",
     "lang": "jpn",
     "themes": [
      "ARREST",
      "SOC_GENERALCRIME",
      "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "殺人容疑で49歳男きょう再逮捕へ　白山署と県警捜査１課　野々市の女性を監禁、遺棄｜社会｜石川のニュース｜北國新聞",
-    "url": "https://www.hokkoku.co.jp/articles/-/2301969",
-    "domain": "hokkoku.co.jp",
-    "tone": -9.21787709497207,
-    "date": "20261126024500",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "20分前に現場最寄り駅を下車か　福岡・男性刺殺、別事件で逮捕の男 [福岡県]：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCT5J90VCTTIPE01PM.html",
-    "domain": "asahi.com",
-    "tone": -4.23892100192678,
-    "date": "20261126013000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "暴行事件の通報から約3時間後に容疑者発見　福岡・刺殺も関与か",
-    "url": "https://mainichi.jp/articles/20261125/k00/00m/040/329000c",
-    "domain": "mainichi.jp",
-    "tone": -3.7122969837587,
-    "date": "20261125151500",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "中津市発注工事で脅迫、被告の有罪判決確定　最高裁が上告を棄却 - 大分のニュースなら 大分合同新聞プレミアムオンライン Gate",
-    "url": "https://www.oita-press.co.jp/1010000000/2026/11/26/JDC2026112602288",
-    "domain": "oita-press.co.jp",
-    "tone": -9.13705583756345,
-    "date": "20261126103000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
      "WB_1014_CRIMINAL_JUSTICE",
      "WB_695_POVERTY"
     ]
    },
    {
-    "title": "福岡県警警部補を飲酒運転疑いで書類送検　「仕事のストレスで」",
-    "url": "https://mainichi.jp/articles/20261126/k00/00m/040/242000c",
-    "domain": "mainichi.jp",
-    "tone": -6.23556581986143,
-    "date": "20261126100000",
-    "lang": "jpn",
+    "title": "Iranian activist and Oscar-nominated screenwriter Mehdi Mahmoudian arrested in Tehran",
+    "url": "https://japantoday.com/category/world/iranian-activist-and-oscar-nominated-screenwriter-mehdi-mahmoudian-arrested-in-tehran",
+    "domain": "japantoday.com",
+    "tone": -8.81147540983607,
+    "date": "20261126223000",
+    "lang": "eng",
     "themes": [
+     "ARREST",
+     "SOC_GENERALCRIME",
      "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "事件２０分前、周辺カメラに逮捕の男か　福岡駐輪場刺殺、足取り捜査―県警：時事ドットコム",
-    "url": "https://www.jiji.com/jc/article?k=2026112600145&g=soc",
-    "domain": "jiji.com",
-    "tone": -4.38356164383562,
-    "date": "20261126061500",
+    "title": "格闘家「ぱんちゃん璃奈」容疑者を傷害容疑で逮捕　交際相手殴ったか [東京都]：朝日新聞",
+    "url": "https://www.asahi.com/articles/ASVCW2RPJVCWUTIL015M.html",
+    "domain": "asahi.com",
+    "tone": -8.36120401337793,
+    "date": "20261127111500",
     "lang": "jpn",
     "themes": [
      "ARREST",
@@ -513,32 +468,81 @@
     ]
    },
    {
-    "title": "駐輪場で働く70歳男性刺されて死亡　別の暴行容疑で49歳男逮捕　殺人事件に関与か - スポニチ Sponichi Annex 社会",
-    "url": "https://www.sponichi.co.jp/society/news/2026/11/26/kiji/20261126s00042000067000c.html",
-    "domain": "sponichi.co.jp",
-    "tone": -3.9344262295082,
-    "date": "20261126001500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "【福岡男性刺殺事件】駐輪場で男性（70）が刺され死亡…関与が疑われる男（49）地下鉄・西新駅で駅員に暴行した疑いで逮捕【news23】",
-    "url": "https://news.livedoor.com/article/detail/32901763/",
-    "domain": "news.livedoor.com",
-    "tone": -2.67857142857143,
-    "date": "20261125181500",
+    "title": "懲役4年6月「ただ悔しい、あまりにも短い」　富山の飲酒死亡事故で地裁判決、母を亡くした遺族が涙：中日新聞Web",
+    "url": "https://www.chunichi.co.jp/article/1345586",
+    "domain": "chunichi.co.jp",
+    "tone": -8.22281167108753,
+    "date": "20261127100000",
     "lang": "jpn",
     "themes": [
      "ARREST",
-     "SOC_GENERALCRIME"
+     "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
+     "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "84-year-old man arrested for allegedly robbing relative at knifepoint",
-    "url": "https://japantoday.com/category/crime/84-year-old-man-arrested-for-allegedly-robbing-relative-at-knifepoint",
+    "title": "チャットＧＰＴとの「会話」履歴が証拠に、麻薬密輸事件で男に拘禁刑８年判決",
+    "url": "https://news.livedoor.com/article/detail/32910401/",
+    "domain": "news.livedoor.com",
+    "tone": -6.53266331658291,
+    "date": "20261126221500",
+    "lang": "jpn",
+    "themes": [
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "東京地検に「匿流専門班」新設／事件の首謀者ら摘発へ、来年１月 | 全国ニュース",
+    "url": "http://www.shikoku-np.co.jp/national/main/article.aspx?id=20261127000547",
+    "domain": "shikoku-np.co.jp",
+    "tone": -4.375,
+    "date": "20261127081500",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "東京地検に「匿流専門班」新設　事件の首謀者ら摘発へ、来年１月｜秋田魁新報電子版",
+    "url": "https://www.sakigake.jp/news/article/20261127CO0101/",
+    "domain": "sakigake.jp",
+    "tone": -3.7037037037037,
+    "date": "20261127080000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "匿流の捜査に専従、東京地検が「特命捜査班」　警視庁とタッグを強化：朝日新聞",
+    "url": "https://www.asahi.com/articles/ASVCW1Q01VCWUTIL02FM.html",
+    "domain": "asahi.com",
+    "tone": -3.29289428076257,
+    "date": "20261127111500",
+    "lang": "jpn",
+    "themes": [
+     "ARREST",
+     "CRIME_COMMON_ROBBERY",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "Woman arrested for allegedly stabbing man who lives in same apartment building",
+    "url": "https://japantoday.com/category/crime/woman-arrested-for-allegedly-stabbing-man-who-lives-in-same-apartment-building",
     "domain": "japantoday.com",
-    "tone": -10.752688172043,
-    "date": "20261126080000",
+    "tone": -11.9402985074627,
+    "date": "20261127090000",
     "lang": "eng",
     "themes": [
      "ARREST",
@@ -547,387 +551,401 @@
     ]
    },
    {
-    "title": "「アポ電」強盗致死、3被告の無期懲役確定へ　最高裁が上告棄却 [東京都]：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCV2RFDVCVUTIL024M.html",
-    "domain": "asahi.com",
-    "tone": -9.11854103343465,
-    "date": "20261126110000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "CRIME_COMMON_ROBBERY",
-     "SOC_GENERALCRIME"
-    ]
-   },
-   {
-    "title": "容疑者の男性、口論なくいきなり襲撃か　福岡・刺殺関与の疑い",
-    "url": "https://mainichi.jp/articles/20261126/k00/00m/040/037000c",
+    "title": "最高検、トクリュウ首謀者特定へ司法取引を活用　基本方針公表",
+    "url": "https://mainichi.jp/articles/20261127/k00/00m/040/353000c",
     "domain": "mainichi.jp",
-    "tone": -4.40613026819923,
-    "date": "20261126051500",
+    "tone": -5.76441102756892,
+    "date": "20261127120000",
     "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "死亡男性、顔や首に多数の傷　事件２０分前、周辺カメラに逮捕の男か―福岡駐輪場刺殺・県警：時事ドットコム",
-    "url": "https://www.jiji.com/jc/article?k=2026112601183&g=soc",
-    "domain": "jiji.com",
-    "tone": -4.12371134020619,
-    "date": "20261126143000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "WB_695_POVERTY"
-    ]
-   },
-   {
-    "title": "福岡刺殺　抵抗する間もなく襲撃か　容疑者、直後に近くで服購入",
-    "url": "https://mainichi.jp/articles/20261126/k00/00m/040/303000c",
-    "domain": "mainichi.jp",
-    "tone": -3.34855403348554,
-    "date": "20261126121500",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE",
-     "WB_695_POVERTY"
-    ]
-   },
-   {
-    "title": "イオンで服装変え逃走か　福岡・男性刺殺、事件後にカーディガン買う [福岡県]：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCV3C5RVCVTIPE004M.html",
-    "domain": "asahi.com",
-    "tone": -2.85087719298246,
-    "date": "20261126110000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE",
-     "WB_695_POVERTY"
-    ]
-   },
-   {
-    "title": "鹿児島4685万円詐欺…被告「マネロンと思った」と詐欺を否認　検察「紙袋が置かれた状況で気付くはず」拘禁刑7年求刑",
-    "url": "https://373news.com/news/local/detail/243417/",
-    "domain": "373news.com",
-    "tone": -12.8491620111732,
-    "date": "20261126123000",
-    "lang": "jpn",
-    "themes": [
-     "SOC_GENERALCRIME",
-     "TAX_FNCACT_ACTOR",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "Ex-teacher referred to prosecutors over AI-altered nude images of girl",
-    "url": "https://japantoday.com/category/crime/ex-teacher-referred-to-prosecutors-over-ai-altered-nude-images-of-girl",
-    "domain": "japantoday.com",
-    "tone": -7.63888888888889,
-    "date": "20261125221500",
-    "lang": "eng",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "オンラインゲームで知り合った被害者からの「愛知県は田舎くさい」に殺意　女子高生殺害クローゼット遺棄事件、名古屋地裁で被告人質問：中日新聞Web",
-    "url": "https://www.chunichi.co.jp:443/article/1345111",
-    "domain": "chunichi.co.jp",
-    "tone": -7.42857142857143,
-    "date": "20261126131500",
-    "lang": "jpn",
-    "themes": []
-   },
-   {
-    "title": "バー店内遺体遺棄　被告「殺人はしていません」　札幌地裁初公判",
-    "url": "https://mainichi.jp/articles/20261126/k00/00m/040/273000c",
-    "domain": "mainichi.jp",
-    "tone": -7.20720720720721,
-    "date": "20261126121500",
-    "lang": "jpn",
-    "themes": [
-     "SOC_GENERALCRIME",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "社説：受刑者の選挙権制限　見直しの議論が不可欠だ",
-    "url": "https://mainichi.jp/articles/20261126/ddm/005/070/073000c",
-    "domain": "mainichi.jp",
-    "tone": -5.2710843373494,
-    "date": "20261125194500",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME",
-     "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "Mexico's most powerful cartels adapt as arrests and leadership battles reshape their ranks",
-    "url": "https://japantoday.com/category/world/mexico%E2%80%99s-most-powerful-cartels-adapt-as-arrests-and-leadership-battles-reshape-their-ranks",
-    "domain": "japantoday.com",
-    "tone": -5.21920668058455,
-    "date": "20261125221500",
-    "lang": "eng",
     "themes": [
      "ARREST",
      "SOC_GENERALCRIME",
      "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "覚醒剤や大麻の密売疑いで3人逮捕　1億円以上売り上げか",
-    "url": "https://mainichi.jp/articles/20261126/k00/00m/310/220000c",
-    "domain": "mainichi.jp",
-    "tone": -4.24242424242424,
-    "date": "20261126094500",
-    "lang": "jpn",
+    "title": "Mexican president blasts DEA over tip lines, accusing it of not fighting fentanyl enough inside U.S.",
+    "url": "https://japantoday.com/category/world/mexican-president-blasts-dea-over-tip-lines-accusing-it-of-not-fighting-fentanyl-enough-inside-us",
+    "domain": "japantoday.com",
+    "tone": -4.96644295302013,
+    "date": "20261126223000",
+    "lang": "eng",
     "themes": [
      "ARREST",
+     "SCANDAL",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "福岡の刺殺事件、逃走時着替えか　商業施設の出入り前後で異なる服装",
-    "url": "https://www.nikkei.com/article/DGXZQOUD266T30W6A121C2000000/",
+    "title": "福岡の男性刺殺、事務所立ち寄り後に急襲か　逮捕の男",
+    "url": "https://www.nikkei.com/article/DGXZQOUD275AK0X21C26A1000000/",
     "domain": "nikkei.com",
-    "tone": -3.91304347826087,
-    "date": "20261126093000",
+    "tone": -4.92753623188406,
+    "date": "20261127091500",
     "lang": "jpn",
     "themes": [
      "ARREST",
-     "WB_1014_CRIMINAL_JUSTICE",
-     "WB_695_POVERTY"
-    ]
-   },
-   {
-    "title": "福岡刺殺事件　被害者は上半身に多数の傷…逃走の男、商業施設内で着替えか",
-    "url": "https://www.sankei.com/article/20261126-GWKDF53OZJOP3LGETFQHZ4H4VY/",
-    "domain": "sankei.com",
-    "tone": -3.83631713554987,
-    "date": "20261126063000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
+     "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "SNSで募り覚醒剤を発送、2千人に販売か　密売グループの3人逮捕 [大阪府]：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCV2JZDVCVPTIL00PM.html",
-    "domain": "asahi.com",
-    "tone": -3.76237623762376,
-    "date": "20261126110000",
+    "title": "【福岡市男性刺殺事件】被害男性の顔や首に多数の傷…強い殺意で突然襲われたか　関与疑いの男、確保時「抵抗する様子なかった」【news23】",
+    "url": "https://news.livedoor.com/article/detail/32911499/",
+    "domain": "news.livedoor.com",
+    "tone": -4.13476263399694,
+    "date": "20261126184500",
     "lang": "jpn",
     "themes": [
      "ARREST",
+     "SOC_GENERALCRIME",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "How the Trump administration determined Jensen Huang is not a national security threat",
-    "url": "https://japantoday.com/category/world/how-the-trump-administration-determined-jensen-huang-is-not-a-national-security-threat3",
-    "domain": "japantoday.com",
-    "tone": -1.53846153846154,
-    "date": "20261125221500",
-    "lang": "eng",
+    "title": "「裏切られたと感じ、許せなかった」と供述　49歳男、車で首絞める　野々市の女性殺害疑い再逮捕｜社会｜石川のニュース｜北國新聞",
+    "url": "https://www.hokkoku.co.jp/articles/-/2302651",
+    "domain": "hokkoku.co.jp",
+    "tone": -4.0,
+    "date": "20261127011500",
+    "lang": "jpn",
+    "themes": [
+     "ARREST",
+     "SOC_GENERALCRIME",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "【未解決事件】吉川友梨さん行方不明から23年半 自宅まで400mの通学路で起きた計画的犯行の仮説を元警視庁刑事が解説",
+    "url": "https://news.livedoor.com/article/detail/32910804/",
+    "domain": "news.livedoor.com",
+    "tone": -3.80517503805175,
+    "date": "20261126184500",
+    "lang": "jpn",
     "themes": [
      "SOC_GENERALCRIME",
      "TAX_FNCACT_CRIMINAL",
-     "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "「現場にこだわり事件解決」和歌山県警の西川健太郎警部補、決意新た　近畿の警察官表彰",
-    "url": "https://www.sankei.com/article/20261126-UESMZJQXBZN3HDXDAJR22YDPYE/",
-    "domain": "sankei.com",
-    "tone": 1.17096018735363,
-    "date": "20261126140000",
-    "lang": "jpn",
-    "themes": [
-     "TAX_FNCACT_CRIMINAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "Israeli judges recommend prosecutors drop one bribery case against Netanyahu",
-    "url": "https://japantoday.com/category/world/israeli-judges-recommend-prosecutors-drop-one-bribery-case-against-netanyahu",
-    "domain": "japantoday.com",
-    "tone": -8.51063829787234,
-    "date": "20261125221500",
-    "lang": "eng",
-    "themes": [
-     "TAX_FNCACT_CRIMINAL",
-     "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "韓国の尹錫悦前大統領、偽証罪は無罪確定　非常戒厳巡る公判証言で：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCV32VDVCVUHBI010M.html",
-    "domain": "asahi.com",
-    "tone": -7.94117647058824,
-    "date": "20261126103000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "国連特別報告者「死刑は拷問」　残虐性を立証、存置国に廃止を求める：朝日新聞",
-    "url": "https://www.asahi.com/articles/ASVCR26LWVCRIIPE008M.html",
-    "domain": "asahi.com",
-    "tone": -7.72626931567329,
-    "date": "20261126110000",
-    "lang": "jpn",
-    "themes": [
-     "ARREST",
-     "TRIAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "偽の送金画面示し、現金詐取か　生成ＡＩで作成、２７歳男逮捕―警視庁：時事ドットコム",
-    "url": "https://www.jiji.com/jc/article?k=2026112601129&g=soc",
-    "domain": "jiji.com",
-    "tone": -5.89887640449438,
-    "date": "20261126130000",
+    "title": "「マンジャロ」ダイエット目的で転売容疑、生活保護で全額公費負担の制度悪用し利益か…４０歳女を逮捕",
+    "url": "https://www.yomiuri.co.jp/yomidr/article/20261127-GYT1T00085/",
+    "domain": "yomiuri.co.jp",
+    "tone": -1.93370165745856,
+    "date": "20261127033000",
     "lang": "jpn",
     "themes": [
      "ARREST"
     ]
    },
    {
-    "title": "前副町長も刑事告発　立山町の入湯税未徴収問題　隠ぺい否定も「信頼損なった」｜社会｜富山のニュース｜富山新聞",
-    "url": "https://www.hokkoku.co.jp/articles/-/2301767",
-    "domain": "hokkoku.co.jp",
-    "tone": -3.36734693877551,
-    "date": "20261125230000",
+    "title": "時効まで1年、遺族がタイ外相に捜査継続要請　未解決の邦人殺害事件：朝日新聞",
+    "url": "https://www.asahi.com/articles/ASVCW2Q44VCWUHBI02KM.html",
+    "domain": "asahi.com",
+    "tone": -1.6304347826087,
+    "date": "20261127141500",
     "lang": "jpn",
     "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "鹿児島4685万円詐欺…被告「マネロンと思った」と詐欺を否認　検察「紙袋が置かれた状況で気付くはず」拘禁刑7年求刑",
+    "url": "http://373news.com/news/local/detail/243417/",
+    "domain": "373news.com",
+    "tone": -12.8491620111732,
+    "date": "20261127023000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_ACTOR",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "ぱんちゃん璃奈容疑者、傷害容疑で逮捕報告　KNOCK OUTが無期限出場停止を発表 - スポニチ Sponichi Annex 格闘技",
+    "url": "https://www.sponichi.co.jp/battle/news/2026/11/27/kiji/20261127s00003000191000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": -6.30914826498423,
+    "date": "20261127064500",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "神戸6歳児暴行死、裁判員裁判で被告人質問　叔父の証言、3姉妹と食い違い　傷害致死への関与否定",
+    "url": "https://www.kobe-np.co.jp/news/society/202611/0021077279.shtml",
+    "domain": "kobe-np.co.jp",
+    "tone": -5.60190703218117,
+    "date": "20261126210000",
+    "lang": "jpn",
+    "themes": [
+     "ARREST",
+     "WB_1014_CRIMINAL_JUSTICE",
+     "WB_695_POVERTY"
+    ]
+   },
+   {
+    "title": "東京地検に「匿流専門班」新設 | 全国のニュース | 岩手日報ONLINE",
+    "url": "https://www.iwate-np.co.jp/article/kyodo/2026/11/27/1661097",
+    "domain": "iwate-np.co.jp",
+    "tone": -3.7037037037037,
+    "date": "20261127083000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
      "TAX_FNCACT_CRIMINAL",
      "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "ミャンマー大統領、ＩＣＪ判決に反発 「不適切な要求に従わず」：時事ドットコム",
-    "url": "https://www.jiji.com/jc/article?k=20261126049630a&g=afp",
-    "domain": "jiji.com",
-    "tone": -3.07167235494881,
-    "date": "20261126130000",
-    "lang": "jpn",
-    "themes": [
-     "UNGP_GENDER_EQUALITY",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "〈JAF職員・踏切閉じ込め公判〉「今後も運転は続けるのか？」の質問に「します！運転が好きだから」と即答した52歳被告…弁護人から「しませんと言う方がいい」と異例の助言も",
-    "url": "https://news.livedoor.com/article/detail/32902930/",
-    "domain": "news.livedoor.com",
-    "tone": -2.77777777777778,
-    "date": "20261126044500",
-    "lang": "jpn",
-    "themes": [
-     "HARASSMENT",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "小栗旬主演×三池崇史監督『バッド・ルーテナント：トウキョウ』全米公開日が決定 NEONが北米配給",
-    "url": "https://www.chibanippo.co.jp/life/oricon/1697555",
-    "domain": "chibanippo.co.jp",
-    "tone": -2.11864406779661,
-    "date": "20261126014500",
+    "title": "「トクリュウ」首謀者摘発へ情報共有体制、東京地検が27年1月1日に「特命捜査班」新設",
+    "url": "https://www.sankei.com/article/20261127-YVLBL45PFVM4VBQHIQFJLLUL34/",
+    "domain": "sankei.com",
+    "tone": -3.18471337579618,
+    "date": "20261127080000",
     "lang": "jpn",
     "themes": [
      "SOC_GENERALCRIME",
-     "TAX_FNCACT_ACTOR",
      "TAX_FNCACT_CRIMINAL",
+     "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "監禁スリラー「HEEL/ヒール」、\"首輪でピクニック\"シーンやイラストなど公開",
-    "url": "https://kinejun.jp/posts/20261126-nw-a5bba5",
-    "domain": "kinejun.jp",
-    "tone": -2.07972270363951,
-    "date": "20261126124500",
-    "lang": "jpn",
-    "themes": [
-     "SOC_GENERALCRIME",
-     "TAX_FNCACT_ACTOR",
-     "TAX_FNCACT_CRIMINAL",
-     "WB_1014_CRIMINAL_JUSTICE"
-    ]
-   },
-   {
-    "title": "税・予算,インサイド霞が関：巧妙化する金密輸、狙われる消費税の死角　動き始めた自民税調",
-    "url": "https://mainichi.jp/articles/20261125/k00/00m/020/032000c",
-    "domain": "mainichi.jp",
-    "tone": -1.52284263959391,
-    "date": "20261125231500",
+    "title": "なぜ前倒し？国際刑事裁判所へ日本が分担金拠出",
+    "url": "https://hicbc.com/magazine/article/?id=radichubu-65938",
+    "domain": "hicbc.com",
+    "tone": -3.05522914218566,
+    "date": "20261127013000",
     "lang": "jpn",
     "themes": [
      "ARREST",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "現場付近で情報提供呼び掛け　会社員刺殺事件から１５年―警視庁：時事ドットコム",
+    "url": "https://www.jiji.com/jc/article?k=2026112700294&g=soc",
+    "domain": "jiji.com",
+    "tone": -2.28758169934641,
+    "date": "20261127040000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "糖尿病薬「マンジャロ」無許可販売疑い　無職の40歳女を逮捕",
+    "url": "https://www.nikkei.com/article/DGXZQOUD262Z90W6A121C2000000/",
+    "domain": "nikkei.com",
+    "tone": -2.0,
+    "date": "20261127020000",
+    "lang": "jpn",
+    "themes": [
+     "ARREST",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "タイ日本人女性殺害、時効まで1年　父、早期解決と撤廃訴え",
+    "url": "https://mainichi.jp/articles/20261127/k00/00m/030/222000c",
+    "domain": "mainichi.jp",
+    "tone": -1.77304964539007,
+    "date": "20261127081500",
+    "lang": "jpn",
+    "themes": [
+     "ARREST",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "内部告発か沈黙か　公益通報巡る「揺れた天秤」5選、改正法が12月施行",
+    "url": "https://www.nikkei.com/article/DGXZQOUD2642M0W6A121C2000000/",
+    "domain": "nikkei.com",
+    "tone": -7.01468189233279,
+    "date": "20261127020000",
+    "lang": "jpn",
+    "themes": [
+     "CRIME_COMMON_ROBBERY",
      "SOC_GENERALCRIME",
      "TAX_FNCACT_CRIMINAL"
     ]
    },
    {
-    "title": "「民意の反映」どこへ…定数削減での少数派切り捨てと、最高裁の立法府への警告〈水島朝穂 東京新聞への直言〉：東京新聞デジタル",
-    "url": "https://www.tokyo-np.co.jp:443/article/529573",
-    "domain": "tokyo-np.co.jp",
-    "tone": -1.4720314033366,
-    "date": "20261126063000",
+    "title": "証拠隠滅教唆罪に問われた弁護士に拘禁刑1年求刑　名古屋地裁公判、検察「弁護士や刑事司法への信頼を失墜させた」：中日新聞Web",
+    "url": "https://www.chunichi.co.jp:443/article/1345647",
+    "domain": "chunichi.co.jp",
+    "tone": -6.98412698412699,
+    "date": "20261127124500",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "受刑者の選挙権　一律の制限、見直す時期だ | 中国新聞デジタル",
+    "url": "https://www.chugoku-np.co.jp/articles/-/930511",
+    "domain": "chugoku-np.co.jp",
+    "tone": -3.86740331491713,
+    "date": "20261126231500",
     "lang": "jpn",
     "themes": [
      "ARREST",
-     "DISABILITY",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "Wife of Japan journalist held in Russia says family 'trapped in grief'",
+    "url": "https://japantoday.com/category/national/wife-of-japan-journalist-held-in-russia-says-her-family-is-trapped-in-grief",
+    "domain": "japantoday.com",
+    "tone": -3.84615384615385,
+    "date": "20261126223000",
+    "lang": "eng",
+    "themes": [
+     "ARREST",
      "SOC_GENERALCRIME",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "Man Stabbed to Death at Fukuoka Bicycle Parking Lot",
-    "url": "https://www.nippon.com/en/articles/-/58024",
-    "domain": "nippon.com",
-    "tone": -8.60927152317881,
-    "date": "20261126070000",
-    "lang": "eng",
+    "title": "襲撃前後、駐輪場事務所に2度出入り　福岡刺殺容疑者",
+    "url": "https://mainichi.jp/articles/20261127/k00/00m/040/364000c",
+    "domain": "mainichi.jp",
+    "tone": -3.1413612565445,
+    "date": "20261127124500",
+    "lang": "jpn",
     "themes": [
-     "ARREST",
-     "SOC_GENERALCRIME"
+     "WB_1014_CRIMINAL_JUSTICE"
     ]
    },
    {
-    "title": "Fuel tanker crash ignites massive fire on highway surrounding Cairo, killing at least 30 people",
-    "url": "https://japantoday.com/category/world/a-fire-that-broke-out-on-a-major-highway-surrounding-cairo-has-killed-at-least-30-people-egypt%E2%80%99s-health-ministry-says",
-    "domain": "japantoday.com",
-    "tone": -7.35294117647059,
-    "date": "20261125221500",
-    "lang": "eng",
+    "title": "福岡刺殺　凶器手に持たず駐輪場に入ったか　入手方法など捜査",
+    "url": "https://mainichi.jp/articles/20261127/k00/00m/040/054000c",
+    "domain": "mainichi.jp",
+    "tone": -2.99823633156966,
+    "date": "20261127034500",
+    "lang": "jpn",
     "themes": [
+     "ARREST",
+     "SOC_GENERALCRIME",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "高市首相「長年の盟友」関芳弘文科相に迫る問責決議案…説明責任の行方と三つの過去：東京新聞デジタル",
+    "url": "https://www.tokyo-np.co.jp:443/article/530908",
+    "domain": "tokyo-np.co.jp",
+    "tone": -2.17391304347826,
+    "date": "20261126204500",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "ミャンマーの国際犯罪「誰かが見ている」　国連捜査機関トップの警告：朝日新聞",
+    "url": "https://www.asahi.com/articles/ASVCV4716VCVUHBI01SM.html",
+    "domain": "asahi.com",
+    "tone": -2.02020202020202,
+    "date": "20261127091500",
+    "lang": "jpn",
+    "themes": [
+     "HATE_SPEECH",
+     "SOC_GENERALCRIME",
      "TRIAL",
      "WB_1014_CRIMINAL_JUSTICE"
     ]
+   },
+   {
+    "title": "Seiden Law LLP：米連邦判事、イム・リークによる「ホエール・ハンティング」寄稿者ジェイコブ・シムズに対する証拠開示請求を許可｜プレスリリース｜北國新聞",
+    "url": "https://www.hokkoku.co.jp/ud/pressrelease/6b08d2aa7079c889bb000001",
+    "domain": "hokkoku.co.jp",
+    "tone": -1.91218130311615,
+    "date": "20261127011500",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "櫻井翔、『白銀山荘占拠』クランクイン「皆さんと力を合わせて頑張っていきたい」｜ORICON NEWS｜Web東奥",
+    "url": "https://www.toonippo.co.jp/articles/-/2411837",
+    "domain": "toonippo.co.jp",
+    "tone": -1.53452685421995,
+    "date": "20261126220000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "『罪深いあなた』『完璧な嘘』『100日の嘘』…嘘と秘密に翻弄される、今期注目の韓ドラ3選｜秋田魁新報電子版",
+    "url": "https://www.sakigake.jp/news/article/20261127OR0155/",
+    "domain": "sakigake.jp",
+    "tone": -0.795880149812733,
+    "date": "20261127080000",
+    "lang": "jpn",
+    "themes": [
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_ACTOR",
+     "TAX_FNCACT_CRIMINAL",
+     "WB_1014_CRIMINAL_JUSTICE"
+    ]
+   },
+   {
+    "title": "無人販売で、柿1000円分も盗難……無人販売所に義母が書いた貼り紙　まさかのひと言が、怒っているのに「かわいかった」",
+    "url": "https://news.livedoor.com/article/detail/32902934/",
+    "domain": "news.livedoor.com",
+    "tone": -0.758725341426403,
+    "date": "20261126184500",
+    "lang": "jpn",
+    "themes": [
+     "CRIME_COMMON_ROBBERY",
+     "SOC_GENERALCRIME",
+     "TAX_FNCACT_CRIMINAL"
+    ]
+   },
+   {
+    "title": "「足悪いからしていない」神戸6歳暴行死、被告人質問で叔父が主張",
+    "url": "https://www.sankei.com/article/20261127-XFAIQBPE6JJ2TIBZMV526EXKFU/",
+    "domain": "sankei.com",
+    "tone": -8.13253012048193,
+    "date": "20261127123000",
+    "lang": "jpn",
+    "themes": []
+   },
+   {
+    "title": "拠点に「商売繁盛」「開運」の置物　違法薬物密売で3人逮捕　計1億円以上の売り上げ - スポニチ Sponichi Annex 社会",
+    "url": "https://www.sponichi.co.jp/society/news/2026/11/27/kiji/20261127s00042000046000c.html",
+    "domain": "sponichi.co.jp",
+    "tone": -5.19480519480519,
+    "date": "20261126220000",
+    "lang": "jpn",
+    "themes": []
    }
   ]
  }
